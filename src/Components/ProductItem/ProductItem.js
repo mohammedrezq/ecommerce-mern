@@ -1,5 +1,4 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardMedia, Grid, Link } from "@material-ui/core";
@@ -15,17 +14,13 @@ const useStyles = makeStyles(() => ({
     paddingTop: "100%", // 16:9
     margin: "12px",
   },
-  cardAction: {
-    display: "block",
-    textAlign: "initial",
-  },
 }));
 
 const ProductItem = () => {
   const classes = useStyles();
 
   return (
-    <Grid item sm={12} md={6} lg={4}>
+
         <Card className={classes.root}>
           <CardMedia
             className={classes.media}
@@ -39,7 +34,6 @@ const ProductItem = () => {
             descriptionList3={`Carat total weight .20`}
           />
         </Card>
-    </Grid>
   );
 };
 
