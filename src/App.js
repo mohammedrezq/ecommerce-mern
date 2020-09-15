@@ -1,11 +1,12 @@
 import React from "react";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 
 import ProductGrid from './Components/ProductGrid/ProductGrid';
 
 function App() {
   return (
     <React.Fragment>
+          <Grid container spacing={4} />
       <h1>Hello World</h1>
       <Button variant="contained" color="primary">
         <Typography variant="h3" component="h3">
@@ -13,6 +14,7 @@ function App() {
         </Typography>
       </Button>
       <ProductGrid />
+
     </React.Fragment>
   );
 }
