@@ -1,6 +1,6 @@
 import React from "react";
 
-import {CardContent, Typography, List} from '@material-ui/core'; 
+import {CardContent, Typography} from '@material-ui/core'; 
 
 const ProductInfo = (props) => {
   return (
