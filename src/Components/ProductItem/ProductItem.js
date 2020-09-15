@@ -1,18 +1,18 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardMedia, Grid, Link } from "@material-ui/core";
+import { Card, CardMedia } from "@material-ui/core";
 
 import ProductInfo from "./ProductInfo/ProductInfo";
 
 const useStyles = makeStyles(() => ({
   root: {
     boxShadow: "0 0 black",
+    borderRadius: "0"
   },
   media: {
     height: 0,
     paddingTop: "100%", // 16:9
-    margin: "12px",
   },
 }));
 
