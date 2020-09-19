@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Typography, Grid } from "@material-ui/core";
 
-import ProductGrid from "../../Components/UIElements/ProductGrid/ProductGrid";
-import classes from '../../Components/UIElements/ProductGrid/ProductGrid.module.css'
+import ProductGrid from "../../Components/ProductGrid/ProductGrid";
+import classes from '../../Components/ProductGrid/ProductGrid.module.css'
 
 function ProductsPage() {
   return (

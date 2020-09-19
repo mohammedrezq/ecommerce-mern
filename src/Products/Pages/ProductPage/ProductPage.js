@@ -1,5 +1,5 @@
 import React from "react";
-import ProductGallery from "../../Components/UIElements/ProductGallery/ProductGallery";
+import ProductGallery from "../../Components/ProductGallery/ProductGallery";
 
 const ProductPage = () => {
     return(
