@@ -6,24 +6,26 @@ import ReactResizeDetector from "react-resize-detector";
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
 import Drawer from "./Drawer";
-import HamburgerButton from "../UIElements/HamburgerButton";
 import Backdrop from "../UIElements/Backdrop";
+import "./MainNavigation.css";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-const openDrawerHandler = () => {
+  // Open Menu as Drawer
+  const openDrawerHandler = () => {
     setDrawerIsOpen(true);
-};
+  };
 
-// Close Menu as Drawer
-const closeDrawerHandler = () => {
+  // Close Menu as Drawer
+  const closeDrawerHandler = () => {
     setDrawerIsOpen(false);
-};
+  };
 
-const handleWindowResizing = () => {
-  window.addEventListener('resize', closeDrawerHandler)
-};
+  const handleWindowResizing = () => {
+    window.addEventListener("resize", closeDrawerHandler);
+  };
+
   return (
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
@@ -31,24 +33,25 @@ const handleWindowResizing = () => {
         <MediaQuery query="(max-width: 768px)">
           {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
 
-          <Drawer
-            className={"menu-drawer" + (drawerIsOpen ? " show" : " hide")}
-            onClick={closeDrawerHandler}
-          >
-            {/* <nav className="main-navigation__drawer-nav"> */}
-            <NavLinks />
-            {/* </nav> */}
+          <Drawer show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <nav className="main-navigation__drawer-nav">
+              <NavLinks />
+            </nav>
           </Drawer>
         </MediaQuery>
       </ReactResizeDetector>
-
       <MainHeader>
+        <button
+          className="main-navigation__menu-btn"
+          onClick={openDrawerHandler}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
         <h1 className="main-navigation__title">
           <Link to="/">Home</Link>
         </h1>
-        <MediaQuery query="(max-width: 768px)">
-          <HamburgerButton onClick={openDrawerHandler} />
-        </MediaQuery>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>

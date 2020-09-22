@@ -17,29 +17,11 @@
   background: #000;
 }
 
-.main-navigation__title {
-  color: #000;
+h1.main-navigation__title {
+  margin: 0;
+  padding: 8px;
+  float: left;
 }
-
-.main-navigation__title a {
-  text-decoration: none;
-  color: #000;
-}
-
-.main-navigation__header-nav {
-  display: none;
-}
-
-.main-navigation__drawer-nav {
-  height: 100%;
-}
-
-@media (min-width: 768px) {
-  .main-navigation__menu-btn {
-    display: none;
-  }
-
-  .main-navigation__header-nav {
-    display: block;
-  }
+.main-navigation__humburger-btn {
+  float: right;
 }
