@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
-import CheckoutPage from "./Containers/CheckoutPage/CheckoutPage";
+import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
 

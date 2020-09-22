@@ -62,14 +62,14 @@
   }
 
   .nav-links button {
-    border: 5px solid yellowgreen;
-    color: black;
-    background: green;
+      border: 5px solid yellowgreen;
+      color: black;
+      background: green;
   }
 
   .nav-links button:hover,
   .nav-links button:active {
-    background: red;
-    color: black;
+      background: red;
+      color: black;
   }
 }
