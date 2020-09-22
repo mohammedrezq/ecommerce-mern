@@ -8,6 +8,7 @@ import NavLinks from "./NavLinks";
 import Drawer from "./Drawer";
 import HamburgerButton from "../UIElements/HamburgerButton";
 import Backdrop from "../UIElements/Backdrop";
+import './MainNavigation.css';
 
 const MainNavigation = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
