@@ -3,7 +3,7 @@
   height: 4rem;
   display: inline-block;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   top: 0;
   left: 0;

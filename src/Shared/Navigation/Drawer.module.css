@@ -1,4 +1,4 @@
-.menu-drawer {
+.menuDrawer {
   height: 100%;
   position: fixed;
   z-index: 10;
@@ -7,7 +7,7 @@
   background-color: rgb(182, 182, 182);
   overflow-x: hidden;
   padding-top: 60px;
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  transition: 0.6s ease-out; /* 0.6 second transition effect to slide in the menudrawer */
 }
 
 .show {
