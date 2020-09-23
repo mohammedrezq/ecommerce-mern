@@ -1,0 +1,28 @@
+.ProductsPaddingTop {
+    padding: 0 40px;
+}
+
+.secondaryHeader {
+    display: flex;
+    flex: 1 1 0%;
+    line-height: 1.3;
+    margin: 0;
+    align-self: center;
+    /* padding-top: 1rem; */
+}
+
+.stickySecondaryHeader {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    /* padding: 0px; */
+    /* font-size: 20px; */
+}
+
+.filterToggle {
+    align-self: center;
+}
+
+.headerOffset {
+    height: 64px;
+}
