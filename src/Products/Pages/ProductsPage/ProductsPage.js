@@ -5,9 +5,9 @@ import ProductGrid from "../../Components/ProductGrid/ProductGrid";
 import SecondaryHeader from "../../../Shared/UIElements/SecondaryHeader";
 import classes from "../../Components/ProductGrid/ProductGrid.module.css";
 // import productsPageStyle from "./ProductsPage.module.css";
-import secondaryHeader from "../../../Shared/UIElements/SecondaryHeader.module.css";
-// import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
-import productsPageStyling from "./ProductsPage.module.css";
+import secondaryHeaderCSS from "../../../Shared/UIElements/SecondaryHeader.module.css";
+import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
+import filteringMenuNavCSS from "../../../Shared/UIElements/FilteringMenu.module.css";
 
 function ProductsPage() {
   const [isFilterToggled, setisFilterToggled] = useState(false);
@@ -22,25 +22,35 @@ function ProductsPage() {
   console.log(isFilterToggled);
   return (
     <Grid container direction="column">
-      <div className={secondaryHeader.stickySecondaryHeader}>
+      <div className={secondaryHeaderCSS.stickySecondaryHeader}>
         {/* <div className={secondaryHeader.headerOffset}></div> */}
-        <SecondaryHeader className={secondaryHeader.ProductsPaddingTop}>
-          <h1 className={secondaryHeader.secondaryHeader}>All Products</h1>
-          <div className={secondaryHeader.filterToggle}>
+        <SecondaryHeader className={secondaryHeaderCSS.ProductsPaddingTop}>
+          <h1 className={secondaryHeaderCSS.secondaryHeader}>All Products</h1>
+          <nav className={secondaryHeaderCSS.secondaryHeaderNav}>
+          <button className={`${secondaryHeaderCSS.filterToggle} ${secondaryHeaderCSS.filterToggleBtn}`}>
             {isFilterToggled ? (
               <span onClick={closeFilters}>Hide Filters</span>
             ) : (
               <span onClick={openFilters}>Show Filters</span>
             )}
+          </button>
+          <div className={secondaryHeaderCSS.sortBy}>
+            <span>Sort By</span>
           </div>
-          <span>Sort By</span>
-          <div className={secondaryHeader.headerOffset}></div>
+          </nav>
+          <div className={secondaryHeaderCSS.headerOffset}></div>
         </SecondaryHeader>
       </div>
-      <Grid item container className={`${productsPageStyling.effect}${productsPageStyling.container}`}>
+      <Grid item container>
         {/* <Grid item className={classes.grid1} /> */}
-        {/* <FilteringMenu /> */}
-        <Grid item className={classes.grid12} >
+        <FilteringMenu
+          className={
+            isFilterToggled
+              ? filteringMenuNavCSS.showLeftNav
+              : filteringMenuNavCSS.hideLeftNav
+          }
+        />
+        <Grid item className={`${classes.grid12} ${classes.productGridResult}`}>
           <ProductGrid />
         </Grid>
         {/* <Grid item className={classes.grid1} /> */}
