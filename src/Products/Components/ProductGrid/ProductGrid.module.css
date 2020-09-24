@@ -1,11 +1,21 @@
 .grid1 {
-    flex-grow: 0;
-    max-width: 3.333333%;
-    flex-basis: 3.333333%;
+  flex-grow: 0;
+  max-width: 3.333333%;
+  flex-basis: 3.333333%;
 }
 
-.grid10 {
+.grid12 {
+  flex-grow: 0;
+  max-width: 100%;
+  flex-basis: 100%;
+  padding: 0 2px 0 4px;
+}
+
+@media (min-width: 768px) {
+  .grid12 {
     flex-grow: 0;
-    max-width: 93.333333%;
-    flex-basis: 93.333333%;
+    max-width: 100%;
+    flex-basis: 100%;
+    padding: 0 48px;
+  }
 }
