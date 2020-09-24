@@ -10,7 +10,6 @@ import ProductPage from "./Products/Pages/ProductPage/ProductPage";
 import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
-// import MainHeader from "./Shared/Navigation/MainHeader";
 
 function App() {
   return (

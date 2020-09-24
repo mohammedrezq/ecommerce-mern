@@ -7,6 +7,7 @@ import classes from "../../Components/ProductGrid/ProductGrid.module.css";
 // import productsPageStyle from "./ProductsPage.module.css";
 import secondaryHeader from "../../../Shared/UIElements/SecondaryHeader.module.css";
 // import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
+import productsPageStyling from "./ProductsPage.module.css";
 
 function ProductsPage() {
   const [isFilterToggled, setisFilterToggled] = useState(false);
@@ -36,13 +37,13 @@ function ProductsPage() {
           <div className={secondaryHeader.headerOffset}></div>
         </SecondaryHeader>
       </div>
-      <Grid item container>
-        <Grid item className={classes.grid1} />
-        <Grid item className={classes.grid10}>
+      <Grid item container className={`${productsPageStyling.effect}${productsPageStyling.container}`}>
+        {/* <Grid item className={classes.grid1} /> */}
+        {/* <FilteringMenu /> */}
+        <Grid item className={classes.grid12} >
           <ProductGrid />
-          {/* <FilteringMenu /> */}
         </Grid>
-        <Grid item className={classes.grid1} />
+        {/* <Grid item className={classes.grid1} /> */}
       </Grid>
     </Grid>
   );
