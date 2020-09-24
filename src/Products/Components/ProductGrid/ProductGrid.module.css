@@ -4,18 +4,31 @@
   flex-basis: 3.333333%;
 }
 
-.grid12 {
+/* .grid12 {
   flex-grow: 0;
   max-width: 100%;
   flex-basis: 100%;
   padding: 0 2px 0 4px;
+} */
+
+.grid12 {
+  flex-grow: 0;
+  max-width: 100%;
+  flex-basis: 100%;
+  /* padding: 0 2px 0 4px; */
+}
+
+.productGridResult {
+  max-width: 1920px;
+  padding: 0px 48px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
   .grid12 {
-    flex-grow: 0;
+    flex: 1 1 0%;
     max-width: 100%;
-    flex-basis: 100%;
-    padding: 0 48px;
+    padding-left: 40px;
+    padding-right: 48px;
   }
 }
