@@ -1,14 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardMedia } from "@material-ui/core";
+import { Grid, Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 
-import ProductInfo from "./ProductInfo/ProductInfo";
+import productItemCSS from './ProductItem.module.css'
+
+// import ProductInfo from "./ProductInfo/ProductInfo";
 
 const useStyles = makeStyles(() => ({
   root: {
     boxShadow: "0 0 black",
-    borderRadius: "0"
+    borderRadius: "0",
   },
   media: {
     height: 0,
@@ -16,24 +19,39 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ProductItem = () => {
+const ProductItem = (props) => {
   const classes = useStyles();
 
-  return (
+  /* Replace spaces with dashes || https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case */
+  let productTitleUrl = props.title;
+  productTitleUrl = productTitleUrl.replace(/\s+/g, '-').toLowerCase();
 
-        <Card className={classes.root}>
+  return (
+    <Grid item xs={6} sm={6} md={4} lg={4} xl={3}>
+      <Link to={`/product/${productTitleUrl}`} style={{ textDecoration: "none" }}>
+        <Card className={`${classes.root} ${productItemCSS.productStyle}`}>
+          {/* Product Images */}
           <CardMedia
             className={classes.media}
-            image="https://media.tiffany.com/is/image/Tiffany/EcomBrowseM/tiffany-co-schlumbergerlynn-pendant-62266465_987514_ED-62266465_987668_SV_1.jpg"
-            title="Gold Rubies"
+            image={props.image}
+            title={props.title}
           />
-          <ProductInfo
-            productTitle="Tiffany & Co. Schlumberger® Lynn pendant in 18k gold with rubies."
-            descriptionList1={"18k gold with round rubies"}
-            descriptionList2={`On a 16" chain`}
-            descriptionList3={`Carat total weight .20`}
-          />
+          {/* Product Info */}
+          <div className="product__info">
+            <CardContent>
+              <Typography variant="body1">{props.category}</Typography>
+              <Typography variant="body1">{props.title}</Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {props.description}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {props.price}
+              </Typography>
+            </CardContent>
+          </div>
         </Card>
+      </Link>
+    </Grid>
   );
 };
 

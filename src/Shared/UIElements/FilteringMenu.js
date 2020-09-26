@@ -10,17 +10,17 @@ const FilteringMenu = (props) => {
       <nav>
         <div style={{width: "192px"}}>
           <div className={classes.categories}>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/">
-              About
+            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/shoes">
+              Shoes
             </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/">
-              Services
+            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/tops-tshirts">
+              Tops&T-shirts
             </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/">
-              Clients
+            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/hoodies-pullovers">
+              Hoodies&Pullovers
             </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/">
-              Contact
+            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/jackets-vests">
+              Jackets&Vests
             </Link>
           </div>
         </div>

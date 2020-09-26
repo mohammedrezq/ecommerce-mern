@@ -5,9 +5,8 @@ import classes from './ProductImage.module.css';
 const ProductImage = (props) => {
   return (
     <picture className={classes.product_image__scale}>
-      <source srcSet={props.imgUrlMedia400} media={props.media400} />
-      <source srcSet={props.imgUrlMedia800} media={props.media800} />
-      <source srcSet={props.imgUrlMedia1200} media={props.media1200} />
+      {/* srcSet The Link of Responsive Image || media is the media query for the responsive image link */}
+      <source srcSet={props.imgUrlMedia768} media={props.media768} />
       <img src={props.imageUrl} alt={props.alt} />
     </picture>
   );
