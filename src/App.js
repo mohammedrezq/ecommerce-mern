@@ -10,6 +10,7 @@ import ProductPage from "./Products/Pages/ProductPage/ProductPage";
 import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
+import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" exact>
           <ProductsPage />
         </Route>
-        <Route path="/product/:productId" exact>
+        <Route path="/product/:productTitle" exact>
           <ProductPage />
         </Route>
         <Route path="/checkout" exact>
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/cart" exact>
           <CartPage />
+        </Route>
+        <Route path="/new-product" exact>
+          <NewProduct />
         </Route>
       </Switch>
     </Router>

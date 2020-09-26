@@ -13,6 +13,12 @@ const NavLinks = (props) => {
         <NavLink to="/">Home Page</NavLink>
       </li>
       <li>
+        <NavLink to="/account">Account</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li>
         <NavLink to="/search">LinkToSearch (RalphLauren)</NavLink>
       </li>
       <li>

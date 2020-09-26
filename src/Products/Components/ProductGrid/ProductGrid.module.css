@@ -4,18 +4,10 @@
   flex-basis: 3.333333%;
 }
 
-/* .grid12 {
-  flex-grow: 0;
-  max-width: 100%;
-  flex-basis: 100%;
-  padding: 0 2px 0 4px;
-} */
-
 .grid12 {
   flex-grow: 0;
   max-width: 100%;
   flex-basis: 100%;
-  /* padding: 0 2px 0 4px; */
 }
 
 .productGridResult {
@@ -31,4 +23,14 @@
     padding-left: 40px;
     padding-right: 48px;
   }
+}
+
+/* Product Grid */
+
+.product-grid {
+  list-style: none;
+  margin: 1rem auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
 }
