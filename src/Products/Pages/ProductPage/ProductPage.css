@@ -1,0 +1,52 @@
+/* Radio Buttons Sizes Styling*/
+
+.product-extra-information {
+  list-style-type: none;
+  margin: 20px 0 0 0;
+  padding: 20px;
+}
+.selection-radio-btn {
+    float:left;
+    margin: 0 5px 0 0;
+    width: 108px;
+    height: 115px;
+    position:relative;
+}
+
+.product-extra-information input  .product-extra-information label {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+
+.product-extra-information input[type="radio"] {
+    display: none;
+    z-index: 100;
+}
+
+.product-extra-information input[type="radio"]:checked + label {
+    background:rgb(226, 226, 226);
+    border: 1px solid;
+}
+
+
+.product-extra-information input[type="radio"]:not(:disabled) + label {
+    cursor: pointer;
+}
+
+.product-extra-information label {
+    height: 48px;
+    border-radius: 4px;
+    padding: 20px 10px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+    z-index: 90;
+}
+
+.product-extra-information label:hover {
+    background:#DDD;
+}
