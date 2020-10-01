@@ -12,6 +12,9 @@ import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
 import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 
+/* Testing Component */
+import FormContainer from './Shared/FormElements/FormContainer'
+
 function App() {
   return (
     <Router>
@@ -25,6 +28,9 @@ function App() {
         </Route>
         <Route path="/checkout" exact>
           <CheckoutPage />
+        </Route>
+        <Route path="/formcontainer" exact>
+          <FormContainer />
         </Route>
         <Route path="/cart" exact>
           <CartPage />
