@@ -8,9 +8,9 @@ import "./TextError.css";
 import TextError from "./TextError";
 
 const DatePicker = (props) => {
-  const { label, name, ...rest } = props;
+  const { label, name, className, ...rest } = props;
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={name}>{label}</label>
       <Field name={name}>
         {({ form, field }) => {
@@ -19,6 +19,8 @@ const DatePicker = (props) => {
           return (
             <DateView
               id={name}
+              className={className}
+              placeholderText
               {...field}
               {...rest}
               selected={value}

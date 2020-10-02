@@ -1,0 +1,36 @@
+.FormElement {
+    padding: 8px;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    /* display: block; */
+    width: 350px;
+    font-size: 1rem;
+    /* font: inherit; */
+    border-radius: 5px ;
+    /* border: 8px solid inherit; */
+
+}
+
+.react-datepicker__input-container, .react-datepicker__input-container input {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+}
+
+.TextError {
+    margin-left: 14px;
+    margin-right: 14px;
+    font-size: 0.75rem;
+}
+
+input.dateOfBirthOption {
+    border: 1px solid rgba(0,0,0,.2);
+    max-width: 100%;
+}
+input.dateOfBirthOption:focus, 
+input.dateOfBirthOption:active {
+    border: 1px solid rgba(0,0,0,.2);
+    width: 350px;
+}

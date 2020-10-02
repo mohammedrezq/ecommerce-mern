@@ -9,6 +9,7 @@ import DatePicker from './DatePicker';
 import MaterialInput from './MaterialInput';
 import MaterialTextarea from './MaterialTextarea';
 import MaterialSelect from './MaterialSelect';
+import MaterialSelectCountry from './MaterialSelectCountry';
 
 const FormControl = (props) =>{
     const { control, ...rest } = props
@@ -22,6 +23,7 @@ const FormControl = (props) =>{
         case 'materialInput': return <MaterialInput {...rest} />
         case 'materialTextarea': return <MaterialTextarea {...rest} />
         case 'materialSelect': return <MaterialSelect {...rest} />
+        case 'materialSelectCountry': return <MaterialSelectCountry {...rest} />
         default: return null
     }
 }

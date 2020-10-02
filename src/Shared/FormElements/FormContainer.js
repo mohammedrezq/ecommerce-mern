@@ -5,7 +5,7 @@ import FormikControl from "./FormikControl";
 
 const FormContainer = () => {
   const dropDownOptions = [
-    // { key: "Select an option", value: "" },
+    { key: "Select an option", value: "" },
     { key: "Option 1", value: "Option1" },
     { key: "Option 2", value: "Option2" },
     { key: "Option 3", value: "Option3" },
@@ -28,6 +28,7 @@ const FormContainer = () => {
     Email: "",
     Description: "",
     Select: "",
+    SelectMaterial:"",
     RadioButton: "",
     CheckboxButton: [],
     BirthDate: null,
@@ -39,6 +40,7 @@ const FormContainer = () => {
     Description: Yup.string().required().min(60).max(600),
     Description2: Yup.string().required().min(60).max(600),
     Select: Yup.string().required("You have to select an option."),
+    SelectMaterial: Yup.string().required("You have to SelectMaterial an option."),
     RadioButton: Yup.string().required("You must select one option"),
     CheckboxButton: Yup.array().required(
       "You must select at least one option."
@@ -54,7 +56,7 @@ const FormContainer = () => {
     >
       {(formik) => (
         <Form>
-          {console.log(formik)}
+          {/* {console.log(formik)} */}
           <FormikControl
             control="materialInput"
             type="text"
@@ -102,6 +104,13 @@ const FormContainer = () => {
             rows="8"
             variant="outlined"
           />
+            <FormikControl
+              control="materialSelect"
+              label="Select a topic"
+              name="SelectMaterial"
+              helperText="This is a helper text"
+              options={dropDownOptions}
+            />
           <FormikControl
             control="select"
             label="Select a topic"
@@ -120,7 +129,7 @@ const FormContainer = () => {
             name="CheckboxButton"
             options={checkboxButtons}
           />
-          <FormikControl control="date" label="Pick a date" name="BirthDate" />
+          <FormikControl control="date" label="Pick a date" name="BirthDate" placeholderText="Pick a Date" />
           <button type="submit">Submit</button>
         </Form>
       )}
