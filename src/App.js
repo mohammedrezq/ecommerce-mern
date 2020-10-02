@@ -11,6 +11,9 @@ import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
 import NewProduct from "./Products/Pages/NewProduct/NewProduct";
+import RegistrationPage from './User/Pages/RegistrationPage';
+import LoginPage from './User/Pages/LoginPage';
+// import LoginForm from "./User/Components/LoginForm";
 
 /* Testing Component */
 import FormContainer from './Shared/FormElements/FormContainer'
@@ -37,6 +40,12 @@ function App() {
         </Route>
         <Route path="/new-product" exact>
           <NewProduct />
+        </Route>
+        <Route path="/register" exact>
+          <RegistrationPage />
+        </Route>
+        <Route path="/login" exact>
+          <LoginPage />
         </Route>
       </Switch>
     </Router>

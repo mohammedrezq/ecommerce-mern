@@ -1,0 +1,10 @@
+.login__Form {
+    background-color: #fff;
+    color: #8d8d8d;
+    font-family: Helvetica;
+    font-size: 14px;
+    margin: auto;
+    max-width: 380px;
+    padding: 28px;
+    text-align: left;
+}

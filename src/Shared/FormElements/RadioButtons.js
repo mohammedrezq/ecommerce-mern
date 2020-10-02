@@ -5,9 +5,9 @@ import { Field, ErrorMessage } from "formik";
 import TextError from "./TextError";
 
 const RadioButtons = (props) => {
-  const { label, name, options, ...rest } = props;
+  const { label, name, options, className, ...rest } = props;
   return (
-    <div>
+    <div className={className}>
       <label>{label}</label>
       <Field name={name} {...rest}>
         {({ field }) => {

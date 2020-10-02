@@ -5,9 +5,9 @@ import { ErrorMessage, Field } from "formik";
 import TextError from "./TextError";
 
 const Textarea = (props) => {
-    const { label, name, ...rest } = props;
+    const { label, name, className, ...rest } = props;
     return (
-        <div>
+        <div className={className}>
             <label htmlFor={name}>{label}</label>
             <Field as="textarea" id={name} name={name} {...rest} />
             <ErrorMessage name={name} component={TextError} />

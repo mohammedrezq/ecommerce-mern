@@ -4,20 +4,22 @@ import { Field } from "formik";
 
 import { FormControl, NativeSelect, FormHelperText } from "@material-ui/core";
 
-const MaterialSelect = (props) => {
-  const { label, name, options, helperText, className, ...rest } = props;
+const MaterialSelectCountry = (props) => {
+  const { label, name, options, helperText, className, variant, ...rest } = props;
+
+  // Convert Countries Object into Array { 'AF': 'Afghanistan', ...} into [ ["AF", "Afghanistan"], ...]
+  const countries = Object.entries(options);
+  // console.log(countries);
+
   return (
     <div className={className}>
       <Field id={name} {...rest} name={name}>
         {({ field, form }) => {
-          // console.log("field Select:", field);
-          // console.log("form Select:", form);
           const { errors, touched } = form;
-          // console.log("Errors Form Select", errors[name])
           const displayHelperTextSelect =
             errors[name] && !!touched[name] ? errors[name] : null;
           return (
-            <FormControl error={!!errors[name] && !!touched[name]}>
+            <FormControl error={!!errors[name] && !!touched[name]} variant={variant}>
               {/* <InputLabel htmlFor={name}>{name}</InputLabel> */}
               <NativeSelect
                 id={name}
@@ -28,10 +30,10 @@ const MaterialSelect = (props) => {
                 {...rest}
               >
                 <optgroup label={label}>
-                  {options.map((option) => {
+                  {countries.map((country) => {
                     return (
-                      <option key={option.key} value={option.value}>
-                        {option.value}
+                      <option key={country[0]} value={country[0]}>
+                        {country[1]}
                       </option>
                     );
                   })}
@@ -46,4 +48,4 @@ const MaterialSelect = (props) => {
   );
 };
 
-export default MaterialSelect;
+export default MaterialSelectCountry;
