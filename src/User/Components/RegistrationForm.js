@@ -6,12 +6,9 @@ import FormikControl from "../../Shared/FormElements/FormikControl";
 
 import "./RegistrationForm.css";
 import Countries from "../../Shared/Assets/Countries";
+import Gender from '../../Shared/Assets/Gender';
 
 const RegistrationForm = () => {
-  const genderRadio = [
-    { key: "Male", value: "M" },
-    { key: "Female", value: "F" },
-  ];
 
   const initialValues = {
     email: "",
@@ -131,7 +128,7 @@ const RegistrationForm = () => {
               className="FormElement"
               control="radio"
               name="gender"
-              options={genderRadio}
+              options={Gender}
             />
 
             <button type="submit">Submit</button>
