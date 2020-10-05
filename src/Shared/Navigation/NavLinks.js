@@ -10,22 +10,22 @@ const NavLinks = (props) => {
   return (
     <ul className="nav-links">
       <li>
-        <NavLink to="/">Home Page</NavLink>
+        <NavLink to="/" exact>Home Page</NavLink>
       </li>
       <li>
-        <NavLink to="/account">Account</NavLink>
+        <NavLink to="/account" exact>Account</NavLink>
       </li>
       <li>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login" exact>Login</NavLink>
       </li>
       <li>
-        <NavLink to="/search">LinkToSearch (RalphLauren)</NavLink>
+        <NavLink to="/search" exact>Search</NavLink>
       </li>
       <li>
-        <NavLink to="/favorites"><FavoriteBorderOutlinedIcon /></NavLink>
+        <NavLink to="/favorites" exact><FavoriteBorderOutlinedIcon /></NavLink>
       </li>
       <li>
-        <NavLink to="/cart"><LocalMallOutlinedIcon  /></NavLink>
+        <NavLink to="/cart" exact><LocalMallOutlinedIcon  /></NavLink>
       </li>
     </ul>
   );

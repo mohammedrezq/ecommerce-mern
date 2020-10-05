@@ -20,3 +20,21 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+/* MAKE BUTTON LOOK LIKE A LINK URL*/
+
+.btnLink,
+button.btnLink:focus,
+button.btnLink:hover,
+button.btnLink:active {
+  background: none;
+  border: none;
+  color: #111;
+  margin-left: 3px;
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}

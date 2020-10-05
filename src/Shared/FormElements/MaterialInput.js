@@ -31,6 +31,7 @@ const MaterialInput = (props) => {
               error={!!errors[name] && !!touched[name]}
               id={name}
               size={size}
+              label={label}
               variant={variant}
               autoComplete={autoComplete}
               {...rest}

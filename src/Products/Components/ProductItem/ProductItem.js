@@ -26,9 +26,12 @@ const ProductItem = (props) => {
   let productTitleUrl = props.title;
   productTitleUrl = productTitleUrl.replace(/\s+/g, '-').toLowerCase();
 
+  let categoryUrl = props.category;
+  categoryUrl = categoryUrl.replace(/\s+/g, '-')
+
   return (
     <Grid item xs={6} sm={6} md={4} lg={4} xl={3}>
-      <Link to={`/product/${productTitleUrl}`} style={{ textDecoration: "none" }}>
+      <Link to={`/product/${productTitleUrl}-${categoryUrl}-${props.id}`} style={{ textDecoration: "none" }}>
         <Card className={`${classes.root} ${productItemCSS.productStyle}`}>
           {/* Product Images */}
           <CardMedia

@@ -13,7 +13,6 @@ import MainNavigation from "./Shared/Navigation/MainNavigation";
 import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 import RegistrationPage from './User/Pages/RegistrationPage';
 import LoginPage from './User/Pages/LoginPage';
-// import LoginForm from "./User/Components/LoginForm";
 
 /* Testing Component */
 import FormContainer from './Shared/FormElements/FormContainer'
