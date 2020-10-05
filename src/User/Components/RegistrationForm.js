@@ -6,10 +6,9 @@ import FormikControl from "../../Shared/FormElements/FormikControl";
 
 import "./RegistrationForm.css";
 import Countries from "../../Shared/Assets/Countries";
-import Gender from '../../Shared/Assets/Gender';
+import Gender from "../../Shared/Assets/Gender";
 
 const RegistrationForm = () => {
-
   const initialValues = {
     email: "",
     password: "",
@@ -120,7 +119,7 @@ const RegistrationForm = () => {
               label="Country/Region"
               name="country"
               variant="outlined"
-              helperText="This is a helper text"
+              helperText="Select a Country"
               options={Countries}
             />
             <FormikControl
@@ -130,6 +129,10 @@ const RegistrationForm = () => {
               name="gender"
               options={Gender}
             />
+            <p className="terms">
+              By creating an account, you agree to Nike's Privacy Policy and
+              Terms of Use.
+            </p>
 
             <button type="submit">Submit</button>
           </Form>

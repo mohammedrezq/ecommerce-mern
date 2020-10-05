@@ -74,3 +74,6 @@
   }
 }
 
+.activeNavLinkItem {
+  background-color: yellow;
+}

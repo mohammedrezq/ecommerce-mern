@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import ReactResizeDetector from "react-resize-detector";
 
@@ -70,4 +70,4 @@ const MainNavigation = (props) => {
   );
 };
 
-export default MainNavigation;
+export default withRouter(MainNavigation);

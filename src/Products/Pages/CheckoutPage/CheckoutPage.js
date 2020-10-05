@@ -1,9 +1,13 @@
 import React from "react";
+import CheckoutForm from "./CheckoutForm";
 
 const CheckoutPage = () => {
-    return (
-        <h1>CheckoutPage</h1>
-    )
-}
+  return (
+    <React.Fragment>
+      <h1>CheckoutPage</h1>
+      <CheckoutForm />
+    </React.Fragment>
+  );
+};
 
 export default CheckoutPage;
