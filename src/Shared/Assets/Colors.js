@@ -3,7 +3,7 @@ const Colors = [
     {key: "Black", value: "black"},
     {key: "Purple", value: "purple"},
     {key: "White", value: "White"},
-    {key: "BLue", value: "red"},
+    {key: "Blue", value: "blue"},
     {key: "Orange", value: "orange"},
     {key: "Yellow", value: "yellow "},
     {key: "Green", value: "green"},

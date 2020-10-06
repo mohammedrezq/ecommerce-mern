@@ -1,10 +1,10 @@
 const ShoesTypes = [
-    { key: "Sneakers", value: "sneakers" },
-    { key: "Boots", value: "boots" },
-    { key: "Sandals", value: "sandals" },
-    { key: "Slippers", value: "slippers" },
-    { key: "Loafers", value: "loafers" },
-    { key: "Clogs&Mules", value: "clogsmules" },
+    { key: "Sneakers", value: "Sneakers" },
+    { key: "Boots", value: "Boots" },
+    { key: "Sandals", value: "Sandals" },
+    { key: "Slippers", value: "Slippers" },
+    { key: "Loafers", value: "Loafers" },
+    { key: "Clogs&Mules", value: "Clogs&Mules" },
 ]
 
 export default ShoesTypes;

@@ -36,11 +36,30 @@
     background: #830000;
     border-color: #830000;
   }
+
   
   .button--danger:hover,
   .button--danger:active {
     background: #f34343;
     border-color: #f34343;
+  }
+
+  .button--basic {
+    background: #111;
+    border-color: #111;
+    display: block;
+    width: 450px;
+    min-width: 100%;
+    padding: 18px 24px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    margin-top: 12px;
+  }
+
+  .button--basic:hover,
+  .button--basic:active {
+    background: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
   }
   
   .button:disabled,
@@ -58,4 +77,11 @@
   
   .button--big {
     font-size: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .button--basic {
+      display: block;
+      min-width: 100%;
+    }
   }
