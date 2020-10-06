@@ -4,49 +4,86 @@
   list-style-type: none;
   margin: 20px 0 0 0;
   padding: 20px;
+  display: flex;
+  margin-top: 20px;
 }
 
 .selection-radio-btn {
-    float:left;
-    margin: 0 5px 0 0;
-    width: 108px;
-    height: 115px;
-    position:relative;
+  float: left;
+  margin: 0 5px 0 0;
+  width: 108px;
+  max-height: 115px;
+  position: relative;
 }
 
-.product-extra-information input  .product-extra-information label {
-    display:block;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+.product-extra-information input .product-extra-information label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
-
 
 .product-extra-information input[type="radio"] {
-    display: none;
-    z-index: 100;
+  display: none;
+  z-index: 100;
 }
 
 .product-extra-information input[type="radio"]:checked + label {
-    background:rgb(226, 226, 226);
-    border: 1px solid;
+  background: rgb(226, 226, 226);
+  border: 1px solid;
 }
 
 .product-extra-information input[type="radio"]:not(:disabled) + label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .product-extra-information label {
-    height: 48px;
-    border-radius: 4px;
-    padding: 20px 10px;
-    border: 1px solid #CCC;
-    cursor: pointer;
-    z-index: 90;
+  height: 48px;
+  border-radius: 4px;
+  padding: 20px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.product__addition {
+  display: inline-block;
+  min-width: 100%;
+}
+
+button.product__addition.product_add_to_cart,
+button.product__addition.product_add_to_whishlist {
+  display: block;
+  background-color: red !important;
+  width: 430px;
 }
 
 .product-extra-information label:hover {
-    background:#DDD;
+  background: #ddd;
+}
+
+.productImage__css {
+  /* height: 80px;
+    width: 30px; */
+  margin-right: 20px;
+  margin-top: 30px;
+}
+
+.productImage__css img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.gird__item__4 {
+  padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+  button.product__addition.product_add_to_cart,
+  button.product__addition.product_add_to_whishlist {
+      padding: 20px;
+      margin: 30px;
+  }
 }

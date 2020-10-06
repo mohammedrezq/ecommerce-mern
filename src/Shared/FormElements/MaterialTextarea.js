@@ -23,6 +23,7 @@ const MaterialTextarea = (props) => {
               helperText={displayHelperTextTextarea}
               error={!!errors[name] && !!touched[name]}
               id={name}
+              label={label}
               rowsMax={rowsMax}
               variant={variant}
               multiline

@@ -1,11 +1,11 @@
 import React from "react";
+import NewProductForm from "../../Components/NewProductForm";
 
 const NewProduct = () => {
   return (
     <div>
-      <h1>
-        New Product Page
-      </h1>
+      <h1>Add New Product</h1>
+      <NewProductForm />
     </div>
   )
 }

@@ -51,7 +51,6 @@ const LoginForm = () => {
               variant="outlined"
               size="small"
             />
-
             <button type="submit">Submit</button>
           </Form>
         );

@@ -4,7 +4,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import Countries from "../../../Shared/Assets/Countries";
-
 import FormikControl from "../../../Shared/FormElements/FormikControl";
 
 const CheckoutForm = () => {
@@ -13,7 +12,7 @@ const CheckoutForm = () => {
     lastName: "",
     Address: "",
     City: "",
-    Province: "US",
+    Countries: "US",
     PostalCode: "",
     Email: "",
     PhoneNumber: "",
@@ -23,19 +22,28 @@ const CheckoutForm = () => {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const validationSchema = Yup.object({
-    firstName: Yup.string().required('Please eneter a valid firstname').min(2).max(100),
-    lastName: Yup.string().required('Please enter a valid lastname').min(2).max(100),
-    Address: Yup.string().required('Please eneter a valid address').min(2).max(140),
-    City: Yup.string().required('Please enter a valid city').min(2),
-    Province: Yup.string().required(),
-    PostalCode: Yup.string().required('Please enter a valid ZIP code.'),
-    email: Yup.string()
+    firstName: Yup.string()
+      .required("Please eneter a valid firstname")
+      .min(2)
+      .max(100),
+    lastName: Yup.string()
+      .required("Please enter a valid lastname")
+      .min(2)
+      .max(100),
+    Address: Yup.string()
+      .required("Please eneter a valid address")
+      .min(2)
+      .max(140),
+    City: Yup.string().required("Please enter a valid city").min(2),
+    Countries: Yup.string().required(),
+    PostalCode: Yup.string().required("Please enter a valid ZIP code."),
+    Email: Yup.string()
       .email("Please enter a valid email address.")
       .required("Email is required"),
     PhoneNumber: Yup.string().matches(phoneRegExp, "Phone number is not valid"),
   });
 
-  const onSubmit = (values) => console.log("Checkout Page Form", values);
+  const onSubmit = (values) => console.log("Checkout Form: ", values);
 
   return (
     <Formik
@@ -86,9 +94,9 @@ const CheckoutForm = () => {
             className="FormElement"
             control="materialSelectCountry"
             label="Country/Region"
-            name="Province"
+            name="Countries"
             variant="outlined"
-            helperText="Select a Province"
+            helperText="Select a Country"
             options={Countries}
             size="medium"
           />
@@ -117,6 +125,7 @@ const CheckoutForm = () => {
             variant="outlined"
             size="medium"
           />
+          <button type="submit">Submit</button>
         </Form>
       )}
     </Formik>
