@@ -48,7 +48,7 @@ const DUMMY_PRODUCTS = [
     creator: "u2",
   },
   {
-    id: "p3",
+    id: "p9",
     category: "Polo Ralph Lauren",
     title: "Sophia Denim Short",
     description: " summer-ready shorts are crafted from lightweight cotton",

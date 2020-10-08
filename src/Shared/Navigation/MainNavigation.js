@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import ReactResizeDetector from "react-resize-detector";
+
+/* Redux */
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions'
+
 
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
@@ -14,6 +19,7 @@ import classes from "./Drawer.module.css";
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
+  console.log(props)
   const openDrawerHandler = () => {
     setDrawerIsOpen(true);
   };
@@ -26,6 +32,17 @@ const MainNavigation = (props) => {
   const handleWindowResizing = () => {
     window.addEventListener("resize", closeDrawerHandler);
   };
+
+  useEffect (() => {
+    actions.getProductsNumber();
+  }, [])
+
+  let history = useHistory();
+
+  const goToCartPage = () => {
+    history.push('/cart');
+  }
+
   return (
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
@@ -63,11 +80,23 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks />
+          <NavLinks onClick={goToCartPage} number={props.productsNumber.cartNumbers} />
         </nav>
       </MainHeader>
     </>
   );
 };
 
-export default withRouter(MainNavigation);
+const mapStateToProps = state => {
+  return {
+    productsNumber: state.addtoCartReducer
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getProductsNumber: () => dispatch(actions.getProductsNumber())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavigation);

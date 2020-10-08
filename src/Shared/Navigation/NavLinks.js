@@ -25,7 +25,7 @@ const NavLinks = (props) => {
         <NavLink to="/favorites" exact><FavoriteBorderOutlinedIcon /></NavLink>
       </li>
       <li>
-        <NavLink to="/cart" exact><LocalMallOutlinedIcon  /></NavLink>
+        <NavLink to="/cart" onClick={props.onClick} exact><LocalMallOutlinedIcon  /><span>{`${props.number}`}</span></NavLink>
       </li>
     </ul>
   );
