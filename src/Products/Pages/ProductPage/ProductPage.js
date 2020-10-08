@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+
+/* Redux */
+import { connect } from 'react-redux';
+import * as actions from '../../../Store/Actions';
+
 /* Material UI Components */
 import {
   AccordionSummary,
@@ -36,13 +41,19 @@ const DUMMY_SINGLE_PRODUCT = {
 };
 
 const ProductPage = (props) => {
+  console.log(props);
   // let ParamURL = useParams().productTitle;
-
+  // const [addToCart, setAddToCart] = useState(0);
   const [expanded, setExpanded] = useState(false);
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  // const addProductToCart = () => {
+  //   // console.log("Added Product To CART !!!");
+  //   setAddToCart(addToCart + 1);
+  // }
 
   return (
     <>
@@ -58,6 +69,7 @@ const ProductPage = (props) => {
           ))}
         </Grid>
         <Grid item sm={12} md={4} className={`gird__item__4`}>
+          {/* <h1>Product ADDED TO CART: {addToCart} </h1> */}
           <div className={`product-basic-information`}>
             <h2>{DUMMY_SINGLE_PRODUCT.productTitle}</h2>
             <h1>{DUMMY_SINGLE_PRODUCT.productSeries}</h1>
@@ -80,7 +92,7 @@ const ProductPage = (props) => {
             ))}
           </div>
           <div className={`product__addition`}>
-            <Button className={`product_add_to_cart`} basic size="default">
+            <Button onClick={() => props.addToCart('ShoesFromNike')} className={`product_add_to_cart`} basic size="default">
               Add To Bag
             </Button>
             <Button className={`product_add_to_whishlist`} basic size="default">
@@ -140,4 +152,13 @@ const ProductPage = (props) => {
   );
 };
 
-export default ProductPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: (productName) => {
+      console.log('product:', productName)
+      return (dispatch(actions.addToCart(productName)))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductPage);
