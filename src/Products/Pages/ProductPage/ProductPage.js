@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
-import { connect } from "react-redux";
-import * as actions from "../../../Store/Actions";
+import { listProductDetails } from "../../../Store/Actions/productsActions";
 
 /* Material UI Components */
 import {
@@ -16,32 +15,10 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-// import ProductGallery from "../../Components/ProductGallery/ProductGallery";
 import Button from "../../../Shared/UIElements/Button";
 import "./ProductPage.css";
-import { listProductDetails } from "../../../Store/Actions/productsActions";
 import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
-// import Spinner from "../../../Shared/UIElements/Spinner";
-// import Message from "../../../Shared/UIElements/Message";
-
-/* Product Size we should add product size based on its type whether its shoes or clothes */
-// const DUMMY_SINGLE_PRODUCT = {
-//   Title: "Shoes From Nike",
-//   Brand: "Nike City Ready",
-//   Price: 149.99,
-//   Category: "Shoes",
-//   Sizes: ["M 6 / W 7.5", "M 6.5 / W 8", "M 7 / W 8.5", "M 7.5 / W 9"],
-//   Shipping:
-//     "Free standard shipping and free 60-day returns for Nike Members.",
-//   SizeFit:
-//     "Model is wearing size S and is 5'9\"/175cm",
-//   Images: [
-//     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/0a6391bb-dd85-4b99-a3b1-93d29e6e0c2e/yoga-luxe-womens-infinalon-crop-top-5XGffB.jpg",
-//     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5,q_80/b7051cb5-5966-439b-950a-df231c4363ec/yoga-luxe-womens-infinalon-crop-top-5XGffB.jpg",
-//     "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5,q_80/13e1826e-2282-4123-9975-32b6bf25a728/yoga-luxe-womens-infinalon-crop-top-5XGffB.jpg",
-//   ],
-// };
 
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
@@ -60,14 +37,13 @@ const ProductPage = (props) => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
+
   console.log(productDetails);
-
+  
   const leproduct = product.product; // get product from the product from the payload!!!
-  // if(leproduct.Images) {
-  // return <div>hello</div>;
 
-  //   console.log(leproduct.Images[0], leproduct.Images[2]);
-  // }
+  console.log(leproduct.Reviews)
+
 
   return (
     <>
@@ -188,13 +164,4 @@ const ProductPage = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (productName) => {
-      // console.log('product:', productName)
-      return dispatch(actions.addToCart(productName));
-    },
-  };
-};
-
-export default connect(null, mapDispatchToProps)(ProductPage);
+export default ProductPage;
