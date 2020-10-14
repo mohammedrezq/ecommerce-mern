@@ -1,5 +1,5 @@
 /* Products actions */
-export {
-    addToCart,
-    getProductsNumber
-} from './productsActions';
+// export {
+//     addToCart,
+//     getProductsNumber
+// } from './productsActions';

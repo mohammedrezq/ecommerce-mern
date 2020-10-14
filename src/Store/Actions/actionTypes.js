@@ -1,5 +1,16 @@
-// Product Page
-export const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
+// Product Page to Cart
+export const CART_ADD_ITEM = "CART_ADD_ITEM";
+export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
 
 // MainNavigation
 export const GET_PRODUCT_NUMBER_CART = "GET_PRODUCT_NUMBER_CART";
+
+// Product List
+export const PRODUCT_LIST_REQUEST = "PRODUCT_LIST_REQUEST";
+export const PRODUCT_LIST_SUCCESS = "PRODUCT_LIST_SUCCESS";
+export const PRODUCT_LIST_FAIL  = "PRODUCT_LIST_FAIL";
+
+// Product Details
+export const PRODUCT_DETAILS_REQUEST = "PRODUCT_DETAILS_REQUEST";
+export const PRODUCT_DETAILS_SUCCESS = "PRODUCT_DETAILS_SUCCESS";
+export const PRODUCT_DETAILS_FAIL  = "PRODUCT_DETAILS_FAIL";

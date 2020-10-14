@@ -6,7 +6,7 @@ import "./TopNavbar.css";
 const TopNavbar = (props) => {
   return (
     <div className="top__navbar">
-      <div class="brand__items">AnyThing..</div>
+      <div className="brand__items">AnyThing..</div>
       <div className="auth__buttons">
         <div className="auth__login">
           <Link to="/login">
