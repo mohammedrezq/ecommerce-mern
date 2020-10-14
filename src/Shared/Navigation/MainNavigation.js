@@ -19,7 +19,7 @@ import classes from "./Drawer.module.css";
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-  console.log(props)
+  // console.log(props)
   const openDrawerHandler = () => {
     setDrawerIsOpen(true);
   };
@@ -33,9 +33,9 @@ const MainNavigation = (props) => {
     window.addEventListener("resize", closeDrawerHandler);
   };
 
-  useEffect (() => {
-    actions.getProductsNumber();
-  }, [])
+  // useEffect (() => {
+  //   actions.getProductsNumber();
+  // }, [])
 
   let history = useHistory();
 
@@ -80,23 +80,23 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks onClick={goToCartPage} number={props.productsNumber.cartNumbers} />
+          <NavLinks onClick={goToCartPage} />
         </nav>
       </MainHeader>
     </>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    productsNumber: state.addtoCartReducer
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     productsNumber: state.addtoCartReducer
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getProductsNumber: () => dispatch(actions.getProductsNumber())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getProductsNumber: () => dispatch(actions.getProductsNumber())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainNavigation);
+export default MainNavigation;
