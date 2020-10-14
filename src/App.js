@@ -42,7 +42,7 @@ function App() {
           <Route path="/formcontainer" exact>
             <FormContainer />
           </Route>
-          <Route path="/cart" exact>
+          <Route path="/cart/:id?">
             <CartPage />
           </Route>
           <Route path="/new-product" exact>
