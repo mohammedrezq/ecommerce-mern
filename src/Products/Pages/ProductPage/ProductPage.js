@@ -27,7 +27,6 @@ const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
-  const [color, setColor] = useState("");
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -60,7 +59,7 @@ const ProductPage = (props) => {
   let history = useHistory();
 
   const addToCartHandler = () => {
-    history.push(`/cart/${id}?size=${size}?color=${color}?qty=${qty}`)
+    history.push(`/cart/${id}?qty=${qty}?size=${size}`)
   }
 
 
@@ -120,30 +119,6 @@ const ProductPage = (props) => {
                   </div>
                 ))}
                 </div>
-            <div className={`product-extra-information`}>
-
-              {leproduct.Colors &&
-                leproduct.Colors.map((color, index) => (
-                  <div
-                    key={color}
-                    className={`product-color selection-radio-btn`}
-                  >
-                    <input
-                      id={color}
-                      onChange={() => setColor(color)}
-                      name="SKUandColor"
-                      type="radio"
-                      className={`colorProduct radioInput`}
-                    />
-                    <label
-                      htmlFor={color}
-                      className={`radioColorCSS radioLabel`}
-                    >
-                      {color}
-                    </label>
-                  </div>
-                ))}
-            </div>
             <div className={`product__selections`} style={{ padding: "20px" }}>
               {leproduct.CountInStock > 0 && (
                 <div>
