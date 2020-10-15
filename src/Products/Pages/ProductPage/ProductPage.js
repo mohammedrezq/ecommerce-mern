@@ -33,7 +33,7 @@ const ProductPage = (props) => {
   };
 
   const id = useParams().id;
-  console.log(id);
+  // console.log(id);
   const dispatch = useDispatch(id);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
-  console.log(productDetails);
+  // console.log(productDetails);
 
   const leproduct = product.product; // get product from the product from the payload!!!
 
@@ -59,7 +59,7 @@ const ProductPage = (props) => {
   let history = useHistory();
 
   const addToCartHandler = () => {
-    history.push(`/cart/${id}?qty=${qty}?size=${size}`)
+    history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   }
 
 
