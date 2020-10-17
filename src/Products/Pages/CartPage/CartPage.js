@@ -96,6 +96,8 @@ console.log(arr)
         return (
             <div key={i}>
         <div>{(item) && item.price}</div>
+        <div>{(item) && item.size}</div>
+        <div>{(item) && item.qty}</div>
         <div>{(item) && item.title}</div>
         <img src={(item) && item.image} />
         </div>
