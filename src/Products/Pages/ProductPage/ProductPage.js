@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
 import { listProductDetails } from "../../../Store/Actions/productsActions";
-import { addProductToCart, setProductSizeAction, setProductQtyAction } from "../../../Store/Actions/cartActions";
+import {
+  addProductToCart,
+  setProductSizeAction,
+  setProductQtyAction,
+} from "../../../Store/Actions/cartActions";
 
 /* Material UI Components */
 import {
@@ -26,6 +30,7 @@ import Message from "../../../Shared/UIElements/Message";
 
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   // const [qty, setQty] = useState(1);
   // const [size, setSize] = useState("");
 
@@ -44,7 +49,7 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
-  const productToCart = useSelector(state => state.addProductToCart); // from Store combine reduers
+  const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
   const { err, loadingStatus, cartProducts } = productToCart;
   // const productArr =cartProducts.map(p => p);
   // const nr = productArr.map(x => x[0])
@@ -57,27 +62,41 @@ const ProductPage = (props) => {
 
   // console.log(leproduct.Reviews);
 
-  let productQty = [0,1,2,3,4,5,6,7,8,9];
+  let productQty = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   let productsCountInStock = [...Array(leproduct.CountInStock).keys()];
 
-  let availableQuantity = leproduct.CountInStock >= 10 ? productQty : productsCountInStock
-
+  let availableQuantity =
+    leproduct.CountInStock >= 10 ? productQty : productsCountInStock;
 
   let history = useHistory();
 
   const addToCartHandler = (id) => {
     dispatch(addProductToCart(id));
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
-  }
+  };
 
-  const productFeature = useSelector(state => state.setProductFeature);
+  const productFeature = useSelector((state) => state.setProductFeature);
   const productSizeToCart = (size) => {
-    dispatch(setProductSizeAction(size))
-  }
+    dispatch(setProductSizeAction(size));
+  };
 
   const productQtyToCart = (qty) => {
-    dispatch(setProductQtyAction(qty))
+    dispatch(setProductQtyAction(qty));
+  };
+
+  const checkSizesChecked = () => {
+    setIsChecked(true)
   }
+
+
+  const preventAddToCart = (e) => {
+    e.preventDefault();
+  }
+
+  console.log(isChecked)
+
+
+  let disabled = isChecked 
 
   return (
     <>
@@ -108,11 +127,14 @@ const ProductPage = (props) => {
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
             </div>
-            <div className={`product-extra-information__Sizes`}>
               {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
+            {/* <div className={`product-extra-information__Sizes`}>
               {leproduct.Sizes && (
                 <div>
-                  <FormControl className={`quantity_product_cart`} style={{minWidth: "100%"}}>
+                  <FormControl
+                    className={`quantity_product_cart`}
+                    style={{ minWidth: "100%" }}
+                  >
                     <InputLabel htmlFor="size_to_cart">Size</InputLabel>
                     <Select
                       fullWidth={true}
@@ -124,19 +146,18 @@ const ProductPage = (props) => {
                         id: "size_to_cart",
                       }}
                     >
-                      {leproduct.Sizes.map(s => 
-                          <option key={s} value={s}>{s}</option>
-                        )}
-                      {/* <option value={10}>Ten</option>
-                      <option value={20}>Twenty</option>
-                      <option value={30}>Thirty</option> */}
+                      {leproduct.Sizes.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+
                     </Select>
                   </FormControl>
                   {console.log(productFeature)}
                 </div>
               )}
-            </div>
-
+            </div> */}
 
             <div className={`product-extra-information`}>
               {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
@@ -150,32 +171,27 @@ const ProductPage = (props) => {
                       id={size}
                       onChange={(e) => {
                         // console.log(size);
-                        return (productSizeToCart(size))}}
+                        return productSizeToCart(size);
+                      }}
+                      onClick={() => checkSizesChecked()}
                       name="SKUandSize"
                       type="radio"
                       className={`sizeProduct radioInput`}
                     />
-                    <label
-                      htmlFor={size}
-                      className={`radioSizeCSS radioLabel`}
-                    >
+                    <label htmlFor={size} className={`radioSizeCSS radioLabel`}>
                       {size}
                     </label>
                   </div>
                 ))}
-                </div>
-
-
-
-
-
-
-
-
-            <div className={`product__selections`}>
+            </div>
+            {console.log(productFeature)}
+            {/* <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
-                  <FormControl className={`quantity_product_cart`} style={{minWidth: "100%"}}>
+                  <FormControl
+                    className={`quantity_product_cart`}
+                    style={{ minWidth: "100%" }}
+                  >
                     <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel>
                     <Select
                       fullWidth={true}
@@ -187,18 +203,22 @@ const ProductPage = (props) => {
                         id: "quantity_to_cart",
                       }}
                     >
-                      {leproduct.CountInStock  && availableQuantity.map(q => 
-                          <option key={q+1} value={q+1}>{q + 1}</option>
-                        )}
+                      {leproduct.CountInStock &&
+                        availableQuantity.map((q) => (
+                          <option key={q + 1} value={q + 1}>
+                            {q + 1}
+                          </option>
+                        ))}
                     </Select>
                   </FormControl>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <Button
-                  onClick={() => addToCartHandler(id)}
+                  // disabled = {!disabled}
+                  onClick={(e) => { !isChecked ? preventAddToCart(e) : addToCartHandler(id)}}
                   className={`product_add_to_cart`}
                   basic
                   size="default"
@@ -208,7 +228,6 @@ const ProductPage = (props) => {
               ) : (
                 <Button
                   // onClick={() => props.addToCart("ShoesFromNike")}
-                  disabled
                   className={`product_add_to_cart`}
                   basic
                   style={{

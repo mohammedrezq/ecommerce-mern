@@ -10,6 +10,7 @@ import MaterialInput from './MaterialInput';
 import MaterialTextarea from './MaterialTextarea';
 import MaterialSelect from './MaterialSelect';
 import MaterialSelectCountry from './MaterialSelectCountry';
+import RadioButtonsArray from './RadioButtonsArray';
 
 const FormControl = (props) =>{
     const { control, ...rest } = props
@@ -24,6 +25,7 @@ const FormControl = (props) =>{
         case 'materialTextarea': return <MaterialTextarea {...rest} />
         case 'materialSelect': return <MaterialSelect {...rest} />
         case 'materialSelectCountry': return <MaterialSelectCountry {...rest} />
+        case 'RadioButtonsArray': return <RadioButtonsArray {...rest} />
         default: return null
     }
 }
