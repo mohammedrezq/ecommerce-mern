@@ -4,7 +4,7 @@ import MediaQuery from "react-responsive";
 import ReactResizeDetector from "react-resize-detector";
 
 /* Redux */
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import * as actions from '../../Store/Actions'
 
 
@@ -44,6 +44,30 @@ const MainNavigation = (props) => {
   //   history.push('/cart');
   // }
 
+
+
+  
+  const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
+  // console.log(productToCart)
+  const { err, loadingStatus, cartProducts } = productToCart;
+
+  // console.log(cartProducts);
+
+
+  let arr = JSON.parse(localStorage.getItem("cartProducts"));
+  if( arr === null || undefined ) arr = [];
+  localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+  localStorage.setItem("cartProducts", JSON.stringify(arr))
+
+console.log(arr)
+
+
+  const productArr = arr.map((p) => p);
+  const nr = productArr.map((x) => x[0]);
+  const productItem = nr.map((item) => item); // all items in LocalStorage
+
+
+  console.log(productItem.length)
   return (
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
@@ -81,7 +105,7 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks to="/cart" />
+          <NavLinks number={productItem && productItem.length} to="/cart" />
         </nav>
       </MainHeader>
     </>
