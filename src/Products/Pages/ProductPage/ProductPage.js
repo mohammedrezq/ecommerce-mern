@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
 import { listProductDetails } from "../../../Store/Actions/productsActions";
-import { addProductToCart } from "../../../Store/Actions/cartActions";
+import { addProductToCart, setProductSizeAction, setProductQtyAction } from "../../../Store/Actions/cartActions";
 
 /* Material UI Components */
 import {
@@ -26,8 +26,8 @@ import Message from "../../../Shared/UIElements/Message";
 
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
-  const [qty, setQty] = useState(1);
-  const [size, setSize] = useState("");
+  // const [qty, setQty] = useState(1);
+  // const [size, setSize] = useState("");
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -61,8 +61,7 @@ const ProductPage = (props) => {
   let productsCountInStock = [...Array(leproduct.CountInStock).keys()];
 
   let availableQuantity = leproduct.CountInStock >= 10 ? productQty : productsCountInStock
-  // console.log(productsCountInStock);
-  // console.log(leproduct.Colors)
+
 
   let history = useHistory();
 
@@ -71,15 +70,14 @@ const ProductPage = (props) => {
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   }
 
+  const productFeature = useSelector(state => state.setProductFeature);
+  const productSizeToCart = (size) => {
+    dispatch(setProductSizeAction(size))
+  }
 
-
-  // if(leproduct.Sizes) {
-  //   console.log(leproduct.Sizes[0])
-  // }
-  // console.log(size)
-  // console.log(qty)
-
-  // console.log(qty);
+  const productQtyToCart = (qty) => {
+    dispatch(setProductQtyAction(qty))
+  }
 
   return (
     <>
@@ -119,8 +117,8 @@ const ProductPage = (props) => {
                     <Select
                       fullWidth={true}
                       native
-                      value={size}
-                      onChange={e => setSize(e.target.value)}
+                      value={productFeature.size}
+                      onChange={(e) => productSizeToCart(e.target.value)}
                       inputProps={{
                         name: "size",
                         id: "size_to_cart",
@@ -134,9 +132,46 @@ const ProductPage = (props) => {
                       <option value={30}>Thirty</option> */}
                     </Select>
                   </FormControl>
+                  {console.log(productFeature)}
                 </div>
               )}
             </div>
+
+
+            <div className={`product-extra-information`}>
+              {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
+              {leproduct.Sizes &&
+                leproduct.Sizes.map((size, index) => (
+                  <div
+                    key={size}
+                    className={`product-size selection-radio-btn`}
+                  >
+                    <input
+                      id={size}
+                      onChange={(e) => {
+                        // console.log(size);
+                        return (productSizeToCart(size))}}
+                      name="SKUandSize"
+                      type="radio"
+                      className={`sizeProduct radioInput`}
+                    />
+                    <label
+                      htmlFor={size}
+                      className={`radioSizeCSS radioLabel`}
+                    >
+                      {size}
+                    </label>
+                  </div>
+                ))}
+                </div>
+
+
+
+
+
+
+
+
             <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
@@ -145,8 +180,8 @@ const ProductPage = (props) => {
                     <Select
                       fullWidth={true}
                       native
-                      value={qty}
-                      onChange={e => setQty(e.target.value)}
+                      value={productFeature.qty}
+                      onChange={(e) => productQtyToCart(e.target.value)}
                       inputProps={{
                         name: "quantity",
                         id: "quantity_to_cart",
@@ -155,9 +190,6 @@ const ProductPage = (props) => {
                       {leproduct.CountInStock  && availableQuantity.map(q => 
                           <option key={q+1} value={q+1}>{q + 1}</option>
                         )}
-                      {/* <option value={10}>Ten</option>
-                      <option value={20}>Twenty</option>
-                      <option value={30}>Thirty</option> */}
                     </Select>
                   </FormControl>
                 </div>
@@ -175,7 +207,8 @@ const ProductPage = (props) => {
                 </Button>
               ) : (
                 <Button
-                  onClick={() => props.addToCart("ShoesFromNike")}
+                  // onClick={() => props.addToCart("ShoesFromNike")}
+                  disabled
                   className={`product_add_to_cart`}
                   basic
                   style={{

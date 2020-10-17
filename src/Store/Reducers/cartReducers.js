@@ -63,6 +63,30 @@ export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
 
 }
 
+export const setProductFeatureReducer = (state= { Size: "", Qty: 1 }, action) => {
+    switch(action.type) {
+        case actionTypes.PRODUCT_SIZE_SET:
+            return {
+                ...state,
+                Size: action.payload
+            }
+        case actionTypes.PRODUCT_QTY_SET:
+            return {
+                ...state,
+                Qty: action.payload
+            }
+        default:
+            return state
+    }
+}
+// export const setProductSizeReducer = (state= {}, action) => {
+//     switch(action.type) {
+
+//         default:
+//             return state
+//     }
+// }
+
 
 
 // const initialState = {
