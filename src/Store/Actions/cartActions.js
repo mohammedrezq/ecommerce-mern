@@ -73,3 +73,24 @@ export const addProductToCart = (id) => async(dispatch, getState) => {
     //     }
     // });
 }
+
+export const setProductSizeAction = (size) => {
+    return {
+        type: actionTypes.PRODUCT_SIZE_SET,
+        payload: size
+    };
+    // dispatch({
+    //     type: actionTypes.PRODUCT_QTY_SET,
+    // });
+
+} 
+export const setProductQtyAction = (qty) => {
+    return {
+        type: actionTypes.PRODUCT_QTY_SET,
+        payload: qty
+    };
+    // dispatch({
+    //     type: actionTypes.PRODUCT_QTY_SET,
+    // });
+
+} 

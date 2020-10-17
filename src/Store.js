@@ -3,11 +3,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import { productDetailsReducer, productListReducer } from './Store/Reducers/productReducers';
-import { cartReducer, addProductToCartReducer } from './Store/Reducers/cartReducers';
+import { cartReducer, addProductToCartReducer, setProductFeatureReducer } from './Store/Reducers/cartReducers';
 
 const reducer = combineReducers( {
     cart: cartReducer,
     addProductToCart: addProductToCartReducer,
+    setProductFeature: setProductFeatureReducer,
     productList: productListReducer,
     productDetails: productDetailsReducer
 } )

@@ -2,11 +2,17 @@
 export const CART_ADD_ITEM = "CART_ADD_ITEM";
 export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
 
-// Product Page add Product on Button Click
+// Product Page add Product To Cart Page on Button Click
 export const PRODUCT_ADD_REQUEST = "PRODUCT_ADD_REQUEST";
 export const PRODUCT_ADDED_ON_CLICK_SUCCESS = "PRODUCT_ADDED_ON_CLICK_SUCCESS";
 export const PRODUCT_ADDED_ON_CLICK_FAIL = "PRODUCT_ADDED_ON_CLICK_FAIL";
 export const PRODUCT_ADDED_ON_CLICK_REMOVE = "PRODUCT_ADDED_ON_CLICK_REMOVE";
+
+// Product Page Manage Size and Qunatity State
+
+export const PRODUCT_SIZE_SET = "PRODUCT_SIZE_SET";
+export const PRODUCT_QTY_SET = "PRODUCT_QTY_SET";
+
 
 // MainNavigation
 export const GET_PRODUCT_NUMBER_CART = "GET_PRODUCT_NUMBER_CART";
