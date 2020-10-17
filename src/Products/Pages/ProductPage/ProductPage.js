@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
 import { listProductDetails } from "../../../Store/Actions/productsActions";
+import { addProductToCart } from "../../../Store/Actions/cartActions";
 
 /* Material UI Components */
 import {
@@ -43,6 +44,13 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
+  const productToCart = useSelector(state => state.addProductToCart); // from Store combine reduers
+  const { err, loadingStatus, cartProducts } = productToCart;
+  // const productArr =cartProducts.map(p => p);
+  // const nr = productArr.map(x => x[0])
+
+  // console.log(nr.map(item => console.log(item.title))); // all items in LocalStorage
+  // cartProducts.map(p => p)
   // console.log(productDetails);
 
   const leproduct = product.product; // get product from the product from the payload!!!
@@ -58,11 +66,18 @@ const ProductPage = (props) => {
 
   let history = useHistory();
 
-  const addToCartHandler = () => {
-    history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
+  const addToCartHandler = (id) => {
+    dispatch(addProductToCart(id));
+    // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   }
 
 
+
+  // if(leproduct.Sizes) {
+  //   console.log(leproduct.Sizes[0])
+  // }
+  // console.log(size)
+  // console.log(qty)
 
   // console.log(qty);
 
@@ -95,34 +110,37 @@ const ProductPage = (props) => {
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
             </div>
-            <div className={`product-extra-information`}>
+            <div className={`product-extra-information__Sizes`}>
               {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
-              {leproduct.Sizes &&
-                leproduct.Sizes.map((size, index) => (
-                  <div
-                    key={size}
-                    className={`product-size selection-radio-btn`}
-                  >
-                    <input
-                      id={size}
-                      onChange={() => setSize(size)}
-                      name="SKUandSize"
-                      type="radio"
-                      className={`sizeProduct radioInput`}
-                    />
-                    <label
-                      htmlFor={size}
-                      className={`radioSizeCSS radioLabel`}
+              {leproduct.Sizes && (
+                <div>
+                  <FormControl className={`quantity_product_cart`} style={{minWidth: "100%"}}>
+                    <InputLabel htmlFor="size_to_cart">Size</InputLabel>
+                    <Select
+                      fullWidth={true}
+                      native
+                      value={size}
+                      onChange={e => setSize(e.target.value)}
+                      inputProps={{
+                        name: "size",
+                        id: "size_to_cart",
+                      }}
                     >
-                      {size}
-                    </label>
-                  </div>
-                ))}
+                      {leproduct.Sizes.map(s => 
+                          <option key={s} value={s}>{s}</option>
+                        )}
+                      {/* <option value={10}>Ten</option>
+                      <option value={20}>Twenty</option>
+                      <option value={30}>Thirty</option> */}
+                    </Select>
+                  </FormControl>
                 </div>
-            <div className={`product__selections`} style={{ padding: "20px" }}>
+              )}
+            </div>
+            <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
-                  <FormControl className={`quantity_product_cart`}>
+                  <FormControl className={`quantity_product_cart`} style={{minWidth: "100%"}}>
                     <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel>
                     <Select
                       fullWidth={true}
@@ -148,7 +166,7 @@ const ProductPage = (props) => {
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <Button
-                  onClick={addToCartHandler}
+                  onClick={() => addToCartHandler(id)}
                   className={`product_add_to_cart`}
                   basic
                   size="default"
