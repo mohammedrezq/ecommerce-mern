@@ -15,6 +15,7 @@ import HamburgerButton from "../UIElements/HamburgerButton";
 import Backdrop from "../UIElements/Backdrop";
 import "./MainNavigation.css";
 import classes from "./Drawer.module.css";
+import CartPage from "../../Products/Pages/CartPage/CartPage";
 
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -39,9 +40,9 @@ const MainNavigation = (props) => {
 
   let history = useHistory();
 
-  const goToCartPage = () => {
-    history.push('/cart');
-  }
+  // const goToCartPage = () => {
+  //   history.push('/cart');
+  // }
 
   return (
     <>
@@ -80,7 +81,7 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks onClick={goToCartPage} />
+          <NavLinks to="/cart" />
         </nav>
       </MainHeader>
     </>
