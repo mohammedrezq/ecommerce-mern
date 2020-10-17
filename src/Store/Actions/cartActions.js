@@ -74,23 +74,30 @@ export const addProductToCart = (id) => async(dispatch, getState) => {
     // });
 }
 
-export const setProductSizeAction = (size) => {
-    return {
+export const setProductSizeAction = (size) => (dispatch) => {
+    // return {
+    //     type: actionTypes.PRODUCT_SIZE_SET,
+    //     payload: size
+    // };
+    dispatch({
         type: actionTypes.PRODUCT_SIZE_SET,
         payload: size
-    };
-    // dispatch({
-    //     type: actionTypes.PRODUCT_QTY_SET,
-    // });
+    });
+
+    localStorage.setItem("size", JSON.stringify(size));
 
 } 
-export const setProductQtyAction = (qty) => {
-    return {
+export const setProductQtyAction = (qty) => (dispatch) => {
+    // return {
+    //     type: actionTypes.PRODUCT_QTY_SET,
+    //     payload: qty
+    // };
+
+    dispatch({
         type: actionTypes.PRODUCT_QTY_SET,
         payload: qty
-    };
-    // dispatch({
-    //     type: actionTypes.PRODUCT_QTY_SET,
-    // });
+    });
+
+    localStorage.setItem("quantity", JSON.stringify(qty));
 
 } 
