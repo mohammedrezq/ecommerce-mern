@@ -70,7 +70,7 @@ const ProductPage = (props) => {
 
   let history = useHistory();
 
-  const addToCartHandler = (id, s, q) => {
+  const addToCartHandler = (id, s, ) => {
     dispatch(addProductToCart(id, size, qty));
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
@@ -84,21 +84,27 @@ const ProductPage = (props) => {
   //   dispatch(setProductQtyAction(qty));
   // };
 
+  // Check if Product Size is Selected (Checked)
   const checkSizesChecked = () => {
     setIsChecked(true)
   }
 
 
+  // Prevent Adding Product To cart if Size or Quantity weren't set
+
   const preventAddToCart = (e) => {
     e.preventDefault();
   }
+  // Set Size for the product
 
   const selectProductSize = (size) => {
     setSize(size)
   }
-  const selectProductQty = (qty) => {
-    setQty(qty)
-  }
+  // Set Quantity for the product
+
+  // const selectProductQty = (qty) => {
+  //   setQty(qty)
+  // }
 
   console.log(size)
   console.log(qty)
@@ -195,7 +201,7 @@ const ProductPage = (props) => {
                 ))}
             </div>
             {/* {console.log(productFeature)} */}
-            <div className={`product__selections`}>
+            {/* <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
                   <FormControl
@@ -223,7 +229,7 @@ const ProductPage = (props) => {
                   </FormControl>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <Button
