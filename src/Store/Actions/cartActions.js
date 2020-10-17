@@ -22,7 +22,7 @@ export const addToCart = (id, qty, size) => async(dispatch, getState) => {
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
 }
 
-export const addProductToCart = (id) => async(dispatch, getState) => {
+export const addProductToCart = (id, size, qty) => async(dispatch, getState) => {
 
     try {
         dispatch({type: actionTypes.PRODUCT_ADD_REQUEST})
@@ -35,9 +35,9 @@ export const addProductToCart = (id) => async(dispatch, getState) => {
             product: product.id,
             title: product.Title,
             image: product.Images[0],
-            // size: size, // to be added to arguments in the function
+            size: size, // to be added to arguments in the function
             price: product.Price,
-            // qty: qty // to be added to arguments in the function
+            qty: qty // to be added to arguments in the function
         },
     })
     let arr = []
@@ -74,30 +74,30 @@ export const addProductToCart = (id) => async(dispatch, getState) => {
     // });
 }
 
-export const setProductSizeAction = (size) => (dispatch) => {
+// export const setProductSizeAction = (size) => (dispatch) => {
     // return {
     //     type: actionTypes.PRODUCT_SIZE_SET,
     //     payload: size
     // };
-    dispatch({
-        type: actionTypes.PRODUCT_SIZE_SET,
-        payload: size
-    });
+//     dispatch({
+//         type: actionTypes.PRODUCT_SIZE_SET,
+//         payload: size
+//     });
 
-    localStorage.setItem("size", JSON.stringify(size));
+//     localStorage.setItem("size", JSON.stringify(size));
 
-} 
-export const setProductQtyAction = (qty) => (dispatch) => {
+// } 
+// export const setProductQtyAction = (qty) => (dispatch) => {
     // return {
     //     type: actionTypes.PRODUCT_QTY_SET,
     //     payload: qty
     // };
 
-    dispatch({
-        type: actionTypes.PRODUCT_QTY_SET,
-        payload: qty
-    });
+//     dispatch({
+//         type: actionTypes.PRODUCT_QTY_SET,
+//         payload: qty
+//     });
 
-    localStorage.setItem("quantity", JSON.stringify(qty));
+//     localStorage.setItem("quantity", JSON.stringify(qty));
 
-} 
+// } 

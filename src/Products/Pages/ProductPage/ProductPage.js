@@ -31,8 +31,8 @@ import Message from "../../../Shared/UIElements/Message";
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  // const [qty, setQty] = useState(1);
-  // const [size, setSize] = useState("");
+  const [qty, setQty] = useState(1);
+  const [size, setSize] = useState("");
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -70,19 +70,19 @@ const ProductPage = (props) => {
 
   let history = useHistory();
 
-  const addToCartHandler = (id) => {
-    dispatch(addProductToCart(id));
+  const addToCartHandler = (id, s, q) => {
+    dispatch(addProductToCart(id, size, qty));
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
 
-  const productFeature = useSelector((state) => state.setProductFeature);
-  const productSizeToCart = (size) => {
-    dispatch(setProductSizeAction(size));
-  };
+  // const productFeature = useSelector((state) => state.setProductFeature);
+  // const productSizeToCart = (size) => {
+  //   dispatch(setProductSizeAction(size));
+  // };
 
-  const productQtyToCart = (qty) => {
-    dispatch(setProductQtyAction(qty));
-  };
+  // const productQtyToCart = (qty) => {
+  //   dispatch(setProductQtyAction(qty));
+  // };
 
   const checkSizesChecked = () => {
     setIsChecked(true)
@@ -92,6 +92,16 @@ const ProductPage = (props) => {
   const preventAddToCart = (e) => {
     e.preventDefault();
   }
+
+  const selectProductSize = (size) => {
+    setSize(size)
+  }
+  const selectProductQty = (qty) => {
+    setQty(qty)
+  }
+
+  console.log(size)
+  console.log(qty)
 
   console.log(isChecked)
 
@@ -171,7 +181,7 @@ const ProductPage = (props) => {
                       id={size}
                       onChange={(e) => {
                         // console.log(size);
-                        return productSizeToCart(size);
+                        return selectProductSize(size);
                       }}
                       onClick={() => checkSizesChecked()}
                       name="SKUandSize"
@@ -184,8 +194,8 @@ const ProductPage = (props) => {
                   </div>
                 ))}
             </div>
-            {console.log(productFeature)}
-            {/* <div className={`product__selections`}>
+            {/* {console.log(productFeature)} */}
+            <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
                   <FormControl
@@ -196,8 +206,8 @@ const ProductPage = (props) => {
                     <Select
                       fullWidth={true}
                       native
-                      value={productFeature.qty}
-                      onChange={(e) => productQtyToCart(e.target.value)}
+                      value={qty}
+                      onChange={(e) => selectProductQty(e.target.value)}
                       inputProps={{
                         name: "quantity",
                         id: "quantity_to_cart",
@@ -213,7 +223,7 @@ const ProductPage = (props) => {
                   </FormControl>
                 </div>
               )}
-            </div> */}
+            </div>
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <Button
