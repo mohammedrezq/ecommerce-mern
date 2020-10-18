@@ -31,6 +31,7 @@ import Message from "../../../Shared/UIElements/Message";
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [cartBtnClicked, setCartBtnClicked] = useState(false);
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
 
@@ -93,6 +94,7 @@ const ProductPage = (props) => {
   // Prevent Adding Product To cart if Size or Quantity weren't set
 
   const preventAddToCart = (e) => {
+    !isChecked && setCartBtnClicked(true)
     e.preventDefault();
   }
   // Set Size for the product
@@ -110,9 +112,15 @@ const ProductPage = (props) => {
   console.log(qty)
 
   console.log(isChecked)
-
-
+  
+  
   let disabled = isChecked 
+
+
+
+
+
+  console.log(cartBtnClicked)
 
   return (
     <>
@@ -175,13 +183,14 @@ const ProductPage = (props) => {
               )}
             </div> */}
 
-            <div className={`product-extra-information`}>
+              <div style={{margin:"8px" ,paddingTop: "12px"}} ><span style={{fontSize: "1.2rem"}}>Select Size</span></div>
+            <div className={`product-extra-information ${(cartBtnClicked && !isChecked) ? 'showWarning' : "" }`}>
               {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
               {leproduct.Sizes &&
                 leproduct.Sizes.map((size, index) => (
                   <div
                     key={size}
-                    className={`product-size selection-radio-btn`}
+                    className={`product-size selection-radio-btn ${(cartBtnClicked && !isChecked) ? 'radioBtnWarning' : ""}`}
                   >
                     <input
                       id={size}
@@ -199,6 +208,11 @@ const ProductPage = (props) => {
                     </label>
                   </div>
                 ))}
+            </div>
+            <div>
+            {cartBtnClicked && !isChecked ? (
+                <div style={{margin: "12px"}}><span style={{ color: "#d43f21", fontSize: "1.2rem" }}>Please select a size.</span></div>
+              ) : null}
             </div>
             {/* {console.log(productFeature)} */}
             {/* <div className={`product__selections`}>
