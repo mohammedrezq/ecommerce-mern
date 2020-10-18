@@ -87,3 +87,8 @@ button.product__addition.product_add_to_whishlist {
       margin: 30px;
   }
 }
+
+.showWarning {
+  border: 2px solid #d43f21;
+  border-radius: 4px;
+}

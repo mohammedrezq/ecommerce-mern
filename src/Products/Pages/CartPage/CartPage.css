@@ -1,0 +1,15 @@
+figure.item__image{
+    margin: 0;
+    padding: 0 16px 16px 0;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+}
+
+.item__image img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+}
