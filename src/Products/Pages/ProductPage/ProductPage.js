@@ -108,19 +108,19 @@ const ProductPage = (props) => {
   //   setQty(qty)
   // }
 
-  console.log(size)
-  console.log(qty)
+  // console.log(size)
+  // console.log(qty)
 
-  console.log(isChecked)
+  // console.log(isChecked)
   
   
-  let disabled = isChecked 
+  // let disabled = isChecked 
 
 
 
 
 
-  console.log(cartBtnClicked)
+  // console.log(cartBtnClicked)
 
   return (
     <>

@@ -59,7 +59,7 @@ const MainNavigation = (props) => {
   localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
   localStorage.setItem("cartProducts", JSON.stringify(arr))
 
-console.log(arr)
+// console.log(arr)
 
 
   const productArr = arr.map((p) => p);
@@ -67,7 +67,7 @@ console.log(arr)
   const productItem = nr.map((item) => item); // all items in LocalStorage
 
 
-  console.log(productItem.length)
+  // console.log(productItem.length)
   return (
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
