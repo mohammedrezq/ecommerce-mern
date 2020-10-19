@@ -35,27 +35,20 @@ export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
             return { loading: true, cartProducts: []}
         case actionTypes.PRODUCT_ADDED_ON_CLICK_SUCCESS:
             const item = action.payload;
-            const existProduct = state.cartProducts.find(x => x.product === item.product);
-            // console.log(state);
-            // console.log(state.cartProducts);
-            // console.log(item)
-            if(existProduct) {
-            return { 
-                loading: false,
-                ...state,
-                cartProducts: state.cartProducts.map(x => x.product === existProduct ? item : x)
-             }
-            } else {
                 return {
                 loading: false,
                 ...state,
-                cartProducts: [...state.cartProducts, item]
+                cartProducts:  item
                 }
-            }
         case actionTypes.PRODUCT_ADDED_ON_CLICK_FAIL:
             return{
                 loading: false,
                 error: action.payload
+            }
+        case actionTypes.PRODUCT_REMOVED_ON_CLICK:
+            return{
+                ...state,
+                cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
             }
         default:
             return state;

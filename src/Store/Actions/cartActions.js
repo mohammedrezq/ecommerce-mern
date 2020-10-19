@@ -57,6 +57,7 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
           });
     }
 
+
     // console.log(data);
     // const {product} = data;
     // console.log(product)
@@ -74,6 +75,16 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
     // });
 }
 
+
+
+export const removeProductFromCart = (id) => (dispatch, getState) => {
+    dispatch({
+        type: actionTypes.PRODUCT_REMOVED_ON_CLICK,
+        payload: id
+    })
+
+    // localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts))
+} 
 // export const setProductSizeAction = (size) => (dispatch) => {
     // return {
     //     type: actionTypes.PRODUCT_SIZE_SET,

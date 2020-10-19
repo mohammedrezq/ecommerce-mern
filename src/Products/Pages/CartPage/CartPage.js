@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Message from "../../../Shared/UIElements/Message";
 import Spinner from "../../../Shared/UIElements/Spinner";
-import { addToCart } from "../../../Store/Actions/cartActions";
+import { addToCart, removeProductFromCart } from "../../../Store/Actions/cartActions";
 import { Grid } from "@material-ui/core";
 
 import HrElemnent from "../../../Shared/UIElements/HrElement";
@@ -91,8 +91,10 @@ const useStyles = makeStyles((theme) => ({
 const CartPage = (props) => {
   const classes = useStyles();
 
-  const productId = useParams().id;
-  console.log(productId);
+  // const productId = useParams().id;
+  // console.log(productId);
+
+    const dispatch = useDispatch()
 
   // const qty = Number(useLocation().search.split("?")[2].split("=")[1]);
   // const size = useLocation().search.split("?")[1].split("=")[1];
@@ -117,14 +119,27 @@ const CartPage = (props) => {
 
   console.log(arr);
 
-  const productArr = arr.map((p) => p);
-  const nr = productArr.map((x) => x[0]);
-  const productItem = nr.map((item) => item); // all items in LocalStorage
+  // const productArr = arr.map((p) => p);
+  // const cartProductItems = arr.map((x) => console.log(x));
+
+  // console.log(cartProductItems)
+  // console.log(cartProduct.title)
+  // console.log(cartProduct.image)
+  // console.log(cartProduct.price)
+  // console.log(cartProduct.size)
+  // console.log(cartProduct.qty)
+  // const productItem = nr.map((item) => item); // all items in LocalStorage
 
   // console.log(productItem);
 
-  productItem.reverse();
-  console.log(productItem);
+  // productItem.reverse();
+  // console.log(productItem);
+
+  const removeProductFromCartHandler = (id) => {
+    dispatch(removeProductFromCart(id))
+    
+    console.log("Product Removed!")
+  } 
 
   //   let filtered;
   //   filtered = productItem.filter(
@@ -164,7 +179,6 @@ const CartPage = (props) => {
 
   // console.log(unique)
 
-  // const dispatch = useDispatch()
 
   // useEffect(() => {
   // if(productId);
@@ -180,8 +194,8 @@ const CartPage = (props) => {
       ) : (
         <Grid container className={classes.containerPadding}>
           <Grid container className={classes.cartItemsPaddingTop}>
-                {productItem && productItem.map(item => (
-            <Grid container className={classes.itemsWidth}>
+                {arr && arr.map((item, index) => (
+            <Grid key={index} container className={classes.itemsWidth}>
               <Grid item md={8} sm={12}>
                 <h2
                   style={{
@@ -247,6 +261,7 @@ const CartPage = (props) => {
                                 }}
                               >
                                 <button
+                                  onClick={removeProductFromCartHandler}
                                   className={classes.productItemActions}
                                   style={{
                                     fontSize: "1rem",
