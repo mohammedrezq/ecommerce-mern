@@ -82,6 +82,14 @@ export const removeProductFromCart = (id) => (dispatch, getState) => {
         type: actionTypes.PRODUCT_REMOVED_ON_CLICK,
         payload: id
     })
+    // console.log(getState().addProductToCart.cartProducts)
+
+
+    // let arr = []
+    let arr = JSON.parse(localStorage.getItem("cartProducts"));
+localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts));
+arr.splice(id, 1)
+localStorage.setItem("cartProducts", JSON.stringify(arr)) // save to the LocalStorage
 
     // localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts))
 } 
