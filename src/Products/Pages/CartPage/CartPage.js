@@ -135,8 +135,21 @@ const CartPage = (props) => {
   // productItem.reverse();
   // console.log(productItem);
 
-  const removeProductFromCartHandler = (id) => {
-    dispatch(removeProductFromCart(id))
+  const removeProductFromCartHandler = (id, size, qty) => {
+    // console.log(id)
+    // console.log(size)
+    // console.log(qty)
+    let arr = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    // console.log(arr)
+
+    let i = arr.findIndex(item => item.product === id && item.size === size && item.qty === qty); // removing product based on its id & size & qty
+    // console.log(i)
+
+    // arr.filter(item => item.product !== id)
+    // let filteredProducts = arr.filter(arr.product !== id)
+    arr.splice(i, 1)
+    localStorage.setItem("cartProducts", JSON.stringify(arr))
+    dispatch(removeProductFromCart(id, size))
     
     console.log("Product Removed!")
   } 
@@ -261,7 +274,7 @@ const CartPage = (props) => {
                                 }}
                               >
                                 <button
-                                  onClick={removeProductFromCartHandler}
+                                  onClick={() => removeProductFromCartHandler(item.product,item.size,item.qty)}
                                   className={classes.productItemActions}
                                   style={{
                                     fontSize: "1rem",

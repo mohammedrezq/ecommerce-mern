@@ -48,7 +48,7 @@ export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
         case actionTypes.PRODUCT_REMOVED_ON_CLICK:
             return{
                 ...state,
-                cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
+                // cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
             }
         default:
             return state;
