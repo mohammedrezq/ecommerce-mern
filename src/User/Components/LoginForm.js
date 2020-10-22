@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+
 import FormikControl from "../../Shared/FormElements/FormikControl";
+import Message from '../../Shared/UIElements/Message'
+// import Spinner from '../../Shared/UIElements/Spinner'
+import { login } from "../../Store/Actions/userActions";
+import './LoginForm.css'
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+
+  // console.log(userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/profile");
+    }
+  }, [history, userInfo]);
+
   const initialValues = {
     email: "",
     password: "",
@@ -16,7 +38,14 @@ const LoginForm = () => {
     password: Yup.string().required("Please enter a password.").min(6),
   });
 
-  const onSubmit = (values) => console.log("Login Form", values);
+  const onSubmit = (values, isSubmitting) => {
+    dispatch(login(values.email, values.password)); // Dispatch Email & Password from Login Form
+    isSubmitting(true);
+    // e.prevenDefault();
+    // console.log(e);
+    console.log("Login Form", values);
+    isSubmitting(false);
+  };
 
   return (
     <Formik
@@ -27,7 +56,10 @@ const LoginForm = () => {
       {(formik) => {
         return (
           <Form>
-            {/* Email Login */}
+            {error && <Message>{error}</Message>}
+            {/* Check if loading is true show Spinner else show the Login Form */}
+            {/* {loading ? <Spinner /> :( */} {/* Spinner for the whole login Form ! */}
+            <React.Fragment>
             <FormikControl
               fullWidth
               className="FormElement"
@@ -39,7 +71,6 @@ const LoginForm = () => {
               variant="outlined"
               size="small"
             />
-            {/* Password Login */}
             <FormikControl
               fullWidth
               className="FormElement"
@@ -51,7 +82,9 @@ const LoginForm = () => {
               variant="outlined"
               size="small"
             />
-            <button type="submit">Submit</button>
+            <button className={`Login__Form--Btn Submit__Btn`} type="submit"> {!loading ? <span>LOGIN</span>: <span>Processing...</span>}</button>
+            </React.Fragment>
+            {/* )} */ }{/* Spinner for the whole login Form ! */}
           </Form>
         );
       }}

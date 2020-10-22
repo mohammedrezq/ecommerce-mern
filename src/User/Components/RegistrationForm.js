@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../Shared/FormElements/FormikControl";
+import Message from "../../Shared/UIElements/Message";
+import { signup } from "../../Store/Actions/userActions";
 
-import "./RegistrationForm.css";
 import Countries from "../../Shared/Assets/Countries";
 import Gender from "../../Shared/Assets/Gender";
+import "./RegistrationForm.css";
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+
+  const userSignup = useSelector((state) => state.userSignup);
+
+  // console.log(userSignup);
+  const { loading, error, userInfo } = userSignup;
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/profile");
+    }
+  }, [history, userInfo]);
+
   const initialValues = {
     email: "",
     password: "",
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    dateOfBirth: null,
+    DateOfBirth: null,
     country: "US",
     gender: "",
   };
@@ -30,12 +49,29 @@ const RegistrationForm = () => {
       .required("Please confirm the password"),
     firstName: Yup.string().required("Please enter a valid first name.").min(3),
     lastName: Yup.string().required("Please enter a valid last name.").min(3),
-    dateOfBirth: Yup.date().required("Please set your birth date.").nullable(),
+    DateOfBirth: Yup.date().required("Please set your birth date.").nullable(),
     country: Yup.string().required("Please select a country."),
     gender: Yup.string().required("Please select a preference."),
   });
 
-  const onSubmit = (values) => console.log("Form Data", values);
+  const onSubmit = (values, isSubmitting) => {
+    dispatch(
+      signup(
+        values.email,
+        values.password,
+        values.firstName,
+        values.lastName,
+        values.DateOfBirth,
+        values.country,
+        values.gender,
+      )
+    ); // Dispatch Email & Password & firstName, LastName, DOB, country, and gender from Signup Form
+    isSubmitting(true);
+    // e.prevenDefault();
+    // console.log(e);
+    isSubmitting(false);
+    console.log("Signup Data", values);
+  };
 
   return (
     <Formik
@@ -107,9 +143,9 @@ const RegistrationForm = () => {
             {/* Date of Birth */}
             <FormikControl
               fullWidth
-              className="FormElement dateOfBirthOption"
+              className="FormElement DateOfBirthOption"
               control="date"
-              name="dateOfBirth"
+              name="DateOfBirth"
               placeholderText="Date of Birth"
             />
             <FormikControl

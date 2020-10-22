@@ -1,10 +1,24 @@
 .login__Form {
-    background-color: #fff;
-    color: #8d8d8d;
-    font-family: Helvetica;
-    font-size: 14px;
-    margin: auto;
-    max-width: 380px;
-    padding: 28px;
-    text-align: left;
+  background-color: #fff;
+  color: #8d8d8d;
+  font-family: Helvetica;
+  font-size: 14px;
+  margin: auto;
+  max-width: 380px;
+  padding: 28px;
+  text-align: left;
+}
+
+.Not__A__Memeber {
+  font-size: 12px;
+  line-height: 14px;
+  padding: 10px 0 0;
+  text-align: center;
+}
+
+.text__Login__Form {
+  display: inline-block;
+  margin: 5px 0;
+  position: relative;
+  width: 100%;
 }

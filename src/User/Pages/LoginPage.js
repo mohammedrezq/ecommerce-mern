@@ -44,7 +44,7 @@ const LoginPage = () => {
       </div>
       <div className="view-header">YOUR ACCOUNT FOR EVERYTHING NIKE</div>
       <LoginForm />
-      <div>
+      <div className={`Not__A__Memeber text__Login__Form`}>
         Not a member?
         <button className="btnLink" onClick={swtichToRegisterForm}>
            Join Us.
