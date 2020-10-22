@@ -1,0 +1,33 @@
+.Login__Form--Btn {
+  background-color: #000;
+  border: 1px solid #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 100;
+  margin: auto;
+  width: 96%;
+}
+
+.Submit__Btn {
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font: 14px fantasy, "Helvetica Neue",Helvetica;
+  height: 40px;
+  line-height: 17px;
+  /* padding: 0 16px; */
+  max-width: 96%;
+}
