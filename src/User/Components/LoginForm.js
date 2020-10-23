@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/profile");
+      history.push("/");
     }
   }, [history, userInfo]);
 

@@ -59,7 +59,7 @@ export const logout = () => async (dispatch) => {
 export const signup = (
   email,
   password,
-  fisrtName,
+  firstName,
   lastName,
   DateOfBirth,
   Country,
@@ -81,7 +81,7 @@ export const signup = (
       {
         email,
         password,
-        fisrtName,
+        firstName,
         lastName,
         DateOfBirth,
         Country,
@@ -90,19 +90,20 @@ export const signup = (
       config
     );
 
+    const { users } = data;
     // Sign up user success
     dispatch({
       type: actionTypes.USER_SIGNUP_SUCCESS,
-      payload: data,
+      payload: users,
     });
 
     // Login user success - Immediately after Signup successs -
     dispatch({
       type: actionTypes.USER_LOGIN_SUCCESS,
-      payload: data,
+      payload: users,
     });
 
-    localStorage.setItem('userInfo', JSON.stringify(data));
+    localStorage.setItem('userInfo', JSON.stringify(users));
 
   } catch (err) {
     dispatch({

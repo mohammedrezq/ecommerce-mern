@@ -9,7 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 import { logout } from "../../Store/Actions/userActions";
 import "./TopNavbar.css";
@@ -25,6 +26,8 @@ const TopNavbar = (props) => {
   const logoutHandler = () => {
     console.log("LoggedOut!")
     dispatch(logout());
+    setOpen(false) // Make menu close on logout so it will not open when we loggin again (Second time logging in -issue solved-)
+    history.push('/login')
     // history.push('/login') // Redirect user to homepage ('/') after logout 
   }
 
@@ -48,32 +51,51 @@ const TopNavbar = (props) => {
     }
   }
 
-  const prevOpen = useRef(open);
+  // return focus to the button when we transitioned from !open -> open
 
-  useEffect(() => {
-    if(prevOpen.current === true && open === false ) {
-      anchorRef.current.focus();
-    }
-    prevOpen.current = open;
-  }, [open])
+  // const prevOpen = useRef(open);
+  // useEffect(() => {
+  //   if (prevOpen.current === true && open === false) {
+  //     anchorRef.current.focus();
+  //   }
+
+  //   prevOpen.current = open;
+  // }, [open]);
 
   const userLogin = useSelector(state =>  state.userLogin);
-  const { userInfo } = userLogin;
 
+  console.log(userLogin)
+  const { userInfo } = userLogin;
+  // const { userInfo } = userSignup;
+
+  // const userSignup = useSelector(state =>  state.userSignup);
+  // const { userInfo } = userSignup;
+
+  // console.log("Signup Info",userSignup)
+
+
+
+
+
+  console.log("User INFO",userInfo)
+  // console.log(userInfo.users)
+
+  console.log(open)
   return (
     <div className="top__navbar">
-      <div className="brand__items">AnyThing..</div>
+      <div className="brand__items" style={{fontSize:".88rem"}}>AnyThing..</div>
       {userInfo ? (
         <div>
           <Button
-          style={{textTransform: "capitalize"}}
+          style={{textTransform: "capitalize", fontSize:".88rem"}}
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          {`Hi, ${userInfo.firstName} ${userInfo.lastName}`}
+          {`Hi, ${userInfo.firstName} ${userInfo.lastName}`}<PersonOutlineIcon />
         </Button>
+        {/* {console.log(open)} */}
         <Popper style={{zIndex:"1000"}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
@@ -95,13 +117,13 @@ const TopNavbar = (props) => {
       ): (
         <div className="auth__buttons">
         <div className="auth__login">
-          <Link to="/login">
+          <Link style={{color: "inherit", textDecoration:"inherit"}}  to="/login">
             <span>Login</span>
           </Link>
         </div>
         <span className="seperator__verticalBar">|</span>
         <div className="auth__singup">
-          <Link to="/register">
+          <Link style={{color: "inherit", textDecoration:"inherit"}}  to="/register">
             <span>Join Us</span>
           </Link>
         </div>

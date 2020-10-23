@@ -19,6 +19,7 @@ import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 import RegistrationPage from "./User/Pages/RegistrationPage";
 import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
+// import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
 /* Testing Component */
 import FormContainer from "./Shared/FormElements/FormContainer";
@@ -27,6 +28,7 @@ function App() {
   return (
     <Provider store={Store}>
       <Router>
+        {/* <TestingNavbar /> */}
         <TopNavbar />
         <MainNavigation />
         <Switch>
