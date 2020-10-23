@@ -42,3 +42,28 @@ p.terms {
   line-height: 16px;
   padding: 3px 0 24px;
 }
+
+.Signup__Form--Btn {
+  background-color: #000;
+  border: 1px solid #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 100;
+  margin: auto;
+  width: 96%;
+}
+
+.text__Signup__Form{
+  display: inline-block;
+  margin: 5px 0;
+  position: relative;
+  width: 100%;
+}

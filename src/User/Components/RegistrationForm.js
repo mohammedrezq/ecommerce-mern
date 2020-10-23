@@ -11,6 +11,7 @@ import { signup } from "../../Store/Actions/userActions";
 import Countries from "../../Shared/Assets/Countries";
 import Gender from "../../Shared/Assets/Gender";
 import "./RegistrationForm.css";
+import "./LoginForm.css";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -82,6 +83,9 @@ const RegistrationForm = () => {
       {(formik) => {
         return (
           <Form>
+             {error && <Message>{error}</Message>}
+            {/* Check if loading is true show Spinner else show the Login Form */}
+            {/* {loading ? <Spinner /> :( */} {/* Spinner for the whole login Form ! */}
             {/* Email */}
             <FormikControl
               fullWidth
@@ -170,7 +174,8 @@ const RegistrationForm = () => {
               Terms of Use.
             </p>
 
-            <button type="submit">Submit</button>
+            <button className={`Signup__Form--Btn Submit__Btn`} type="submit">{!loading ? <span>Sign Up</span>: <span>Processing...</span>}</button>
+            {/* )} */ }{/* Spinner for the whole login Form ! */}
           </Form>
         );
       }}

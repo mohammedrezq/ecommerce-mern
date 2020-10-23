@@ -4,6 +4,7 @@ import LoginForm from "../Components/LoginForm";
 import RegistrationForm from '../Components/RegistrationForm'
 
 import './LoginPage.css'
+import './RegistrationPage.css'
 
 const LoginPage = () => {
 
@@ -28,10 +29,10 @@ const LoginPage = () => {
         products, inspiration and community.
       </div>
       <RegistrationForm />
-      <div>
+      <div className={`Memebership__state text__Login__Form`}>
         Already a member?
         <button className="btnLink" onClick={swtichToRegisterForm}>
-           Sign in.
+           Login.
         </button>
       </div>
     </div>
@@ -44,7 +45,7 @@ const LoginPage = () => {
       </div>
       <div className="view-header">YOUR ACCOUNT FOR EVERYTHING NIKE</div>
       <LoginForm />
-      <div className={`Not__A__Memeber text__Login__Form`}>
+      <div className={`Memebership__state text__Signup__Form`}>
         Not a member?
         <button className="btnLink" onClick={swtichToRegisterForm}>
            Join Us.

@@ -27,10 +27,10 @@ const RegistrationPage = (props) => {
         products, inspiration and community.
       </div>
       <RegistrationForm />
-      <div>
+      <div className={`Memebership__state text__Login__Form`}>
         Already a member?
         <button className="btnLink" onClick={switchToLoginForm}>
-          Sign in.
+          Login.
         </button>
       </div>
     </div>
@@ -43,7 +43,7 @@ const RegistrationPage = (props) => {
       </div>
       <div className="view-header">YOUR ACCOUNT FOR EVERYTHING NIKE</div>
       <LoginForm />
-      <div>
+      <div className={`Memebership__state text__Signup__Form`}>
         Not a member?
         <button className="btnLink" onClick={switchToLoginForm}>
           Join Us.

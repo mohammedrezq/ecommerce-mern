@@ -2,6 +2,11 @@ import axios from "axios";
 
 import * as actionTypes from "./actionTypes";
 
+/**
+ * 
+ * Logging in User
+ * 
+ **/
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -43,6 +48,13 @@ export const logout = () => async (dispatch) => {
     type: actionTypes.USER_LOGOUT,
   });
 };
+
+
+/**
+ * 
+ * Registering New User
+ * 
+ **/
 
 export const signup = (
   email,
