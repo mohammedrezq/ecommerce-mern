@@ -21,11 +21,12 @@ const RegistrationForm = () => {
   // console.log(userSignup);
   const { loading, error, userInfo } = userSignup;
 
+  console.log("userInfo",userInfo)
   const history = useHistory();
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/profile");
+      history.push("/");
     }
   }, [history, userInfo]);
 
@@ -67,11 +68,11 @@ const RegistrationForm = () => {
         values.gender,
       )
     ); // Dispatch Email & Password & firstName, LastName, DOB, country, and gender from Signup Form
+    console.log("Signup Data", values);
     isSubmitting(true);
     // e.prevenDefault();
     // console.log(e);
     isSubmitting(false);
-    console.log("Signup Data", values);
   };
 
   return (
