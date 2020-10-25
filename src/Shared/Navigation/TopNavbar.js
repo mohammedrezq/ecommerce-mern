@@ -24,7 +24,7 @@ const TopNavbar = (props) => {
 
   const history = useHistory();
   const logoutHandler = () => {
-    console.log("LoggedOut!")
+    // console.log("LoggedOut!")
     dispatch(logout());
     setOpen(false) // Make menu close on logout so it will not open when we loggin again (Second time logging in -issue solved-)
     history.push('/login')
@@ -64,7 +64,7 @@ const TopNavbar = (props) => {
 
   const userLogin = useSelector(state =>  state.userLogin);
 
-  console.log(userLogin)
+  // console.log(userLogin)
   const { userInfo } = userLogin;
   // const { userInfo } = userSignup;
 
@@ -77,10 +77,10 @@ const TopNavbar = (props) => {
 
 
 
-  console.log("User INFO",userInfo)
+  // console.log("User INFO",userInfo)
   // console.log(userInfo.users)
 
-  console.log(open)
+  // console.log(open)
   return (
     <div className="top__navbar">
       <div className="brand__items" style={{fontSize:".88rem"}}>AnyThing..</div>

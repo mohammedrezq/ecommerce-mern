@@ -1,0 +1,19 @@
+.Profile__Form {
+  margin: 30px 10px 30px 20px;
+  background-color: #fff;
+  color: #8d8d8d;
+  font-family: Helvetica;
+  font-size: 14px;
+  /* margin: auto; */
+  /* border: 2px solid #ccc; */
+  border-radius: 8px;
+  /* max-width: 380px; */
+  padding: 28px;
+  text-align: left;
+}
+
+.Profile__Settings--Form {
+  margin: 0 auto;
+  max-width: 25ch;
+  text-align: left;
+}

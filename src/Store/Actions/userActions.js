@@ -3,9 +3,9 @@ import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
 /**
- * 
+ *
  * Logging in User
- * 
+ *
  **/
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -49,11 +49,10 @@ export const logout = () => async (dispatch) => {
   });
 };
 
-
 /**
- * 
+ *
  * Registering New User
- * 
+ *
  **/
 
 export const signup = (
@@ -63,7 +62,7 @@ export const signup = (
   lastName,
   DateOfBirth,
   Country,
-  Gender,
+  Gender
 ) => async (dispatch) => {
   try {
     dispatch({
@@ -103,11 +102,165 @@ export const signup = (
       payload: users,
     });
 
-    localStorage.setItem('userInfo', JSON.stringify(users));
-
+    localStorage.setItem("userInfo", JSON.stringify(users));
   } catch (err) {
     dispatch({
       type: actionTypes.USER_SIGNUP_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+/**
+ *
+ * Get User Details
+ *
+ **/
+
+export const getUserDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.USER_DETAILS_REQUEST,
+    });
+
+    const { userLogin: { userInfo } } = getState();
+
+    // console.log(userInfo)
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/users/${id}`,
+      config
+    );
+
+    // console.log(data)
+
+    const { user } = data;
+
+    // console.log(user)
+    // Sign up user success
+    dispatch({
+      type: actionTypes.USER_DETAILS_SUCCESS,
+      payload: user,
+    });
+
+  } catch (err) {
+    dispatch({
+      type: actionTypes.USER_DETAILS_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+/**
+ *
+ * User UPDATE Details
+ *
+ **/
+
+// export const updateUserProfile = (user) => async (dispatch, getState) => {
+//   // console.log(user)
+//   try {
+//     dispatch({ type: actionTypes.USER_UPDATE_PROFILE_REQUEST });
+
+//     const {
+//       userLogin: { userInfo },
+//     } = getState();
+
+//     // console.log(userInfo);
+
+//     // const { user } = userInfo
+//     // console.log(user)
+
+//     // console.log(user)
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${userInfo.token}`,
+//       },
+//     };
+
+//     const { data } = await axios.put(
+//       `http://localhost:5000/api/users/profile/`, user,
+//       config
+//     );
+
+//     console.log(data)
+//     console.log(userInfo)
+
+//     // const {users} = data 
+//     // const { user } = data;
+//     console.log(user)
+//     // Sign up user success
+//     dispatch({
+//       type: actionTypes.USER_UPDATE_PROFILE_SUCCESS,
+//       payload: data,
+//     });
+
+//   } catch (err) {
+//     dispatch({
+//       type: actionTypes.USER_UPDATE_PROFILE_FAIL,
+//       payload:
+//         err.response && err.response.data.message
+//           ? err.response.data.message
+//           : err.message,
+//     });
+//   }
+// };
+
+/**
+ *
+ * Update User Details
+ *
+ **/
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.USER_UPDATE_PROFILE_REQUEST,
+    });
+
+    const { userLogin: { userInfo } } = getState();
+
+    // console.log(userInfo)
+    console.log(userInfo.token)
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put( `http://localhost:5000/api/users/profile`, user, config );
+
+    console.log(data)
+
+    // const { user } = data;
+
+    // console.log(user)
+    // Sign up user success
+    dispatch({
+      type: actionTypes.USER_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    });
+
+    localStorage.setItem("userInfo", JSON.stringify(data)); // Update User Settings in LocalStorage
+
+  } catch (err) {
+    dispatch({
+      type: actionTypes.USER_UPDATE_PROFILE_FAIL,
       payload:
         err.response && err.response.data.message
           ? err.response.data.message
