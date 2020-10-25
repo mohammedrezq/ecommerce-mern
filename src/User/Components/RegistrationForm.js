@@ -49,8 +49,8 @@ const RegistrationForm = () => {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), ""], "Passwords don't must match")
       .required("Please confirm the password"),
-    firstName: Yup.string().required("Please enter a valid first name.").min(3),
-    lastName: Yup.string().required("Please enter a valid last name.").min(3),
+    firstName: Yup.string().required("Please enter a valid first name.").min(2),
+    lastName: Yup.string().required("Please enter a valid last name.").min(2),
     DateOfBirth: Yup.date().required("Please set your birth date.").nullable(),
     country: Yup.string().required("Please select a country."),
     gender: Yup.string().required("Please select a preference."),
@@ -71,7 +71,6 @@ const RegistrationForm = () => {
     console.log("Signup Data", values);
     isSubmitting(true);
     // e.prevenDefault();
-    // console.log(e);
     isSubmitting(false);
   };
 

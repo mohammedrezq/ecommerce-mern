@@ -19,10 +19,12 @@ import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 import RegistrationPage from "./User/Pages/RegistrationPage";
 import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
+// import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
 /* Testing Component */
 import FormContainer from "./Shared/FormElements/FormContainer";
+import ProfilePage from "./User/Pages/ProfilePage";
 
 function App() {
   return (
@@ -40,6 +42,9 @@ function App() {
           </Route>
           <Route path="/checkout" exact>
             <CheckoutPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
           <Route path="/formcontainer" exact>
             <FormContainer />
