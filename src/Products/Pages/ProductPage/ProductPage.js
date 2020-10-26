@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../../Store/Actions/productsActions";
 import {
   addProductToCart,
-  setProductSizeAction,
-  setProductQtyAction,
+  // setProductSizeAction,
+  // setProductQtyAction,
 } from "../../../Store/Actions/cartActions";
 
 /* Material UI Components */
@@ -76,7 +76,7 @@ const ProductPage = (props) => {
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
 
-  // const productFeature = useSelector((state) => state.setProductFeature);
+  const productFeature = useSelector((state) => state.setProductFeature);
   // const productSizeToCart = (size) => {
   //   dispatch(setProductSizeAction(size));
   // };
@@ -104,9 +104,9 @@ const ProductPage = (props) => {
   }
   // Set Quantity for the product
 
-  // const selectProductQty = (qty) => {
-  //   setQty(qty)
-  // }
+  const selectProductQty = (qty) => {
+    setQty(qty)
+  }
 
   // console.log(size)
   // console.log(qty)
@@ -215,7 +215,7 @@ const ProductPage = (props) => {
               ) : null}
             </div>
             {/* {console.log(productFeature)} */}
-            {/* <div className={`product__selections`}>
+            <div className={`product__selections`}>
               {leproduct.CountInStock > 0 && (
                 <div>
                   <FormControl
@@ -243,7 +243,7 @@ const ProductPage = (props) => {
                   </FormControl>
                 </div>
               )}
-            </div> */}
+            </div>
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <Button

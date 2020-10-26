@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       "rgb(229, 229, 229) 0px 0px 0px 0px inset, rgb(229, 229, 229) 0px 0px 0px 0px inset, rgb(229, 229, 229) 0px -1px 0px 0px inset, rgb(229, 229, 229) 0px 0px 0px 0px inset",
     position: "relative",
-    padding: "24px 8px",
+    padding: "24px 0",
     display: "flex",
     width: "100%",
   },
@@ -97,6 +97,8 @@ const CartPage = (props) => {
   // const productId = useParams().id;
   // console.log(productId);
 
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   // const qty = Number(useLocation().search.split("?")[2].split("=")[1]);
@@ -112,7 +114,7 @@ const CartPage = (props) => {
   // console.log(productToCart)
   const { err, loadingStatus, cartProducts } = productToCart;
 
-  // console.log(cartProducts);
+  console.log(cartProducts);
 
   let arr = [];
   arr = JSON.parse(localStorage.getItem("cartProducts"));
@@ -206,6 +208,26 @@ const CartPage = (props) => {
   //     dispatch(addToCart(productId))
   // },[dispatch])
 
+  // const productLink = (id) => {
+  // console.log(id)
+  // console.log(size)
+  // console.log(qty)
+  // let productsInLS = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  // console.log(arr)
+
+  // let i = productsInLS.findIndex(
+  //   (item) =>
+  //     item.product === id
+  // );
+
+  // console.log("Product Image Was Clicked!");
+
+  // history.push(`product/${id}`);
+
+  // };
+
+  
+
   return (
     <>
       {loadingStatus ? (
@@ -226,16 +248,24 @@ const CartPage = (props) => {
                 >
                   Bag
                 </h2>
-                {arr &&
+                {cartProducts.length === 0 ? (
+                  <>
+                    <span>
+                      There are no items in your bag.
+                      <Link style={{marginLeft: "4px", textDecoration:"inherit", color:"inherit", fontWeight:"bold"}} to="/">Go Back To Shop</Link>
+                    </span>
+                  </>
+                ) : (
+                  arr &&
                   arr.map((item, index) => (
                     <Grid key={index} container>
                       <Grid item className={classes.cartItem}>
                         <Grid container>
                           <Grid item xs={4} sm={3} md={3}>
                             <figure className="item__image">
-                              <a>
-                                <img src={item.image} />
-                              </a>
+                              <Link to={`/product/${item.product}`}>
+                                <img src={item.image} alt={item.title} />
+                              </Link>
                             </figure>
                           </Grid>
                           <Grid item xs={8} sm={9} md={9}>
@@ -248,10 +278,11 @@ const CartPage = (props) => {
                                   {item.title}
                                 </div>
                                 <div className={`cartItems--Cart`}>
-                                  <span style={{ marginRight: "5px" }}>
+                                  <span style={{ marginRight: "4px" }}>
                                     Size {item.size}
                                   </span>
-                                  <span style={{ marginRight: "5px" }}>
+                                  <span style={{ margin: "0 5px" }}>|</span>
+                                  <span style={{ margin: " 0 4px" }}>
                                     Quantity {item.qty}
                                   </span>
                                 </div>
@@ -260,7 +291,7 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  Price ${item.price}
+                                  ${Number(`${item.qty * item.price}`)}
                                 </div>
                               </Grid>
                               <Grid item sm={12}>
@@ -315,7 +346,8 @@ const CartPage = (props) => {
                         </Grid>
                       </Grid>
                     </Grid>
-                  ))}
+                  ))
+                )}
               </Grid>
               <Grid item md={4} sm={12}>
                 <Grid container className={`summary__box--container`}>
@@ -331,10 +363,13 @@ const CartPage = (props) => {
                   >
                     <div>Summary</div>
                   </Grid>
-                  <Grid className={`${classes.aligningSummary} Promo__code__Cart`} item xs={9} md={12}>
+                  {/* <Grid className={`${classes.aligningSummary} Promo__code__Cart`} item xs={9} md={12}>
                     <div>Do you have a Promo Code?</div>
-                  </Grid>
-                  <Grid container className={`${classes.aligningSummary} cartSummary__Item`}>
+                  </Grid> */}
+                  <Grid
+                    container
+                    className={`${classes.aligningSummary} cartSummary__Item`}
+                  >
                     <Grid className={classes.cartSummary} item sm={9}>
                       <div>Subtotal: </div>
                     </Grid>
@@ -342,19 +377,25 @@ const CartPage = (props) => {
                       <span>$589.88</span>
                     </Grid>
                   </Grid>
-                  <Grid container className={`${classes.aligningSummary} cartSummary__Item`}>
+                  <Grid
+                    container
+                    className={`${classes.aligningSummary} cartSummary__Item`}
+                  >
                     <Grid className={classes.cartSummary} item sm={9}>
                       <div>Estimated Shipping & Handling: </div>
                     </Grid>
-                    <Grid item sm={3}  className={`Summary__Cart__Nums`}>
+                    <Grid item sm={3} className={`Summary__Cart__Nums`}>
                       <span> $0.00</span>
                     </Grid>
                   </Grid>
-                  <Grid container className={`${classes.aligningSummary} cartSummary__Item`}>
+                  <Grid
+                    container
+                    className={`${classes.aligningSummary} cartSummary__Item`}
+                  >
                     <Grid className={classes.cartSummary} item sm={9}>
                       <div>Tax: </div>
                     </Grid>
-                    <Grid item sm={3}  className={`Summary__Cart__Nums`}>
+                    <Grid item sm={3} className={`Summary__Cart__Nums`}>
                       <span>—</span>
                     </Grid>
                   </Grid>
@@ -391,6 +432,11 @@ const CartPage = (props) => {
                     width="100%"
                     border="0"
                   />
+                  <Grid item xs={12} sm={12}>
+                    <button className={`checkout__btn`}>
+                      Checkout
+                    </button>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

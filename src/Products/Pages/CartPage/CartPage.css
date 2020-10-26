@@ -27,6 +27,35 @@ figure.item__image {
     justify-content: space-between;
   }
 
+.checkout__btn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: black;
+  color: white;
+  min-width: 100%;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 43px;
+  font-family: arial;
+  margin: 10px auto 0 auto;
+  border: 2px solid #000;
+}
+.checkout__btn:hover {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0,0,0,0.85);
+  cursor: pointer;
+  color: white;
+  min-width: 100%;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 43px;
+  font-family: arial;
+  margin: 10px auto 0 auto;
+  border: 2px solid rgba(0,0,0,0.85);
+}
 
 @media (max-width: 960px) {
   .summary__box--container {
