@@ -112,14 +112,14 @@ const ProfileForm = () => {
         // values.gender,
         // values.bio,
         {
-          id: user._id, 
+          id: user._id, //  from the backend
           bio: values.bio,
         email: values.email,
         password: values.password,
         confirmPassword:values.confirmPassword,
         firstName: values.firstName,
         lastName: values.lastName,
-        DateOfBirth: user.DateOfBirth,
+        DateOfBirth: user.DateOfBirth, //  from the backend
         country: values.country,
         gender: values.gender
       }
