@@ -71,19 +71,23 @@ const ProductPage = (props) => {
 
   let history = useHistory();
 
+  // const productFeature = useSelector((state) => state.setProductFeature);
+
+  // console.log(productFeature)
+
   const addToCartHandler = (id, s, ) => {
     dispatch(addProductToCart(id, size, qty));
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
 
-  const productFeature = useSelector((state) => state.setProductFeature);
+
   // const productSizeToCart = (size) => {
   //   dispatch(setProductSizeAction(size));
   // };
 
-  // const productQtyToCart = (qty) => {
-  //   dispatch(setProductQtyAction(qty));
-  // };
+  const productQtyToCart = (qty) => {
+    setQty(qty);
+  };
 
   // Check if Product Size is Selected (Checked)
   const checkSizesChecked = () => {
@@ -104,9 +108,9 @@ const ProductPage = (props) => {
   }
   // Set Quantity for the product
 
-  const selectProductQty = (qty) => {
-    setQty(qty)
-  }
+  // const selectProductQty = (qty) => {
+  //   setQty(qty)
+  // }
 
   // console.log(size)
   // console.log(qty)
@@ -227,7 +231,7 @@ const ProductPage = (props) => {
                       fullWidth={true}
                       native
                       value={qty}
-                      onChange={(e) => selectProductQty(e.target.value)}
+                      onChange={(e) => productQtyToCart(e.target.value)}
                       inputProps={{
                         name: "quantity",
                         id: "quantity_to_cart",

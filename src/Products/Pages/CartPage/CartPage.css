@@ -57,6 +57,10 @@ figure.item__image {
   border: 2px solid rgba(0,0,0,0.85);
 }
 
+.Summary__Cart__Nums {
+  text-align: right;
+}
+
 @media (max-width: 960px) {
   .summary__box--container {
     margin: 20px 4px;
@@ -76,7 +80,7 @@ figure.item__image {
     display: block;
   }
   .Summary__Cart__Nums {
-    text-align: end;
+    text-align: right;
   }
 }
 
@@ -86,6 +90,6 @@ figure.item__image {
     justify-content: space-between;
   }
   .Summary__Cart__Nums {
-    text-align: end;
+    text-align: right;
   }
 }

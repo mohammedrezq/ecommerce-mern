@@ -106,20 +106,20 @@ export const removeProductFromCart = (id, size, qty, price) => (dispatch, getSta
     // localStorage.setItem("size", JSON.stringify(size));
 
 // } 
-export const setProductQtyAction = (qty) => (dispatch) => {
+// export const setProductQtyAction = (qty) => (dispatch) => {
 //     return {
 //         type: actionTypes.PRODUCT_QTY_SET,
 //         payload: qty
 //     };
 
-    dispatch({
-        type: actionTypes.PRODUCT_QTY_SET,
-        payload: qty
-    });
+    // dispatch({
+    //     type: actionTypes.PRODUCT_QTY_SET,
+    //     payload: qty
+    // });
 
 //     localStorage.setItem("quantity", JSON.stringify(qty));
 
-} 
+// } 
 // export const setProductQtyAction = (qty) => (dispatch) => {
 //     return {
 //         type: actionTypes.PRODUCT_QTY_SET,

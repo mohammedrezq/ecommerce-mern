@@ -226,11 +226,27 @@ const CartPage = (props) => {
 
   // };
 
-  
+
+  const SubTotal = arr.reduce((acc, item) => acc + item.qty * item.price, 0 );
+  const FixedSubTotal = SubTotal.toFixed(2)
+
+  // const Shipping = SubTotal >= 300 ? 0 : ((SubTotal * 10 )/ 100);
+  const Shipping = SubTotal >= 300 || SubTotal === 0 ? 0 : 25;
+  const FixedShipping = Shipping.toFixed(2)
+
+  const Taxes = ((SubTotal * 14) / 100)
+  const FixedTaxes = Taxes.toFixed(2)
+
+  console.log(Shipping)
+
+  const TheTotal = (SubTotal + Shipping + Taxes).toFixed(2);
+
+  console.log(TheTotal)
+
 
   return (
     <>
-      {loadingStatus ? (
+      {!cartProducts ? (
         <Spinner />
       ) : err ? (
         <Message>{err}</Message>
@@ -248,7 +264,7 @@ const CartPage = (props) => {
                 >
                   Bag
                 </h2>
-                {cartProducts.length === 0 ? (
+                {arr.length === 0 ? (
                   <>
                     <span>
                       There are no items in your bag.
@@ -291,7 +307,7 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  ${Number(`${item.qty * item.price}`)}
+                                  ${(Number(`${item.qty * item.price}`)).toFixed(2)}
                                 </div>
                               </Grid>
                               <Grid item sm={12}>
@@ -374,7 +390,7 @@ const CartPage = (props) => {
                       <div>Subtotal: </div>
                     </Grid>
                     <Grid item sm={3} className={`Summary__Cart__Nums`}>
-                      <span>$589.88</span>
+                      <span>${FixedSubTotal}</span>
                     </Grid>
                   </Grid>
                   <Grid
@@ -385,7 +401,7 @@ const CartPage = (props) => {
                       <div>Estimated Shipping & Handling: </div>
                     </Grid>
                     <Grid item sm={3} className={`Summary__Cart__Nums`}>
-                      <span> $0.00</span>
+                      <span>${FixedShipping}</span>
                     </Grid>
                   </Grid>
                   <Grid
@@ -396,7 +412,7 @@ const CartPage = (props) => {
                       <div>Tax: </div>
                     </Grid>
                     <Grid item sm={3} className={`Summary__Cart__Nums`}>
-                      <span>—</span>
+                      <span>{FixedTaxes}</span>
                     </Grid>
                   </Grid>
                   {/* <hr className={classes.cartSummaryHr} style={{ margin: "12px"}}/> */}
@@ -415,6 +431,7 @@ const CartPage = (props) => {
                       <div>Total: </div>
                     </Grid>
                     <Grid
+                      className={`Summary__Cart__Nums`}
                       item
                       sm={3}
                       style={{
@@ -423,7 +440,7 @@ const CartPage = (props) => {
                         fontSize: "0.9rem",
                       }}
                     >
-                      $<span>589.88</span>
+                      <span>$</span><span>{TheTotal}</span>
                     </Grid>
                   </Grid>
                   <HrElemnent

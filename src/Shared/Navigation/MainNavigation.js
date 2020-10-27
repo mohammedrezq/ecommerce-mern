@@ -67,6 +67,11 @@ const MainNavigation = (props) => {
   const productItem = nr.map((item) => item); // all items in LocalStorage
 
 
+  // if (productItem && productItem.length <= 9) {
+  //   productItem.length
+  // } else {
+  //   <span>9+</span>
+  // }
   // console.log(productItem.length)
   return (
     <>
@@ -105,7 +110,7 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks number={productItem && productItem.length} to="/cart" />
+          <NavLinks number={productItem && productItem.length <= 9 ? productItem.length : "9+"} to="/cart" />
         </nav>
       </MainHeader>
     </>

@@ -32,17 +32,15 @@ export const cartReducer = (state = { cartItems: [] } , action) => {
 export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
     switch(action.type){
         case actionTypes.PRODUCT_ADD_REQUEST:
-            return { loading: true, cartProducts: []}
+            return {cartProducts: []}
         case actionTypes.PRODUCT_ADDED_ON_CLICK_SUCCESS:
             const item = action.payload;
                 return {
-                loading: false,
                 ...state,
                 cartProducts:  item
                 }
         case actionTypes.PRODUCT_ADDED_ON_CLICK_FAIL:
             return{
-                loading: false,
                 error: action.payload
             }
         case actionTypes.PRODUCT_REMOVED_ON_CLICK:
@@ -56,13 +54,13 @@ export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
 
 }
 
-export const setProductFeatureReducer = (state= { Size: null, Qty: "1" }, action) => {
+export const setProductFeatureReducer = (state= { Qty: 1 }, action) => {
     switch(action.type) {
-        case actionTypes.PRODUCT_SIZE_SET:
-            return {
-                ...state,
-                Size: action.payload
-            }
+        // case actionTypes.PRODUCT_SIZE_SET:
+        //     return {
+        //         ...state,
+        //         Size: action.payload
+        //     }
         case actionTypes.PRODUCT_QTY_SET:
             return {
                 ...state,
