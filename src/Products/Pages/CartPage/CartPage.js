@@ -307,7 +307,8 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  ${(Number(`${item.qty * item.price}`)).toFixed(2)}
+                                  <span style={{fontSize: "12px", marginRight: ".5rem", background: "greenyellow"}}>{item.qty} x ${item.price} </span>
+                                  <span>${(Number(`${item.qty * item.price}`)).toFixed(2)}</span>
                                 </div>
                               </Grid>
                               <Grid item sm={12}>
