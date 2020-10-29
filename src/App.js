@@ -19,6 +19,8 @@ import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 import RegistrationPage from "./User/Pages/RegistrationPage";
 import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
+import TheModal from "./Shared/UIElements/TheModal";
+import CartModal from "./Shared/UIElements/CartModal";
 // import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
@@ -48,6 +50,12 @@ function App() {
           </Route>
           <Route path="/formcontainer" exact>
             <FormContainer />
+          </Route>
+          <Route path="/modaltesting" exact>
+            <TheModal />
+          </Route>
+          <Route path="/cartmodal" exact>
+            <CartModal />
           </Route>
           <Route path="/cart/:id?">
             <CartPage />
