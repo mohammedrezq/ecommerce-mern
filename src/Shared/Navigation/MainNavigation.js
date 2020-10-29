@@ -55,16 +55,16 @@ const MainNavigation = (props) => {
 
 
   let arr = JSON.parse(localStorage.getItem("cartProducts"));
-  if( arr === null || undefined ) arr = [];
-  localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-  localStorage.setItem("cartProducts", JSON.stringify(arr))
+  // if( arr === null || undefined ) arr = [];
+  // localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+  // localStorage.setItem("cartProducts", JSON.stringify(arr))
 
 // console.log(arr)
 
 
-  const productArr = arr.map((p) => p);
-  const nr = productArr.map((x) => x[0]);
-  const productItem = nr.map((item) => item); // all items in LocalStorage
+  // const productArr = arr.map((p) => p);
+  // const nr = productArr.map((x) => x[0]);
+  // const productItem = nr.map((item) => item); // all items in LocalStorage
 
 
   // if (productItem && productItem.length <= 9) {
@@ -78,7 +78,7 @@ const MainNavigation = (props) => {
       <ReactResizeDetector onResize={handleWindowResizing}>
         {/* This check if drawer is open, if so on click on backdrop it will close the drawer */}
         <MediaQuery query="(max-width: 768px)">
-          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
+          {drawerIsOpen && <Backdrop menu onClick={closeDrawerHandler} />}
 
           <Drawer
             className={`${classes.menuDrawer} ${
@@ -110,7 +110,7 @@ const MainNavigation = (props) => {
           <HamburgerButton onClick={openDrawerHandler} />
         </MediaQuery>
         <nav className="main-navigation__header-nav">
-          <NavLinks number={productItem && productItem.length <= 9 ? productItem.length : "9+"} to="/cart" />
+          <NavLinks number={arr && arr.length <= 9 ? arr.length : "9+"} to="/cart" />
         </nav>
       </MainHeader>
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
@@ -20,13 +20,29 @@ import {
   InputLabel,
   FormControl,
   Select,
+  Modal,
+  Backdrop,
 } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CloseIcon from '@material-ui/icons/Close';
 
 import Button from "../../../Shared/UIElements/Button";
 import "./ProductPage.css";
 import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
+import Fade from "../../../Shared/UIElements/Fade";
+import { array } from "yup";
+import { useField } from "formik";
+// import Backdrop from "../../../Shared/UIElements/Backdrop";
+
+const styledBackdrop = withStyles({
+  // Change (Material UI) Backdrop styling
+  root: {
+    background: "rgba(0,0,0,.7)",
+  },
+})(Backdrop);
 
 const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
@@ -34,7 +50,7 @@ const ProductPage = (props) => {
   const [cartBtnClicked, setCartBtnClicked] = useState(false);
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
-
+  const [open, setOpen] = useState(false);
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -75,11 +91,11 @@ const ProductPage = (props) => {
 
   // console.log(productFeature)
 
-  const addToCartHandler = (id, s, ) => {
+  const addToCartHandler = (id) => {
     dispatch(addProductToCart(id, size, qty));
+    setOpen(true);
     // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
-
 
   // const productSizeToCart = (size) => {
   //   dispatch(setProductSizeAction(size));
@@ -91,21 +107,20 @@ const ProductPage = (props) => {
 
   // Check if Product Size is Selected (Checked)
   const checkSizesChecked = () => {
-    setIsChecked(true)
-  }
-
+    setIsChecked(true);
+  };
 
   // Prevent Adding Product To cart if Size or Quantity weren't set
 
   const preventAddToCart = (e) => {
-    !isChecked && setCartBtnClicked(true)
+    !isChecked && setCartBtnClicked(true);
     e.preventDefault();
-  }
+  };
   // Set Size for the product
 
   const selectProductSize = (size) => {
-    setSize(size)
-  }
+    setSize(size);
+  };
   // Set Quantity for the product
 
   // const selectProductQty = (qty) => {
@@ -116,15 +131,25 @@ const ProductPage = (props) => {
   // console.log(qty)
 
   // console.log(isChecked)
-  
-  
-  // let disabled = isChecked 
 
-
-
-
+  // let disabled = isChecked
 
   // console.log(cartBtnClicked)
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // setTimeout(handleClose, 7000) // Close the Modal after `7` Seconds from submit
+  // let ItemsInCart;
+  // const arr = JSON.parse(localStorage.getItem("cartProducts"));
+  // ItemsInCart= arr.length + " items"
+
+  console.log(cartProducts.length)
 
   return (
     <>
@@ -155,7 +180,7 @@ const ProductPage = (props) => {
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
             </div>
-              {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
+            {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
             {/* <div className={`product-extra-information__Sizes`}>
               {leproduct.Sizes && (
                 <div>
@@ -187,14 +212,22 @@ const ProductPage = (props) => {
               )}
             </div> */}
 
-              <div style={{margin:"8px" ,paddingTop: "12px"}} ><span style={{fontSize: "1.2rem"}}>Select Size</span></div>
-            <div className={`product-extra-information ${(cartBtnClicked && !isChecked) ? 'showWarning' : "" }`}>
+            <div style={{ margin: "8px", paddingTop: "12px" }}>
+              <span style={{ fontSize: "1.2rem" }}>Select Size</span>
+            </div>
+            <div
+              className={`product-extra-information ${
+                cartBtnClicked && !isChecked ? "showWarning" : ""
+              }`}
+            >
               {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
               {leproduct.Sizes &&
                 leproduct.Sizes.map((size, index) => (
                   <div
                     key={size}
-                    className={`product-size selection-radio-btn ${(cartBtnClicked && !isChecked) ? 'radioBtnWarning' : ""}`}
+                    className={`product-size selection-radio-btn ${
+                      cartBtnClicked && !isChecked ? "radioBtnWarning" : ""
+                    }`}
                   >
                     <input
                       id={size}
@@ -214,8 +247,12 @@ const ProductPage = (props) => {
                 ))}
             </div>
             <div>
-            {cartBtnClicked && !isChecked ? (
-                <div style={{margin: "12px"}}><span style={{ color: "#d43f21", fontSize: "1.2rem" }}>Please select a size.</span></div>
+              {cartBtnClicked && !isChecked ? (
+                <div style={{ margin: "12px" }}>
+                  <span style={{ color: "#d43f21", fontSize: "1.2rem" }}>
+                    Please select a size.
+                  </span>
+                </div>
               ) : null}
             </div>
             {/* {console.log(productFeature)} */}
@@ -250,15 +287,112 @@ const ProductPage = (props) => {
             </div>
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
-                <Button
-                  // disabled = {!disabled}
-                  onClick={(e) => { !isChecked ? preventAddToCart(e) : addToCartHandler(id)}}
-                  className={`product_add_to_cart`}
-                  basic
-                  size="default"
-                >
-                  Add To Bag
-                </Button>
+                <>
+                  <Button
+                    // disabled = {!disabled}
+                    onClick={(e) => {
+                      !isChecked ? preventAddToCart(e) : addToCartHandler(id);
+                    }}
+                    className={`product_add_to_cart`}
+                    basic
+                    size="default"
+                  >
+                    Add To Bag
+                  </Button>
+                  <Modal
+                    aria-labelledby={props.ariaLabelledBy}
+                    aria-describedby={props.ariaDescribedBy}
+                    className={`product-to-cart-modal`}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={styledBackdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                  >
+                    <Fade in={open}>
+                      <div className={`product-addition-verified-in-modal`} style={{display:"flex", justifyContent: "space-between"}}>
+                        <span>
+                          <CheckCircleIcon
+                            style={{
+                              color: " rgba(9,121,9,1)",
+                              paddingRight: "4px",
+                              fontSize: "18px",
+                            }}
+                          />{" "}
+                          Added To Bag
+                        </span>
+                        <CloseIcon style={{backgroundColor: "rgba(0,0,0,.1)", borderRadius:"50%", cursor:"pointer"}} onClick={handleClose} />
+                      </div>
+                      <div className={`product-info-in-modal`}>
+                        <div>
+                          <img
+                            className="cart-product-image"
+                            id="add-to-cart-image-modal"
+                            style={{
+                              maxWidth: "100px",
+                              maxHeight: "100%",
+                              paddingRight: "10px",
+                            }}
+                            src={cartProducts.image}
+                            alt={cartProducts.title}
+                          />
+                        </div>
+                        <Grid item>
+                          <Grid container>
+                            <div
+                              className="product_cart_info cart-product-title"
+                              id="add-to-cart-modal"
+                            >
+                              {cartProducts.title}
+                            </div>
+
+                            <div
+                              className="product_cart_info cart-product-description"
+                              id="add-to-cart-description-modal"
+                            >
+                              {cartProducts.title}
+                            </div>
+
+                            <div
+                              className="product_cart_info cart-product-price"
+                              id="add-to-cart-price-modal"
+                            >
+                              <span>Price:{cartProducts.price}</span>
+                            </div>
+
+                            <div
+                              className="product_cart_info cart-product-size"
+                              id="add-to-cart-size-modal"
+                            >
+                              <span>Size: {cartProducts.size}</span>
+                            </div>
+
+                            <div
+                              className="product_cart_info cart-product-qty"
+                              id="add-to-cart-qty-modal"
+                            >
+                              <span>Quantity: {cartProducts.qty}</span>
+                            </div>
+                          </Grid>
+                        </Grid>
+                      </div>
+                      <Grid container className={`product-btns-in-modal`}>
+                        <Grid item>
+                          <button className={`modal_btn view_bag_modal`}>
+                            <Link to="/cart">View Bag</Link>
+                          </button>
+                        </Grid>
+                        <Grid item>
+                          <button className={`modal_btn checkout_modal`}>
+                            <Link to="/checkout">Checkout</Link>
+                          </button>
+                        </Grid>
+                      </Grid>
+                    </Fade>
+                  </Modal>
+                </>
               ) : (
                 <Button
                   // onClick={() => props.addToCart("ShoesFromNike")}
