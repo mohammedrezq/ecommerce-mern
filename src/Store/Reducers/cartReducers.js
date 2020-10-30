@@ -1,75 +1,82 @@
 import * as actionTypes from "../Actions/actionTypes";
 
+export const cartReducer = (state = { cartItems: [] }, action) => {
+  switch (action.type) {
+    case actionTypes.CART_ADD_ITEM:
+      const item = action.payload;
 
-
-
-
-
-
-export const cartReducer = (state = { cartItems: [] } , action) => {
-  switch(action.type) {
-      case actionTypes.CART_ADD_ITEM:
-          const item = action.payload
-
-          const existItem = state.cartItems.find(p => p.product === item.product);
-          if(existItem) {
-              return {
-                  ...state,
-                  cartItems: state.cartItems.map( p => p.product === existItem.product ? item : p )   
-              }
-
-          } else {
-              return {
-                  ...state,
-                  cartItems: [...state.cartItems, item]
-              }
-          }
-      default:
-          return state
+      const existItem = state.cartItems.find((p) => p.product === item.product);
+      if (existItem) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((p) =>
+            p.product === existItem.product ? item : p
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
+      }
+    default:
+      return state;
   }
-}
+};
 
-export const addProductToCartReducer = (state = {cartProducts: []}, action) => {
-    switch(action.type){
-        case actionTypes.PRODUCT_ADD_REQUEST:
-            return {cartProducts: []}
-        case actionTypes.PRODUCT_ADDED_ON_CLICK_SUCCESS:
-            const item = action.payload;
-                return {
-                ...state,
-                cartProducts:  item
-                }
-        case actionTypes.PRODUCT_ADDED_ON_CLICK_FAIL:
-            return{
-                error: action.payload
-            }
-        case actionTypes.PRODUCT_REMOVED_ON_CLICK:
-            return{
-                ...state,
-                // cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
-            }
-        default:
-            return state;
-    }
+export const addProductToCartReducer = (
+  state = { cartProducts: [], shippingAddress: {}, paymethMethod: "" },
+  action
+) => {
+  switch (action.type) {
+    case actionTypes.PRODUCT_ADD_REQUEST:
+      return { cartProducts: [] };
+    case actionTypes.PRODUCT_ADDED_ON_CLICK_SUCCESS:
+      const item = action.payload;
+      return {
+        ...state,
+        cartProducts: item,
+      };
+    case actionTypes.PRODUCT_ADDED_ON_CLICK_FAIL:
+      return {
+        error: action.payload,
+      };
+    case actionTypes.PRODUCT_REMOVED_ON_CLICK:
+      return {
+        ...state,
+        // cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
+      };
+    case actionTypes.CART_SAVE_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload,
+      };
+    case actionTypes.CART_SAVE_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymethMethod: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
-}
-
-export const setProductFeatureReducer = (state= { Qty: 1 }, action) => {
-    switch(action.type) {
-        // case actionTypes.PRODUCT_SIZE_SET:
-        //     return {
-        //         ...state,
-        //         Size: action.payload
-        //     }
-        case actionTypes.PRODUCT_QTY_SET:
-            return {
-                ...state,
-                Qty: action.payload
-            }
-        default:
-            return state
-    }
-}
+export const setProductFeatureReducer = (state = { Qty: 1 }, action) => {
+  switch (action.type) {
+    // case actionTypes.PRODUCT_SIZE_SET:
+    //     return {
+    //         ...state,
+    //         Size: action.payload
+    //     }
+    case actionTypes.PRODUCT_QTY_SET:
+      return {
+        ...state,
+        Qty: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 // export const setProductSizeReducer = (state= {}, action) => {
 //     switch(action.type) {
 
@@ -77,8 +84,6 @@ export const setProductFeatureReducer = (state= { Qty: 1 }, action) => {
 //             return state
 //     }
 // }
-
-
 
 // const initialState = {
 //   cartNumbers: 0,

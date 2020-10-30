@@ -61,9 +61,14 @@ p.terms {
   width: 96%;
 }
 
-.text__Signup__Form{
+.text__Signup__Form {
   display: inline-block;
   margin: 5px 0;
   position: relative;
   width: 100%;
+}
+
+.genderItems {
+  display: flex;
+  flex-direction: row;
 }

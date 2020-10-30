@@ -164,7 +164,8 @@ const RegistrationForm = () => {
             />
             <FormikControl
               fullWidth
-              className="FormElement"
+              className="genderItems"
+              classes="gender_radio_item"
               control="radio"
               name="gender"
               options={Gender}

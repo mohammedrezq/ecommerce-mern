@@ -1,0 +1,14 @@
+.paymentMethods{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+/* .paymentMethodItem {
+    padding: 0 ;
+    margin: -3px 0;
+}  */
+
+.paymentMethodItem > label, .paymentMethodItem > input {
+    cursor: pointer;
+}

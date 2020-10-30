@@ -1,21 +1,35 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+
+import { saveShippingAddress } from "../../../Store/Actions/cartActions";
 
 import Countries from "../../../Shared/Assets/Countries";
 import FormikControl from "../../../Shared/FormElements/FormikControl";
 
 const CheckoutForm = () => {
+  const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
+  console.log(productToCart);
+  const { shippingAddress } = productToCart;
+
+  console.log(shippingAddress);
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const initialValues = {
-    firstName: "",
-    lastName: "",
-    Address: "",
-    City: "",
-    Countries: "US",
-    PostalCode: "",
-    Email: "",
-    PhoneNumber: "",
+    firstName: shippingAddress.firstName || "",
+    lastName: shippingAddress.lastName || "",
+    Address: shippingAddress.Address || "",
+    City: shippingAddress.City || "",
+    Country: shippingAddress.Country || "US",
+    PostalCode: shippingAddress.PostalCode || "",
+    Email: shippingAddress.Email || "",
+    PhoneNumber: shippingAddress.PhoneNumber || "",
   };
 
   // Check Phone Number
@@ -35,7 +49,7 @@ const CheckoutForm = () => {
       .min(2)
       .max(140),
     City: Yup.string().required("Please enter a valid city").min(2),
-    Countries: Yup.string().required(),
+    Country: Yup.string().required(),
     PostalCode: Yup.string().required("Please enter a valid ZIP code."),
     Email: Yup.string()
       .email("Please enter a valid email address.")
@@ -43,10 +57,27 @@ const CheckoutForm = () => {
     PhoneNumber: Yup.string().matches(phoneRegExp, "Phone number is not valid"),
   });
 
-  const onSubmit = (values) => console.log("Checkout Form: ", values);
+  const onSubmit = (values, isSubmitting) => {
+    dispatch(
+      saveShippingAddress({
+        firstName: values.firstName,
+        lastName: values.lastName,
+        Address: values.Address,
+        City: values.City,
+        Country: values.Country,
+        PostalCode: values.PostalCode,
+        Email: values.Email,
+        PhoneNumber: values.PhoneNumber,
+      })
+    );
+    isSubmitting(true);
+    isSubmitting(false);
+    history.push("/checkout/#payment");
+  };
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -94,7 +125,7 @@ const CheckoutForm = () => {
             className="FormElement"
             control="materialSelectCountry"
             label="Country/Region"
-            name="Countries"
+            name="Country"
             variant="outlined"
             helperText="Select a Country"
             options={Countries}
