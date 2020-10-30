@@ -226,23 +226,25 @@ const CartPage = (props) => {
 
   // };
 
-
-  const SubTotal = arr.reduce((acc, item) => acc + item.qty * item.price, 0 );
-  const FixedSubTotal = SubTotal.toFixed(2)
+  const SubTotal = arr.reduce((acc, item) => acc + item.qty * item.price, 0);
+  const FixedSubTotal = SubTotal.toFixed(2);
 
   // const Shipping = SubTotal >= 300 ? 0 : ((SubTotal * 10 )/ 100);
   const Shipping = SubTotal >= 300 || SubTotal === 0 ? 0 : 25;
-  const FixedShipping = Shipping.toFixed(2)
+  const FixedShipping = Shipping.toFixed(2);
 
-  const Taxes = ((SubTotal * 14) / 100)
-  const FixedTaxes = Taxes.toFixed(2)
+  const Taxes = (SubTotal * 14) / 100;
+  const FixedTaxes = Taxes.toFixed(2);
 
-  console.log(Shipping)
+  console.log(Shipping);
 
   const TheTotal = (SubTotal + Shipping + Taxes).toFixed(2);
 
-  console.log(TheTotal)
+  console.log(TheTotal);
 
+  const handleCheckoutBtn = () => {
+    return history.push("/checkout");
+  };
 
   return (
     <>
@@ -268,7 +270,17 @@ const CartPage = (props) => {
                   <>
                     <span>
                       There are no items in your bag.
-                      <Link style={{marginLeft: "4px", textDecoration:"inherit", color:"inherit", fontWeight:"bold"}} to="/">Go Back To Shop</Link>
+                      <Link
+                        style={{
+                          marginLeft: "4px",
+                          textDecoration: "inherit",
+                          color: "inherit",
+                          fontWeight: "bold",
+                        }}
+                        to="/"
+                      >
+                        Go Back To Shop
+                      </Link>
                     </span>
                   </>
                 ) : (
@@ -307,8 +319,21 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  <span style={{fontSize: "12px", marginRight: ".5rem", background: "greenyellow"}}>{item.qty} x ${item.price} </span>
-                                  <span>${(Number(`${item.qty * item.price}`)).toFixed(2)}</span>
+                                  <span
+                                    style={{
+                                      fontSize: "12px",
+                                      marginRight: ".5rem",
+                                      background: "greenyellow",
+                                    }}
+                                  >
+                                    Qty:{item.qty} @ ${item.price}{" "}
+                                  </span>
+                                  <span>
+                                    $
+                                    {Number(`${item.qty * item.price}`).toFixed(
+                                      2
+                                    )}
+                                  </span>
                                 </div>
                               </Grid>
                               <Grid item sm={12}>
@@ -441,7 +466,8 @@ const CartPage = (props) => {
                         fontSize: "0.9rem",
                       }}
                     >
-                      <span>$</span><span>{TheTotal}</span>
+                      <span>$</span>
+                      <span>{TheTotal}</span>
                     </Grid>
                   </Grid>
                   <HrElemnent
@@ -451,7 +477,10 @@ const CartPage = (props) => {
                     border="0"
                   />
                   <Grid item xs={12} sm={12}>
-                    <button className={`checkout__btn`}>
+                    <button
+                      onClick={handleCheckoutBtn}
+                      className={`checkout__btn`}
+                    >
                       Checkout
                     </button>
                   </Grid>

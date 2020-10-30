@@ -5,15 +5,15 @@ import { Field, ErrorMessage } from "formik";
 import TextError from "./TextError";
 
 const RadioButtons = (props) => {
-  const { label, name, options, className, ...rest } = props;
+  const { label, name, options, className, classes, secondClass, ...rest } = props;
   return (
     <div className={className}>
       <label>{label}</label>
       <Field name={name} {...rest}>
         {({ field }) => {
-          return options.map((option) => {
+          return options.map((option, index) => {
             return (
-              <React.Fragment key={option.key}>
+              <div className={`${ classes && classes+index+1 } ${secondClass} `} key={option.key}>
                 <input
                   type="radio"
                   id={option.value}
@@ -22,7 +22,7 @@ const RadioButtons = (props) => {
                   checked={field.value === option.value}
                 />
                 <label htmlFor={option.value}>{option.key}</label>
-              </React.Fragment>
+              </div>
             );
           });
         }}

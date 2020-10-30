@@ -21,6 +21,7 @@ import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
 import TheModal from "./Shared/UIElements/TheModal";
 import CartModal from "./Shared/UIElements/CartModal";
+import Accordion from "./Products/Pages/CheckoutPage/Accordion";
 // import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/checkout" exact>
             <CheckoutPage />
+          </Route>
+          <Route path="/accordion" exact>
+            <Accordion />
           </Route>
           <Route path="/profile">
             <ProfilePage />

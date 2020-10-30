@@ -26,7 +26,7 @@ import {
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@material-ui/icons/Close";
 
 import Button from "../../../Shared/UIElements/Button";
 import "./ProductPage.css";
@@ -149,7 +149,12 @@ const ProductPage = (props) => {
   // const arr = JSON.parse(localStorage.getItem("cartProducts"));
   // ItemsInCart= arr.length + " items"
 
-  console.log(cartProducts.length)
+  // console.log(cartProducts.length)
+
+  const handleClickBtn = (item) => {
+    // Handle View Bag (Cart) and Checkout (Checkout) Buttons
+    history.push(item);
+  };
 
   return (
     <>
@@ -312,7 +317,13 @@ const ProductPage = (props) => {
                     }}
                   >
                     <Fade in={open}>
-                      <div className={`product-addition-verified-in-modal`} style={{display:"flex", justifyContent: "space-between"}}>
+                      <div
+                        className={`product-addition-verified-in-modal`}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
                         <span>
                           <CheckCircleIcon
                             style={{
@@ -323,7 +334,14 @@ const ProductPage = (props) => {
                           />{" "}
                           Added To Bag
                         </span>
-                        <CloseIcon style={{backgroundColor: "rgba(0,0,0,.1)", borderRadius:"50%", cursor:"pointer"}} onClick={handleClose} />
+                        <CloseIcon
+                          style={{
+                            backgroundColor: "rgba(0,0,0,.1)",
+                            borderRadius: "50%",
+                            cursor: "pointer",
+                          }}
+                          onClick={handleClose}
+                        />
                       </div>
                       <div className={`product-info-in-modal`}>
                         <div>
@@ -380,13 +398,21 @@ const ProductPage = (props) => {
                       </div>
                       <Grid container className={`product-btns-in-modal`}>
                         <Grid item>
-                          <button className={`modal_btn view_bag_modal`}>
-                            <Link to="/cart">View Bag</Link>
+                          <button
+                            onClick={() => handleClickBtn("/cart")}
+                            style={{ cursor: "pointer" }}
+                            className={`modal_btn view_bag_modal`}
+                          >
+                            View Bag
                           </button>
                         </Grid>
                         <Grid item>
-                          <button className={`modal_btn checkout_modal`}>
-                            <Link to="/checkout">Checkout</Link>
+                          <button
+                            onClick={() => handleClickBtn("/checkout")}
+                            style={{ cursor: "pointer" }}
+                            className={`modal_btn checkout_modal`}
+                          >
+                            Checkout
                           </button>
                         </Grid>
                       </Grid>
