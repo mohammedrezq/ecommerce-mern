@@ -93,6 +93,15 @@ export const removeProductFromCart = (id, size, qty, price) => (dispatch, getSta
 
     // localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts))
 } 
+
+export const updateQuantityFromCart = (id, size, qty, price) => (dispatch, getState) => {
+    dispatch({
+        type: actionTypes.PRODUCT_UPDATE_QUANTITY,
+        payload: id, size, qty, price
+    })
+} 
+
+
 // export const setProductSizeAction = (size) => (dispatch) => {
 //     return {
 //         type: actionTypes.PRODUCT_SIZE_SET,

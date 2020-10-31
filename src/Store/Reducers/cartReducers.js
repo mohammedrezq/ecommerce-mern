@@ -46,6 +46,11 @@ export const addProductToCartReducer = (
         ...state,
         // cartProducts: state.cartProducts.filter( x => x.product !== action.payload )
       };
+    case actionTypes.PRODUCT_UPDATE_QUANTITY:
+      return {
+        ...state,
+        // cartProducts: state.cartProducts.filter( x => x.product !== action.payload && x.size !== action.payload, x.qty !== action.payload )
+      };
     case actionTypes.CART_SAVE_SHIPPING_ADDRESS:
       return {
         ...state,
