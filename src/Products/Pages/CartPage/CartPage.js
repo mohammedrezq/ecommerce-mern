@@ -9,8 +9,9 @@ import Spinner from "../../../Shared/UIElements/Spinner";
 import {
   addToCart,
   removeProductFromCart,
+  updateQuantityFromCart,
 } from "../../../Store/Actions/cartActions";
-import { Grid } from "@material-ui/core";
+import { FormControl, Grid, InputLabel, Select } from "@material-ui/core";
 
 import HrElemnent from "../../../Shared/UIElements/HrElement";
 import "./CartPage.css";
@@ -139,6 +140,7 @@ const CartPage = (props) => {
 
   // productItem.reverse();
   // console.log(productItem);
+  let productQty = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const removeProductFromCartHandler = (id, size, qty, price) => {
     // console.log(id)
@@ -163,6 +165,31 @@ const CartPage = (props) => {
     dispatch(removeProductFromCart(id, size, qty, price));
 
     console.log("Product Removed!");
+  };
+  const updateProductQuantityFromCartHandler = (id, size, qty, price) => {
+    // console.log(id)
+    // console.log(size)
+    // console.log(qty)
+    let arr = JSON.parse(localStorage.getItem("cartProducts"));
+    // console.log(arr)
+
+    let i = arr.findIndex(
+      (item) =>
+        item.product === id &&
+        item.size === size 
+        // && item.qty === qty
+        // item.price === price
+    ); // removing product based on its id & size & qty & price
+    // console.log(i)
+
+    // arr.filter(item => item.product !== id)
+    // let filteredProducts = arr.filter(arr.product !== id)
+    console.log(arr[i].qty)
+    arr[i].qty = qty
+    localStorage.setItem("cartProducts", JSON.stringify(arr));
+    dispatch(updateQuantityFromCart(id, size, qty));
+
+    console.log("Product selected!");
   };
 
   //   let filtered;
@@ -334,6 +361,30 @@ const CartPage = (props) => {
                                       2
                                     )}
                                   </span>
+                                  <div>
+                  <FormControl
+                    className={`quantity_product_cart`}
+                    style={{ minWidth: "100%" }}
+                  >
+                    <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel>
+                    <Select
+                      fullWidth={true}
+                      native
+                      value={item.qty}
+                      onChange={(e) => updateProductQuantityFromCartHandler(item.product, item.size , e.target.value)}
+                      inputProps={{
+                        name: "quantity",
+                        id: "quantity_to_cart",
+                      }}
+                    >
+                      {productQty.map((q) => (
+                          <option key={q + 1} value={q + 1}>
+                            {q + 1}
+                          </option>
+                        ))}
+                    </Select>
+                  </FormControl>
+                </div>
                                 </div>
                               </Grid>
                               <Grid item sm={12}>

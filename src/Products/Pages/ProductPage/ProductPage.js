@@ -262,7 +262,7 @@ const ProductPage = (props) => {
             </div>
             {/* {console.log(productFeature)} */}
             <div className={`product__selections`}>
-              {leproduct.CountInStock > 0 && (
+              {/* {leproduct.CountInStock > 0 && (
                 <div>
                   <FormControl
                     className={`quantity_product_cart`}
@@ -288,7 +288,7 @@ const ProductPage = (props) => {
                     </Select>
                   </FormControl>
                 </div>
-              )}
+              )} */}
             </div>
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
