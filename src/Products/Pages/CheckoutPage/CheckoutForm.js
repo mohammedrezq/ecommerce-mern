@@ -24,18 +24,30 @@ const CheckoutForm = () => {
   const history = useHistory();
 
   let initialValues;
-  if(TheShippingAddress) {
+
+  if (TheShippingAddress) {
     initialValues = {
-    firstName: TheShippingAddress.firstName || "",
-    lastName: TheShippingAddress.lastName || "",
-    Address: TheShippingAddress.Address || "",
-    City: TheShippingAddress.City || "",
-    Country: TheShippingAddress.Country || "US",
-    PostalCode: TheShippingAddress.PostalCode || "",
-    Email: TheShippingAddress.Email || "",
-    PhoneNumber: TheShippingAddress.PhoneNumber || "",
+      firstName: TheShippingAddress.firstName,
+      lastName: TheShippingAddress.lastName,
+      Address: TheShippingAddress.Address,
+      City: TheShippingAddress.City,
+      Country: TheShippingAddress.Country,
+      PostalCode: TheShippingAddress.PostalCode,
+      Email: TheShippingAddress.Email,
+      PhoneNumber: TheShippingAddress.PhoneNumber
+    }
+  } else if(shippingAddress !== null || undefined || "") {
+    initialValues = {
+    firstName:  "",
+    lastName:  "",
+    Address:  "",
+    City:  "",
+    Country:  "US",
+    PostalCode:  "",
+    Email:  "",
+    PhoneNumber:  ""
+    }
   };
-  }
 
   // Check Phone Number
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;

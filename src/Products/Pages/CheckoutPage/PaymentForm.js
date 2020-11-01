@@ -26,11 +26,22 @@ const PaymentForm = () => {
   const dispatch = useDispatch();
 
   let initialValues;
-  if (ThePaymentMethod) {
+  if (paymentMethod !== null || undefined || "") {
     initialValues = {
-      PaymentMethod: ThePaymentMethod.PaymentMethod || "",
+      PaymentMethod: "",
     };
   }
+
+
+  if (ThePaymentMethod) {
+    initialValues = {
+      PaymentMethod: ThePaymentMethod.PaymentMethod
+    }
+  } else if(paymentMethod !== null || undefined || "") {
+    initialValues = {
+      PaymentMethod: "",
+    };
+  };
 
   const validationSchema = Yup.object({
     PaymentMethod: Yup.string().required("Please select a payment method."),
