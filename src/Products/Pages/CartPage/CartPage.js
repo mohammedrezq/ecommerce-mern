@@ -523,7 +523,7 @@ const CartPage = (props) => {
                       <div>Tax: </div>
                     </Grid>
                     <Grid item sm={3} className={`Summary__Cart__Nums`}>
-                      <span>{FixedTaxes}</span>
+                      <span>${FixedTaxes}</span>
                     </Grid>
                   </Grid>
                   {/* <hr className={classes.cartSummaryHr} style={{ margin: "12px"}}/> */}

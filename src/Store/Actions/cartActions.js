@@ -46,7 +46,7 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
         localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts));
         let filtered;
         arr.push((getState().addProductToCart.cartProducts))
-        filtered = arr.filter( // Filter the Array in LocalStorage
+        filtered = arr.filter( // Filter the Array in LocalStorage By size and product(Id)
           (v, i, a) =>
             a.findIndex((t) => t.product === v.product && t.size === v.size) === i // size or product(id) or size etc
         );
