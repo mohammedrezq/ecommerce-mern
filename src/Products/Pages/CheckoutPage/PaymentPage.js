@@ -10,7 +10,7 @@ import {
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import CheckoutForm from "./CheckoutForm";
+import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleAccordion() {
+export default function PaymentPage() {
   const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
 
   const AddAccordionExpanded = () => {
-    setExpanded(true);
+    setExpanded((prevState) => !prevState );
   };
   const RemoveAccordionExpanded = () => {
     setExpanded(false);
@@ -49,27 +49,8 @@ export default function SimpleAccordion() {
     alignItems="center">
       <Grid item xs={8}>
         <Grid container>
-          <Grid item xs={6} sm={8}>
+          <Grid item sm={12} md={12}>
             <div className={classes.root}>
-              <Accordion
-                id={`shipping`}
-                expanded={true}
-                onClick={AddAccordionExpanded}
-              >
-                <AccordionSummary
-                  className={classes.AccordionHeading}
-                  //   expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography className={classes.heading}>
-                    1. Delivery Options
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <CheckoutForm />
-                </AccordionDetails>
-              </Accordion>
               <Accordion
                 id="payment"
                 expanded={true}
@@ -88,36 +69,11 @@ export default function SimpleAccordion() {
                   <PaymentForm />
                 </AccordionDetails>
               </Accordion>
-              <Accordion id="payment" onClick={AddAccordionExpanded}>
-                <AccordionSummary
-                  className={classes.AccordionHeading}
-                  aria-controls="panel2a-content"
-                  id="panel2a-header"
-                >
-                  <Typography className={classes.heading}>
-                    2. PAYMENT
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <div>Hello World</div>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion disabled>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel3a-content"
-                  id="panel3a-header"
-                >
-                  <Typography className={classes.heading}>
-                    Disabled Accordion
-                  </Typography>
-                </AccordionSummary>
-              </Accordion>
             </div>
           </Grid>
-          <Grid item xs={6} sm={4}>
+          {/* <Grid item sm={12} md={4}>
             <div>Order</div>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </Grid>

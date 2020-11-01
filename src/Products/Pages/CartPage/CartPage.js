@@ -278,7 +278,7 @@ const CartPage = (props) => {
   console.log(TheTotal);
 
   const handleCheckoutBtn = () => {
-    return history.push("/checkout");
+    return history.push("/shipping");
   };
 
   return (
