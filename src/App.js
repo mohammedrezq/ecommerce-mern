@@ -12,7 +12,7 @@ import Store from './Store';
 
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
-import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
+// import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
 import NewProduct from "./Products/Pages/NewProduct/NewProduct";
@@ -21,7 +21,9 @@ import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
 import TheModal from "./Shared/UIElements/TheModal";
 import CartModal from "./Shared/UIElements/CartModal";
-import Accordion from "./Products/Pages/CheckoutPage/Accordion";
+// import Accordion from "./Products/PagesF/CheckoutPage/Accordion";
+import ShippingPage from "./Products/Pages/CheckoutPage/ShippingPage";
+import PaymentPage from "./Products/Pages/CheckoutPage/PaymentPage";
 // import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
@@ -43,12 +45,15 @@ function App() {
           <Route path="/product/:id" exact>
             <ProductPage />
           </Route>
-          <Route path="/checkout" exact>
-            <CheckoutPage />
+          <Route path="/shipping" exact>
+            <ShippingPage />
           </Route>
-          <Route path="/accordion" exact>
+          <Route path="/payment" exact>
+            <PaymentPage />
+          </Route>
+          {/* <Route path="/accordion" exact>
             <Accordion />
-          </Route>
+          </Route> */}
           <Route path="/profile">
             <ProfilePage />
           </Route>

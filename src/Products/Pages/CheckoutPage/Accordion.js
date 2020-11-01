@@ -5,7 +5,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CheckoutForm from "./CheckoutForm";
+import ShippingForm from "./ShippingForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +47,7 @@ export default function SimpleAccordion() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <CheckoutForm />
+          <ShippingForm />
         </AccordionDetails>
       </Accordion>
       <Accordion id="payment" onClick={AddAccordionExpanded}>

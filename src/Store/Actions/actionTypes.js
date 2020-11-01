@@ -55,3 +55,9 @@ export const USER_UPDATE_PROFILE_RESET = "USER_UPDATE_PROFILE_RESET";
 // Checkout Info
 export const CART_SAVE_SHIPPING_ADDRESS = "CART_SAVE_SHIPPING_ADDRESS"; //(Cart Actions and Reducers)
 export const CART_SAVE_PAYMENT_METHOD = "CART_SAVE_PAYMENT_METHOD"; //(Cart Actions and Reducers)
+
+
+// Orders
+export const ORDER_CREATE_REQUEST = "ORDER_CREATE_REQUEST";
+export const ORDER_CREATE_SUCCESS = "ORDER_CREATE_SUCCESS";
+export const ORDER_CREATE_FAIL = "ORDER_CREATE_FAIL";

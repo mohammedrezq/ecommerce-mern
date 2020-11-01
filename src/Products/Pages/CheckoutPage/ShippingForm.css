@@ -1,0 +1,25 @@
+.space_top{
+    margin-top: 18px;
+}
+
+.shipping_form_sbt_btn, .shipping_form_sbt_btn:focus, .shipping_form_sbt_btn:active{
+    font-size: 1rem;
+    background-color: rgba(255, 69, 0, 1);
+    border: 0;
+    outline: none;
+    color: white;
+    padding: 18px 60px;
+    float: right;
+    text-transform: uppercase;
+}
+.shipping_form_sbt_btn:hover{
+    font-size: 1rem;
+    background-color: rgba(255, 128, 82,1);
+    border: 0;
+    outline: none;
+    color: white;
+    padding: 18px 60px;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+}
