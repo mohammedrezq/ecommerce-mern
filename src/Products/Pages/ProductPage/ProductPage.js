@@ -48,7 +48,7 @@ const ProductPage = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [cartBtnClicked, setCartBtnClicked] = useState(false);
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState("1");
   const [size, setSize] = useState("");
   const [open, setOpen] = useState(false);
   const handleAccordionChange = (panel) => (event, isExpanded) => {
@@ -387,12 +387,12 @@ const ProductPage = (props) => {
                               <span>Size: {cartProducts.size}</span>
                             </div>
 
-                            <div
+                            {/* <div
                               className="product_cart_info cart-product-qty"
                               id="add-to-cart-qty-modal"
                             >
                               <span>Quantity: {cartProducts.qty}</span>
-                            </div>
+                            </div> */}
                           </Grid>
                         </Grid>
                       </div>

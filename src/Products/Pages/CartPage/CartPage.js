@@ -174,34 +174,42 @@ const CartPage = (props) => {
     // console.log(arr)
 
     let i = arr.findIndex(
-      (item) =>
-        item.product === id &&
-        item.size === size 
-        // && item.qty === qty
-        // item.price === price
+      (item) => item.product === id && item.size === size
+      // && item.qty === qty
+      // item.price === price
     ); // removing product based on its id & size & qty & price
     // console.log(i)
 
     // arr.filter(item => item.product !== id)
     // let filteredProducts = arr.filter(arr.product !== id)
-    console.log(arr[i].qty)
-    arr[i].qty = qty
+    console.log(arr[i].qty);
+    arr[i].qty = qty;
     localStorage.setItem("cartProducts", JSON.stringify(arr));
     dispatch(updateQuantityFromCart(id, size, qty));
 
-    console.log("Product selected!");
+    // console.log("Product selected!");
   };
 
-  //   let filtered;
-  //   filtered = productItem.filter(
-  //     (v, i, a) =>
-  //       a.findIndex((t) => t.title === v.title && t.product === v.product) === i // title or product(id) or size etc
-  //   );
-  //   console.log(filtered);
+
+  // const uniqueProductsInCart = (id, size) => {
+  //   const arr = JSON.parse.localStorage.getItem("cartProducts");
+  //   console.log(arr);
+  // }
+
+  // uniqueProductsInCart(cart.)
+
+    // let filtered;
+    // filtered = arr.filter(
+    //   (v, i, a) =>
+    //     a.findIndex((t) => t.size === v.size && t.product === v.product) === i // size or product(id) or size etc
+    // );
+    // console.log(filtered);
+
+    // localStorage.setItem("cartProducts", JSON.stringify(filtered))
 
   //   console.log(productItem.map((item) => item.title));
   //     const listOfTags = productItem,
-  //     keys = ['title', 'product'],
+  //     keys = ['size', 'product'],
   //     filtered = listOfTags.filter(
   //         (s => o =>
   //             (k => !s.has(k) && s.add(k))
@@ -313,7 +321,7 @@ const CartPage = (props) => {
                 ) : (
                   arr &&
                   arr.map((item, index) => (
-                    <Grid key={index} container>
+                    <Grid id={item.title+item.size+index} key={index} container> {/* replace(/\s/g, '') removes spaces in string : https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript */}
                       <Grid item className={classes.cartItem}>
                         <Grid container>
                           <Grid item xs={4} sm={3} md={3}>
@@ -332,13 +340,63 @@ const CartPage = (props) => {
                                 <div className={`cartItems--Cart`}>
                                   {item.title}
                                 </div>
-                                <div className={`cartItems--Cart`}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                  }}
+                                  className={`cartItems--Cart`}
+                                >
                                   <span style={{ marginRight: "4px" }}>
                                     Size {item.size}
                                   </span>
                                   <span style={{ margin: "0 5px" }}>|</span>
-                                  <span style={{ margin: " 0 4px" }}>
-                                    Quantity {item.qty}
+                                  <span>
+                                    <span
+                                      style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                      }}
+                                    >
+                                      <span style={{ margin: " 0 4px" }}>
+                                        Quantity
+                                      </span>
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          margin: "-5px 4px",
+                                        }}
+                                      >
+                                        <FormControl
+                                          className={`quantity_product_cart`}
+                                          style={{ minWidth: "100%" }}
+                                        >
+                                          {/* <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel> */}
+                                          <Select
+                                            fullWidth={true}
+                                            native
+                                            value={item.qty}
+                                            onChange={(e) =>
+                                              updateProductQuantityFromCartHandler(
+                                                item.product,
+                                                item.size,
+                                                e.target.value
+                                              )
+                                            }
+                                            inputProps={{
+                                              name: "quantity",
+                                              id: "quantity_to_cart",
+                                            }}
+                                          >
+                                            {productQty.map((q) => (
+                                              <option key={q + 1} value={q + 1}>
+                                                {q + 1}
+                                              </option>
+                                            ))}
+                                          </Select>
+                                        </FormControl>
+                                      </div>
+                                    </span>
                                   </span>
                                 </div>
                               </Grid>
@@ -361,30 +419,6 @@ const CartPage = (props) => {
                                       2
                                     )}
                                   </span>
-                                  <div>
-                  <FormControl
-                    className={`quantity_product_cart`}
-                    style={{ minWidth: "100%" }}
-                  >
-                    <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel>
-                    <Select
-                      fullWidth={true}
-                      native
-                      value={item.qty}
-                      onChange={(e) => updateProductQuantityFromCartHandler(item.product, item.size , e.target.value)}
-                      inputProps={{
-                        name: "quantity",
-                        id: "quantity_to_cart",
-                      }}
-                    >
-                      {productQty.map((q) => (
-                          <option key={q + 1} value={q + 1}>
-                            {q + 1}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
-                </div>
                                 </div>
                               </Grid>
                               <Grid item sm={12}>
