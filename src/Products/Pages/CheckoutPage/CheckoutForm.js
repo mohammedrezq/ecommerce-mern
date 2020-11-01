@@ -17,20 +17,25 @@ const CheckoutForm = () => {
 
   console.log(shippingAddress);
 
+  let TheShippingAddress = JSON.parse(localStorage.getItem("shippingAddress")); // Get the Shipping Address from LocalStorage
+  // console.log(TheShippingAddress)
   const dispatch = useDispatch();
 
   const history = useHistory();
 
-  const initialValues = {
-    firstName: shippingAddress.firstName || "",
-    lastName: shippingAddress.lastName || "",
-    Address: shippingAddress.Address || "",
-    City: shippingAddress.City || "",
-    Country: shippingAddress.Country || "US",
-    PostalCode: shippingAddress.PostalCode || "",
-    Email: shippingAddress.Email || "",
-    PhoneNumber: shippingAddress.PhoneNumber || "",
+  let initialValues;
+  if(TheShippingAddress) {
+    initialValues = {
+    firstName: TheShippingAddress.firstName || "",
+    lastName: TheShippingAddress.lastName || "",
+    Address: TheShippingAddress.Address || "",
+    City: TheShippingAddress.City || "",
+    Country: TheShippingAddress.Country || "US",
+    PostalCode: TheShippingAddress.PostalCode || "",
+    Email: TheShippingAddress.Email || "",
+    PhoneNumber: TheShippingAddress.PhoneNumber || "",
   };
+  }
 
   // Check Phone Number
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;

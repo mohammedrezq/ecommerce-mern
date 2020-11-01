@@ -43,9 +43,15 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
     let arr = []
         arr = JSON.parse(localStorage.getItem("cartProducts"));
         if( arr === null || undefined ) arr = [];
-    localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts));
-    arr.push((getState().addProductToCart.cartProducts))
-    localStorage.setItem("cartProducts", JSON.stringify(arr)) // save to the LocalStorage
+        localStorage.setItem("cartProducts", JSON.stringify(getState().addProductToCart.cartProducts));
+        let filtered;
+        arr.push((getState().addProductToCart.cartProducts))
+        filtered = arr.filter( // Filter the Array in LocalStorage
+          (v, i, a) =>
+            a.findIndex((t) => t.product === v.product && t.size === v.size) === i // size or product(id) or size etc
+        );
+        console.log(filtered)
+    localStorage.setItem("cartProducts", JSON.stringify(filtered)) // save to the LocalStorage
     } catch(err) {
         console.log(err)
         dispatch({
@@ -100,8 +106,6 @@ export const updateQuantityFromCart = (id, size, qty, price) => (dispatch, getSt
         payload: id, size, qty, price
     })
 } 
-
-
 // export const setProductSizeAction = (size) => (dispatch) => {
 //     return {
 //         type: actionTypes.PRODUCT_SIZE_SET,
