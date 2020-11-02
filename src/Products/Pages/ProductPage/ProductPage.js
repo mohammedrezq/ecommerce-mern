@@ -144,7 +144,7 @@ const ProductPage = (props) => {
     setOpen(false);
   };
 
-  // setTimeout(handleClose, 7000) // Close the Modal after `7` Seconds from submit
+  setTimeout(handleClose, 7000) // Close the Modal after `7` Seconds from submit
   // let ItemsInCart;
   // const arr = JSON.parse(localStorage.getItem("cartProducts"));
   // ItemsInCart= arr.length + " items"
@@ -408,7 +408,7 @@ const ProductPage = (props) => {
                         </Grid>
                         <Grid item>
                           <button
-                            onClick={() => handleClickBtn("/checkout")}
+                            onClick={() => handleClickBtn("/shipping")}
                             style={{ cursor: "pointer" }}
                             className={`modal_btn checkout_modal`}
                           >
