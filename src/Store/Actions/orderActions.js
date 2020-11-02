@@ -12,7 +12,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    // console.log(userInfo)
+    console.log(userInfo)
     console.log(userInfo.token);
     const config = {
       headers: {
@@ -21,6 +21,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
+    {console.log(order)}
+    {console.log(config)}
     const { data } = await axios.post(
       `http://localhost:5000/api/orders`,
       order,
@@ -38,7 +40,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data)); // Update User Settings in LocalStorage
+    localStorage.setItem("userOrders", JSON.stringify(data)); // User Orders in LocalStorage
   } catch (err) {
     dispatch({
       type: actionTypes.ORDER_CREATE_FAIL,

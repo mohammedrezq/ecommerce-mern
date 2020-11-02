@@ -73,6 +73,8 @@ const TopNavbar = (props) => {
 
   // console.log("Signup Info",userSignup)
 
+  // const userInfoFromLS = JSON.parse(localStorage.getItem("userInfo"));
+  // console.log(userInfoFromLS);
 
 
 
