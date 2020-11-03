@@ -25,6 +25,7 @@ import CartModal from "./Shared/UIElements/CartModal";
 import ShippingPage from "./Products/Pages/CheckoutPage/ShippingPage";
 import PaymentPage from "./Products/Pages/CheckoutPage/PaymentPage";
 import PlaceOrderPage from "./Products/Pages/CheckoutPage/PlaceOrderPage";
+import OrderPage from "./Products/Pages/CheckoutPage/OrderPage";
 // import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route path="/placeorder" exact>
             <PlaceOrderPage />
+          </Route>
+          <Route path="/order/:oid" exact>
+            <OrderPage />
           </Route>
           {/* <Route path="/accordion" exact>
             <Accordion />

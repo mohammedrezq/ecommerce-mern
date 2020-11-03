@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { savePaymentMethod } from "../../../Store/Actions/cartActions";
+// import { savePaymentMethod } from "../../../Store/Actions/cartActions";
 import CheckoutSteps from "../../Components/CheckoutSteps";
 import Message from "../../../Shared/UIElements/Message";
 // import "./paymentMethod.css";
@@ -72,9 +72,9 @@ const PlaceOrderPage = () => {
 
   // console.log(TheTotal);
 
-  const handleCheckoutBtn = () => {
-    return history.push("/shipping");
-  };
+  // const handleCheckoutBtn = () => {
+  //   return history.push("/shipping");
+  // };
 
   const orderCreate = useSelector( state => state.orderCreate )
   const { order, success, error } = orderCreate; 
