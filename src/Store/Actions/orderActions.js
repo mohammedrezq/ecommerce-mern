@@ -2,6 +2,7 @@ import axios from "axios";
 
 import * as actionTypes from "./actionTypes";
 
+// CREATE an Order (Make an Order)
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -52,6 +53,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
+// GET THE Order Details
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -89,6 +91,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
+// Pay Order Action (PayPal)
 export const payOrder = (orderId, paymentResult) => async (
   dispatch,
   getState
@@ -125,6 +128,49 @@ export const payOrder = (orderId, paymentResult) => async (
   } catch (err) {
     dispatch({
       type: actionTypes.ORDER_PAY_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+// Reset after pay
+export const orderReset = () => async (dispatch) => {
+  dispatch({ type: actionTypes.ORDER_PAY_RESET });
+};
+
+// Get Orders For the Logged in User
+export const getUserListOrders = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.ORDERS_LIST_USER_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    console.log(userInfo);
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/orders/myorders`,
+      config
+    );
+
+    dispatch({
+      type: actionTypes.ORDERS_LIST_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: actionTypes.ORDERS_LIST_USER_FAIL,
       payload:
         err.response && err.response.data.message
           ? err.response.data.message

@@ -14,8 +14,8 @@ import Spinner from "../../../Shared/UIElements/Spinner";
 // import "./paymentMethod.css";
 import "./OrderPage.css";
 import HrElemnent from "../../../Shared/UIElements/HrElement";
-import { getOrderDetails, payOrder } from "../../../Store/Actions/orderActions";
-import { ORDER_PAY_RESET } from "../../../Store/Actions/actionTypes"
+import { getOrderDetails, payOrder, orderReset } from "../../../Store/Actions/orderActions";
+// import { ORDER_PAY_RESET } from "../../../Store/Actions/actionTypes"
 
 const useStyles = makeStyles((theme) => ({
   cartSummary: {
@@ -86,7 +86,8 @@ const OrderPage = () => {
 
     // addPaypalScript()
     if(!order || successPay) {
-      dispatch( {type: ORDER_PAY_RESET} )
+      // dispatch( {type: ORDER_PAY_RESET} )
+      dispatch(orderReset()) // Dispatch order Reset
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if(!window.paypal) {
@@ -100,7 +101,7 @@ const OrderPage = () => {
 
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
+    // console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult))
   }
 

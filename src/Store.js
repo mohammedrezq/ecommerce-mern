@@ -20,7 +20,8 @@ import {
 import {
   orderCreateReducer,
   orderDetailsReducer,
-  orderPayReducer
+  orderPayReducer,
+  ordersListUserReducer,
 } from './Store/Reducers/orderReducers';
 
 const reducer = combineReducers({
@@ -36,6 +37,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  ordersListUser: ordersListUserReducer,
 });
 
 // const cartItemsFromStorage = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
