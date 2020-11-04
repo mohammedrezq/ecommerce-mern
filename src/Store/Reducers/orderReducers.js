@@ -66,3 +66,27 @@ export const orderPayReducer = ( state = {}, action) => {
             return state;
     }
 }
+
+export const ordersListUserReducer = ( state = { orders: [] } , action) => {
+    switch(action.type) {
+        case actionTypes.ORDERS_LIST_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case actionTypes.ORDERS_LIST_USER_SUCCESS:
+            return {
+                loading: false,
+                orders: action.payload
+            }
+        case actionTypes.ORDERS_LIST_USER_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case actionTypes.ORDERS_LIST_USER_RESET:
+            return { orders: [] }
+        default:
+            return state;
+    }
+}
