@@ -48,6 +48,36 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   }
 };
 
+// Users List Reducer (admin)
+export const usersListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case actionTypes.USERS_LIST_REQUEST:
+      return { loading: true };
+    case actionTypes.USERS_LIST_SUCCESS:
+      return { loading: false, users: action.payload };
+    case actionTypes.USERS_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    case actionTypes.USERS_LIST_RESET:
+      return { users: [] };
+    default:
+      return state;
+  }
+};
+
+// Users Delete Reducer (admin)
+export const usersDeleteReducer = (state = { }, action) => {
+  switch (action.type) {
+    case actionTypes.USER_DELETE_REQUEST:
+      return { loading: true };
+    case actionTypes.USER_DELETE_SUCCESS:
+      return { loading: false, success: true };
+    case actionTypes.USER_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 
 
 // User Details (Info) Reducer

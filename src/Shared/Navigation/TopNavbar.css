@@ -25,3 +25,9 @@
     font-size: 14px;
     line-height: 1.428571;
 }
+
+.topNav_Right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
