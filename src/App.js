@@ -26,12 +26,16 @@ import ShippingPage from "./Products/Pages/CheckoutPage/ShippingPage";
 import PaymentPage from "./Products/Pages/CheckoutPage/PaymentPage";
 import PlaceOrderPage from "./Products/Pages/CheckoutPage/PlaceOrderPage";
 import OrderPage from "./Products/Pages/CheckoutPage/OrderPage";
+import UsersListPage from "./User/Pages/UsersListPage";
 // import ProfileForm from "./User/Components/ProfileForm";
 // import TestingNavbar from "./Shared/Navigation/TestingNavbar";
 
 /* Testing Component */
 import FormContainer from "./Shared/FormElements/FormContainer";
 import ProfilePage from "./User/Pages/ProfilePage";
+import UserUpdateForm from "./User/Components/UserUpdateForm";
+// import { usersList } from "./Store/Actions/userActions";
+
 
 function App() {
   return (
@@ -52,6 +56,12 @@ function App() {
           </Route>
           <Route path="/payment" exact>
             <PaymentPage />
+          </Route>
+          <Route path="/admin/userList" exact>
+            <UsersListPage />
+          </Route>
+          <Route path="/admin/user/:uid/edit" exact>
+            <UserUpdateForm />
           </Route>
           <Route path="/placeorder" exact>
             <PlaceOrderPage />

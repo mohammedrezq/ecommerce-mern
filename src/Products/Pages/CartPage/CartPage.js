@@ -404,15 +404,15 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  <span
+                                  {/* <span
                                     style={{
-                                      fontSize: "12px",
+                                      fontSize: ".8rem",
                                       marginRight: ".5rem",
-                                      background: "greenyellow",
+                                      // background: "greenyellow",
                                     }}
                                   >
                                     Qty:{item.qty} @ ${item.price}{" "}
-                                  </span>
+                                  </span> */}
                                   <span>
                                     $
                                     {Number(`${item.qty * item.price}`).toFixed(
