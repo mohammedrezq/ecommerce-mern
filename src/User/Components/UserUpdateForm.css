@@ -1,0 +1,10 @@
+.checkbox__isAdmin {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 8px; 
+    border: 1px solid #ccc;
+}
+
+.checkbox__isAdmin:hover {
+    border: 1px solid #111;
+}

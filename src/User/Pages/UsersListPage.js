@@ -170,7 +170,7 @@ const UsersListPage = () => {
                           </Link>
                           </Button>
                           <Button size="small" variant="contained">
-                          <Link to={'/admin/userList'}>
+                          <Link to={'/admin/userlist'}>
 
                               <DeleteIcon style={{color: "red"}} onClick={() => deleteUserHandler(user._id)}>
                               <Typography variant="srOnly">Delete User</Typography>

@@ -120,8 +120,8 @@ const ProfileForm = () => {
         firstName: values.firstName,
         lastName: values.lastName,
         DateOfBirth: user.DateOfBirth, //  from the backend
-        country: values.country,
-        gender: values.gender
+        Country: values.country,
+        Gender: values.gender
       }
         ))
 

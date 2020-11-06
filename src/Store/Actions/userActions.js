@@ -363,3 +363,103 @@ export const usersList = () => async (dispatch, getState) => {
     });
   }
 };
+
+
+/**
+ *
+ * Update User Details By Admin
+ *
+ **/
+
+export const updateUserByAdmin = (id, user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.USER_UPDATE_ADMIN_REQUEST,
+    });
+
+    const { userLogin: { userInfo } } = getState();
+
+    // console.log(userInfo)
+    // console.log(userInfo.token)
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put( `http://localhost:5000/api/users/${id}`, user, config );
+
+    console.log(data)
+
+    // const { user } = data;
+
+
+    dispatch({
+      type: actionTypes.USER_UPDATE_ADMIN_SUCCESS,
+      payload: data,
+    });
+
+  } catch (err) {
+    dispatch({
+      type: actionTypes.USER_UPDATE_ADMIN_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+
+
+
+/**
+ *
+ * Get User Details
+ *
+ **/
+
+export const getUserDetailsForAdmin = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.USER_DETAILS_REQUEST,
+    });
+
+    const { userLogin: { userInfo } } = getState();
+
+    // console.log(userInfo)
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/users/${id}`,
+      config
+    );
+
+    // console.log(data)
+
+    // const { user } = data;
+
+    // console.log(user)
+    // Sign up user success
+    dispatch({
+      type: actionTypes.USER_DETAILS_SUCCESS,
+      payload: data,
+    });
+
+  } catch (err) {
+    dispatch({
+      type: actionTypes.USER_DETAILS_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
