@@ -95,3 +95,21 @@ export const userUpdateProfileReducer = (state = {  }, action) => {
       return state;
   }
 };
+
+
+// User Update Details By Admin (Admin) Reducer
+
+export const userUpdateAdminReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case actionTypes.USER_UPDATE_ADMIN_REQUEST:
+      return { loading: true };
+    case actionTypes.USER_UPDATE_ADMIN_SUCCESS:
+      return { loading: false, success: true };
+    case actionTypes.USER_UPDATE_ADMIN_FAIL:
+      return { loading: false, error: action.payload };
+          case actionTypes.USER_UPDATE_ADMIN_RESET:
+      return { user: {} };
+    default:
+      return state;
+  }
+};

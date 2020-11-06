@@ -1,74 +1,97 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../Shared/FormElements/FormikControl";
 import Message from "../../Shared/UIElements/Message";
-import { signup } from "../../Store/Actions/userActions";
+import {
+  getUserDetailsForAdmin,
+  updateUserByAdmin,
+} from "../../Store/Actions/userActions";
 
 import Countries from "../../Shared/Assets/Countries";
 import Gender from "../../Shared/Assets/Gender";
-import "./RegistrationForm.css";
+import Spinner from "../../Shared/UIElements/Spinner";
+import "./UserUpdateForm.css";
 import "./LoginForm.css";
 
 const UserUpdateForm = () => {
-  const dispatch = useDispatch();
+  const userId = useParams().uid;
+  // console.log(userId);
 
-  const userSignup = useSelector((state) => state.userSignup);
-
-  // console.log(userSignup);
-  const { loading, error, userInfo } = userSignup;
-
-  console.log("userInfo",userInfo)
   const history = useHistory();
 
-  useEffect(() => {
-    if (userInfo) {
-      history.push("/");
-    }
-  }, [history, userInfo]);
+  const dispatch = useDispatch();
 
-  const initialValues = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-    DateOfBirth: null,
-    country: "US",
-    gender: "",
-  };
+  const userDetails = useSelector((state) => state.userDetails);
+
+  const { loading, error, user } = userDetails;
+
+  // console.log(userDetails);
+  console.log(user);
+  // console.log(user.firstName);
+  // console.log(loading);
+  // console.log(user);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  // console.log(userInfo)
+
+
+  const userUpdateAdmin = useSelector((state) => state.userUpdateAdmin);
+  const { success, loading: loadingAdmin, error: errorAdmin } = userUpdateAdmin;
+  // console.log(userUpdateAdmin)
+  // console.log(loadingAdmin)
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    } else if (!user.email || user._id !== userId)  {
+      dispatch(getUserDetailsForAdmin(userId));
+    }  else if ( user.email === undefined || user.email === null ) {
+      history.push("/")
+    }
+  }, [dispatch, user, userId, history]);
+
+  let initialValues;
+  if (user && userId) {
+    initialValues = {
+      bio: user.bio || "",
+      isAdmin: user.isAdmin || false, // initial Value is false for users
+      email: user.email || "",
+      firstName: user.firstName || "",
+      lastName: user.lastName ||  "",
+      country: user.Country || "US",
+      gender: user.Gender ||  "",
+    };
+  }
 
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Please enter a valid email address.")
-      .required("Email is required"),
-    password: Yup.string().required("Please enter a valid password.").min(6),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), ""], "Passwords don't must match")
-      .required("Please confirm the password"),
-    firstName: Yup.string().required("Please enter a valid first name.").min(2),
-    lastName: Yup.string().required("Please enter a valid last name.").min(2),
-    DateOfBirth: Yup.date().required("Please set your birth date.").nullable(),
-    country: Yup.string().required("Please select a country."),
-    gender: Yup.string().required("Please select a preference."),
+    bio: Yup.string(),
+    isAdmin: Yup.boolean(),
+    email: Yup.string().email("Please enter a valid email address.").required(),
+    firstName: Yup.string().required().min(2),
+    lastName: Yup.string().required().min(2),
+    country: Yup.string().required(),
+    gender: Yup.string().required(),
   });
 
   const onSubmit = (values, isSubmitting) => {
     dispatch(
-      signup(
-        values.email,
-        values.password,
-        values.firstName,
-        values.lastName,
-        values.DateOfBirth,
-        values.country,
-        values.gender,
-      )
-    ); // Dispatch Email & Password & firstName, LastName, DOB, country, and gender from Signup Form
-    console.log("Signup Data", values);
+      updateUserByAdmin(userId, {
+        email: values.email,
+        isAdmin: values.isAdmin,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        bio: values.bio,
+        Country: values.country,
+        Gender: values.gender,
+      })
+    ); // Dispatch Email & Password & firstName, LastName, bio, country, and gender from Update Form
+    console.log("Updated Data", values);
     isSubmitting(true);
     // e.prevenDefault();
     isSubmitting(false);
@@ -76,6 +99,7 @@ const UserUpdateForm = () => {
 
   return (
     <Formik
+      enableReinitialize={true} // To enable reinitialize values from backend API Soruce: https://github.com/formium/formik/issues/1033
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -83,100 +107,102 @@ const UserUpdateForm = () => {
       {(formik) => {
         return (
           <Form>
-             {error && <Message>{error}</Message>}
+            {error && <Message severity="error">{error}</Message>}
+            {errorAdmin && <Message severity="error">{errorAdmin}</Message>}
             {/* Check if loading is true show Spinner else show the Login Form */}
-            {/* {loading ? <Spinner /> :( */} {/* Spinner for the whole login Form ! */}
-            {/* Email */}
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialInput"
-              type="email"
-              name="email"
-              autoComplete="email"
-              placeholder="Email Address"
-              variant="outlined"
-              size="small"
-            />
-            {/* Password */}
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialInput"
-              type="password"
-              name="password"
-              autoComplete="password"
-              placeholder="Password"
-              variant="outlined"
-              size="small"
-            />
-            {/* Confirm Password */}
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialInput"
-              type="password"
-              name="confirmPassword"
-              autoComplete="confirmPassword"
-              placeholder="Confirm Password"
-              variant="outlined"
-              size="small"
-            />
-            {/* firstName */}
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialInput"
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              variant="outlined"
-              size="small"
-            />
-            {/* lasttName */}
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialInput"
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              variant="outlined"
-              size="small"
-            />
-            {/* Date of Birth */}
-            <FormikControl
-              fullWidth
-              className="FormElement DateOfBirthOption"
-              control="date"
-              name="DateOfBirth"
-              placeholderText="Date of Birth"
-            />
-            <FormikControl
-              fullWidth
-              className="FormElement"
-              control="materialSelectCountry"
-              label="Country/Region"
-              name="country"
-              variant="outlined"
-              helperText="Select a Country"
-              options={Countries}
-            />
-            <FormikControl
-              fullWidth
-              className="genderItems"
-              classes="gender_radio_item"
-              control="radio"
-              name="gender"
-              options={Gender}
-            />
-            <p className="terms">
-              By creating an account, you agree to Nike's Privacy Policy and
-              Terms of Use.
-            </p>
-
-            <button className={`Signup__Form--Btn Submit__Btn`} type="submit">{!loading ? <span>Sign Up</span>: <span>Processing...</span>}</button>
-            {/* )} */ }{/* Spinner for the whole login Form ! */}
+            {loading ? (
+              <Spinner />
+            ) : (
+              <>
+                {/* Email */}
+                <FormikControl
+                  fullWidth
+                  className="FormElement"
+                  control="materialInput"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Email Address"
+                  variant="outlined"
+                  size="small"
+                />
+                {/* firstName */}
+                <FormikControl
+                  fullWidth
+                  className="FormElement"
+                  control="materialInput"
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  variant="outlined"
+                  size="small"
+                />
+                {/* lasttName */}
+                <FormikControl
+                  fullWidth
+                  className="FormElement"
+                  control="materialInput"
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  variant="outlined"
+                  size="small"
+                />
+                {/* Checkbox isAdmin */}
+                <div className="checkbox__isAdmin">
+                <label>
+                  <Field type="checkbox" name="isAdmin" />
+                  {`Role Admin`}
+                </label>
+                </div>
+                <FormikControl
+                  fullWidth
+                  className="FormElement"
+                  control="materialTextarea"
+                  type="text"
+                  name="bio"
+                  rows={5}
+                  placeholder="About Me"
+                  variant="outlined"
+                  label="About Me"
+                  maxLength="150"
+                  //   size="small"
+                />
+                <FormikControl
+                  fullWidth
+                  className="FormElement"
+                  control="materialSelectCountry"
+                  label="Country/Region"
+                  name="country"
+                  variant="outlined"
+                  helperText="Select a Country"
+                  options={Countries}
+                />
+                <FormikControl
+                  fullWidth
+                  className="genderItems"
+                  classes="gender_radio_item"
+                  control="radio"
+                  name="gender"
+                  options={Gender}
+                />
+                <button
+                  className={`Signup__Form--Btn Submit__Btn`}
+                  type="submit"
+                >
+                  {!loadingAdmin ? (
+                    <span>Update User</span>
+                  ) : (
+                    <span>Processing...</span>
+                  )}
+                </button>
+                {success && (
+                  <Message severity="success">
+                    User Info Updated By Admin
+                  </Message>
+                )}
+              </>
+            )}
           </Form>
         );
       }}

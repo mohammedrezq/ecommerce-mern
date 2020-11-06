@@ -33,7 +33,7 @@ import UsersListPage from "./User/Pages/UsersListPage";
 /* Testing Component */
 import FormContainer from "./Shared/FormElements/FormContainer";
 import ProfilePage from "./User/Pages/ProfilePage";
-import UserUpdateForm from "./User/Components/UserUpdateForm";
+import UpdateUserPage from "./User/Pages/UpdateUserPage";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -57,11 +57,11 @@ function App() {
           <Route path="/payment" exact>
             <PaymentPage />
           </Route>
-          <Route path="/admin/userList" exact>
+          <Route path="/admin/userlist" exact>
             <UsersListPage />
           </Route>
           <Route path="/admin/user/:uid/edit" exact>
-            <UserUpdateForm />
+            <UpdateUserPage />
           </Route>
           <Route path="/placeorder" exact>
             <PlaceOrderPage />

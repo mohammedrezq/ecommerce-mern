@@ -102,7 +102,7 @@ const TopNavbar = (props) => {
   return (
     <div className="top__navbar">
       <div className="brand__items" style={{fontSize:".88rem"}}>AnyThing..</div>
-      {console.log(userInfo)}
+      {/* {console.log(userInfo)} */}
       {userInfo ? (
         <div className="topNav_Right">
           {userInfo.isAdmin && ( // If User is Admin add Second Menu for Main Admin Pages
@@ -125,7 +125,7 @@ const TopNavbar = (props) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleAdminMenuClose}>
                   <MenuList id="menu-admin_list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userList">User List</Link></MenuItem>
+                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userlist">User List</Link></MenuItem>
                     <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderList">Order List</Link></MenuItem>
                     <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productList">Product List</Link></MenuItem>
                   </MenuList>
