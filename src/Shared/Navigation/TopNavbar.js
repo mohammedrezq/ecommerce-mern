@@ -128,6 +128,7 @@ const TopNavbar = (props) => {
                     <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userlist">User List</Link></MenuItem>
                     <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderList">Order List</Link></MenuItem>
                     <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productList">Product List</Link></MenuItem>
+                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/categorieslist">Categories List</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

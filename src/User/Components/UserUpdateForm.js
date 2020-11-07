@@ -54,7 +54,7 @@ const UserUpdateForm = () => {
     }  else if ( user.email === undefined || user.email === null ) {
       history.push("/")
     }
-  }, [dispatch, user, userId, history]);
+  }, [dispatch, user, userId, history, success]);
 
   let initialValues;
   if (user && userId) {

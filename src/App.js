@@ -34,6 +34,10 @@ import UsersListPage from "./User/Pages/UsersListPage";
 import FormContainer from "./Shared/FormElements/FormContainer";
 import ProfilePage from "./User/Pages/ProfilePage";
 import UpdateUserPage from "./User/Pages/UpdateUserPage";
+import CategoryCreateForm from "./Cats/Components/CategoryCreateForm";
+import CategoriesListPage from "./Cats/Pages/CategoriesListPage";
+import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
+import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -59,6 +63,18 @@ function App() {
           </Route>
           <Route path="/admin/userlist" exact>
             <UsersListPage />
+          </Route>
+          <Route path="/admin/category" exact>
+            <CategoryCreateForm />
+          </Route>
+          <Route path="/admin/categorieslist" exact>
+            <CategoriesListPage />
+          </Route>
+          <Route path="/categories" exact>
+            <CateogryListUsersPage />
+          </Route>
+          <Route path="/admin/category/:cid/edit" exact>
+            <CategoryDetailsForm />
           </Route>
           <Route path="/admin/user/:uid/edit" exact>
             <UpdateUserPage />

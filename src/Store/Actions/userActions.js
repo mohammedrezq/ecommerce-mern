@@ -329,6 +329,11 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 };
 
+/**
+ *
+ * Get Users List
+ *
+ **/
 
 export const usersList = () => async (dispatch, getState) => {
   try {
@@ -390,9 +395,9 @@ export const updateUserByAdmin = (id, user) => async (dispatch, getState) => {
 
     const { data } = await axios.put( `http://localhost:5000/api/users/${id}`, user, config );
 
-    console.log(data)
+    // console.log(data)
 
-    // const { user } = data;
+    // const { users } = data;
 
 
     dispatch({
