@@ -57,7 +57,7 @@ const ProductPage = (props) => {
 
   const id = useParams().id;
   // console.log(id);
-  const dispatch = useDispatch(id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listProductDetails(id));

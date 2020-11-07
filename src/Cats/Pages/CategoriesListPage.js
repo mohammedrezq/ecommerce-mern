@@ -115,6 +115,9 @@ const CategoriesListPage = () => {
                         Category Description
                       </StyledTableCell>
                       <StyledTableCell align="center">
+                        Category Image
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         Category Details
                       </StyledTableCell>
                     </TableRow>
@@ -132,7 +135,12 @@ const CategoriesListPage = () => {
                           {category.categoryTitle}
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {category.categoryTitle}
+                          {category.categoryDescription}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          <div>
+                          <img style={{width: "80px", height: "80px"}} src={category.categoryImage} alt={category.categoryTitle} />
+                          </div>
                         </StyledTableCell>
 
 

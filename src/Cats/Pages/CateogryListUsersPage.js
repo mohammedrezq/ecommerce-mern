@@ -22,6 +22,7 @@ import { catsListUsers } from "../../Store/Actions/categoryActions";
 import Spinner from "../../Shared/UIElements/Spinner";
 import Message from "../../Shared/UIElements/Message";
 import { deleteCategory } from "../../Store/Actions/categoryActions";
+import { Link } from "react-router-dom";
 // import Button from "../../Shared/UIElements/Button";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -93,7 +94,7 @@ const CategoryListUsersPage = () => {
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>No.</StyledTableCell>
-                      <StyledTableCell>Category ID</StyledTableCell>
+                      {/* <StyledTableCell>Category ID</StyledTableCell> */}
                       <StyledTableCell align="center">
                         Category Title
                       </StyledTableCell>
@@ -108,11 +109,11 @@ const CategoryListUsersPage = () => {
                         <StyledTableCell component="th" scope="row">
                           {`${index+1}.`}
                         </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
+                        {/* <StyledTableCell component="th" scope="row">
                           {category.id}
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                         <StyledTableCell align="center">
-                          {category.categoryTitle}
+                          <Link to={`/category/${category.id}`} >{category.categoryTitle}</Link>
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {category.categoryDescription}

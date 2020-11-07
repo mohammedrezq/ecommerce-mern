@@ -18,7 +18,7 @@ const CategoryCreateForm = () => {
 
   // console.log(userSignup);
   const { loading, error, success, category } = categoryCreate;
-  console.log(category);
+  // console.log(category);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;

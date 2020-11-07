@@ -37,6 +37,7 @@ import UpdateUserPage from "./User/Pages/UpdateUserPage";
 import CategoryCreateForm from "./Cats/Components/CategoryCreateForm";
 import CategoriesListPage from "./Cats/Pages/CategoriesListPage";
 import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
+import CategoryDetailsUsersPage from "./Cats/Pages/CategoryDetailsUsersPage";
 import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
 // import { usersList } from "./Store/Actions/userActions";
 
@@ -72,6 +73,9 @@ function App() {
           </Route>
           <Route path="/categories" exact>
             <CateogryListUsersPage />
+          </Route>
+          <Route path="/category/:cid" exact>
+            <CategoryDetailsUsersPage />
           </Route>
           <Route path="/admin/category/:cid/edit" exact>
             <CategoryDetailsForm />
