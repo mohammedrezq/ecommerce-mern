@@ -32,7 +32,8 @@ import {
   categoryUpdateReducer,
   categoryDetailsReducer,
   categoryDeleteReducer,
-  categoryListUsersReducer
+  categoryListUsersReducer,
+  categoryUsersDetailsReducer
 } from "./Store/Reducers/categoryReducers";
 
 const reducer = combineReducers({
@@ -58,6 +59,7 @@ const reducer = combineReducers({
   categoryDetails: categoryDetailsReducer,
   categoryDelete: categoryDeleteReducer,
   categoryListUsers: categoryListUsersReducer,
+  categoryUsersDetails: categoryUsersDetailsReducer,
 });
 
 // const cartItemsFromStorage = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []

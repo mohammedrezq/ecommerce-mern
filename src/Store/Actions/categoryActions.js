@@ -274,3 +274,55 @@ export const catsListUsers = () => async (dispatch, getState) => {
     });
   }
 };
+
+
+/**
+ *
+ * Get Category Details For Users
+ *
+ **/
+
+export const getCategoryDetailsUser = (id) => async ( dispatch ) => {
+  try {
+    dispatch({
+      type: actionTypes.CATEGORY_DETAILS_REQUEST,
+    });
+
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState();
+
+    //   console.log(userInfo)
+
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${userInfo.token}`,
+    //   },
+    // };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/categories/${id}`,
+      // config
+    );
+
+    console.log(data);
+
+    // const { category } = data;
+
+    // console.log(user)
+    // Sign up user success
+    dispatch({
+      type: actionTypes.CATEGORY_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: actionTypes.CATEGORY_DETAILS_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};

@@ -29,6 +29,7 @@ export const categoriesListReducer = (state = { cats: [] }, action) => {
       return state;
   }
 };
+// Category Update Reducer (For Admin)
 
 export const categoryUpdateReducer = (state = { category: {} }, action) => {
   switch (action.type) {
@@ -45,7 +46,7 @@ export const categoryUpdateReducer = (state = { category: {} }, action) => {
   }
 };
 
-// User Details (Info) Reducer
+// Category Details (Info) Reducer
 export const categoryDetailsReducer = (state = { category: {} }, action) => {
   switch (action.type) {
     case actionTypes.CAT_DETAILS_REQUEST:
@@ -60,6 +61,8 @@ export const categoryDetailsReducer = (state = { category: {} }, action) => {
       return state;
   }
 };
+
+// Category Delete Reducer (For Admins)
 
 export const categoryDeleteReducer = (state = {}, action) => {
   switch (action.type) {
@@ -83,6 +86,20 @@ export const categoryListUsersReducer = (state = { cats: [] }, action) => {
     case actionTypes.CATEGORY_LIST_SUCCESS:
       return { loading: false, cats: action.payload };
     case actionTypes.CATEGORY_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// Category Details (Info) Reducer (For Admin)
+export const categoryUsersDetailsReducer = (state = { category: {} }, action) => {
+  switch (action.type) {
+    case actionTypes.CATEGORY_DETAILS_REQUEST:
+      return { ...state, loading: true };
+    case actionTypes.CATEGORY_DETAILS_SUCCESS:
+      return { loading: false, category: action.payload };
+    case actionTypes.CATEGORY_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -24,6 +24,7 @@ const ProductsPage = () => {
   const { loading, error, products } = productList;
 
   const allProducts = products.products;
+  console.log(allProducts)
 
   useEffect(() => {
     dispatch(listProducts());
