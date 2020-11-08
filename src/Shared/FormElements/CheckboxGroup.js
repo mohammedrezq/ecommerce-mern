@@ -5,7 +5,7 @@ import { Field, ErrorMessage } from "formik";
 import TextError from "./TextError";
 
 const CheckboxGroup = (props) => {
-  const { label, name, options, className, ...rest } = props;
+  const { label, name, options, className, ItemClassName, ...rest } = props;
   return (
     <div className={className}>
       <label>{label}</label>
@@ -13,7 +13,7 @@ const CheckboxGroup = (props) => {
         {({ field }) => {
           return options.map((option) => {
             return (
-              <React.Fragment key={option.key}>
+              <span className={ItemClassName} key={option.key}>
                 <input
                   type="checkbox"
                   id={option.value}
@@ -22,7 +22,7 @@ const CheckboxGroup = (props) => {
                   checked={field.value.includes(option.value)}
                 />
                 <label htmlFor={option.value}>{option.key}</label>
-              </React.Fragment>
+              </span>
             );
           });
         }}

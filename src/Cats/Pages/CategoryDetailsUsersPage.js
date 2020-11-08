@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 
 import { getCategoryDetailsUser } from "../../Store/Actions/categoryActions";
 import { listProducts } from "../../Store/Actions/productsActions";
-import ProductGrid from "../../Products/Components/ProductGrid/ProductGrid";
+import ProductGridCategory from "../../Products/Components/ProductGridCategory/ProductGridCategory";
 import Spinner from "../../Shared/UIElements/Spinner";
 import Message from "../../Shared/UIElements/Message";
 
@@ -28,6 +28,8 @@ const CategoryDetailsUsersPage = () => {
   } = categoryUsersDetails;
 
   console.log(category);
+  console.log(errorCategoryDetails);
+  console.log(loadingCategoryDetails);
 
   const allProducts = products.products;
   console.log(allProducts);
@@ -44,7 +46,7 @@ const CategoryDetailsUsersPage = () => {
     ); // Check if product has the same the category
   }
   console.log(productsInCategory);
-  return (
+  return ( loadingCategoryDetails ? <Spinner />: (
     <div>
       Category Products Details
       <div>Products in {category.categoryTitle}</div>
@@ -55,10 +57,11 @@ const CategoryDetailsUsersPage = () => {
         ) : error ? (
           <Message>{error}</Message>
         ) : (
-          <ProductGrid items={productsInCategory} />
+          <ProductGridCategory items={productsInCategory} />
         )}
       </Grid>
     </div>
+  )
   );
 };
 

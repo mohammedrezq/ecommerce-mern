@@ -33,3 +33,20 @@ export const productListReducer = (state = { products: [] }, action) => {
         return state
     }
   }
+
+  /* Reducer for Products Delete (ProductsListPage) */
+export const productDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case actionTypes.PRODUCT_DELETE_REQUEST:
+      return { loading: true }
+    case actionTypes.PRODUCT_DELETE_SUCCESS:
+      return {
+        loading: false,
+        success: true
+      }
+    case actionTypes.PRODUCT_DELETE_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
