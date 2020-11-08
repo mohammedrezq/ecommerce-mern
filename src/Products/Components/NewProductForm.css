@@ -1,0 +1,116 @@
+.FormNewProduct {
+  margin: 30px 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sizesProduct, .colorsProduct, .gendersProduct {
+  margin: 0 3px;
+}
+/* Sizes Checkboxes*/
+
+.sizesProduct input .sizesProduct label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sizesProduct input[type="checkbox"] {
+  display: none;
+  z-index: 100;
+}
+
+.sizesProduct input[type="checkbox"]:checked + label {
+  background: rgb(226, 226, 226);
+  border: 1px solid;
+}
+
+.sizesProduct input[type="checkbox"]:not(:disabled) + label {
+  cursor: pointer;
+}
+
+.sizesProduct label {
+  display: block;
+  margin: 2px 5px;
+  height: 28px;
+  border-radius: 4px;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}
+
+/* Colors Checkboxes*/
+
+.colorsProduct input .colorsProduct label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.colorsProduct input[type="checkbox"] {
+  display: none;
+  z-index: 100;
+}
+
+.colorsProduct input[type="checkbox"]:checked + label {
+  background: rgb(226, 226, 226);
+  border: 1px solid;
+}
+
+.colorsProduct input[type="checkbox"]:not(:disabled) + label {
+  cursor: pointer;
+}
+
+.colorsProduct label {
+  display: block;
+  margin: 2px 5px;
+  height: 28px;
+  border-radius: 4px;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}
+
+/* genders Checkboxes*/
+
+.gendersProduct input .gendersProduct label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.gendersProduct input[type="checkbox"] {
+  display: none;
+  z-index: 100;
+}
+
+.gendersProduct input[type="checkbox"]:checked + label {
+  background: rgb(226, 226, 226);
+  border: 1px solid;
+}
+
+.gendersProduct input[type="checkbox"]:not(:disabled) + label {
+  cursor: pointer;
+}
+
+.gendersProduct label {
+  display: block;
+  margin: 2px 5px;
+  height: 28px;
+  border-radius: 4px;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}

@@ -50,6 +50,11 @@ const ProductItem = (props) => {
               <Typography variant="body2" color="textSecondary" component="p">
                 {props.price}
               </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {/* <div style={{fontSize: "1rem", marginTop:"10px"}}>
+                  </div> */}
+                {props.colors}
+              </Typography>
             </CardContent>
           </div>
         </Card>

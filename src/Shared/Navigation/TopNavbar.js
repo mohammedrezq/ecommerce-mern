@@ -125,10 +125,10 @@ const TopNavbar = (props) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleAdminMenuClose}>
                   <MenuList id="menu-admin_list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userlist">User List</Link></MenuItem>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderList">Order List</Link></MenuItem>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productList">Product List</Link></MenuItem>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/categorieslist">Categories List</Link></MenuItem>
+                  <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userlist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>User List</MenuItem></Link>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderList"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Order List</MenuItem></Link>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productList"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Product List</MenuItem></Link>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/categorieslist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Categories List</MenuItem></Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -156,8 +156,8 @@ const TopNavbar = (props) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={handleClose}><Link style={{color: "inherit", textDecoration:"inherit"}} to="/profile">Profile</Link></MenuItem>
-                    <MenuItem style={{fontSize:"0.88rem"}} onClick={logoutHandler}><span>Logout</span></MenuItem>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/profile"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleClose}>Profile</MenuItem></Link>
+                    <div><MenuItem style={{fontSize:"0.88rem"}} onClick={logoutHandler}>Logout</MenuItem></div>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

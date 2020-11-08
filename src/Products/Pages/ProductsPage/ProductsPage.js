@@ -22,9 +22,9 @@ const ProductsPage = () => {
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
-
+  // console.log(products)
   const allProducts = products.products;
-  console.log(allProducts)
+  // console.log(allProducts)
 
   useEffect(() => {
     dispatch(listProducts());

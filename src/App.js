@@ -12,6 +12,8 @@ import Store from './Store';
 
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
+import ProductListPage from "./Products/Pages/ProductListPage/ProductListPage";
+import NewProductForm from "./Products/Components/NewProductForm";
 // import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
@@ -39,6 +41,7 @@ import CategoriesListPage from "./Cats/Pages/CategoriesListPage";
 import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
 import CategoryDetailsUsersPage from "./Cats/Pages/CategoryDetailsUsersPage";
 import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
+import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductPage";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -64,6 +67,9 @@ function App() {
           </Route>
           <Route path="/admin/userlist" exact>
             <UsersListPage />
+          </Route>
+          <Route path="/admin/productlist" exact>
+            <ProductListPage />
           </Route>
           <Route path="/admin/category" exact>
             <CategoryCreateForm />
@@ -97,6 +103,9 @@ function App() {
           </Route>
           <Route path="/formcontainer" exact>
             <FormContainer />
+          </Route>
+          <Route path="/new-product" exact>
+            <CreateProductPage />
           </Route>
           <Route path="/modaltesting" exact>
             <TheModal />

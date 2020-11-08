@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import {
   productDetailsReducer,
   productListReducer,
+  productDeleteReducer,
 } from "./Store/Reducers/productReducers";
 import {
   cartReducer,
@@ -60,6 +61,7 @@ const reducer = combineReducers({
   categoryDelete: categoryDeleteReducer,
   categoryListUsers: categoryListUsersReducer,
   categoryUsersDetails: categoryUsersDetailsReducer,
+  productDelete: productDeleteReducer,
 });
 
 // const cartItemsFromStorage = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
