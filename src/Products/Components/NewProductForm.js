@@ -14,6 +14,7 @@ import PorductGender from "../../Shared/Assets/ProductGender";
 import FormikControl from "../../Shared/FormElements/FormikControl";
 import Button from "../../Shared/UIElements/Button";
 import "./NewProductForm.css"
+import { createProduct } from "../../Store/Actions/productsActions";
 
 const NewProductForm = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,9 @@ const NewProductForm = () => {
   const categoriesList = useSelector((state) => state.categoriesList);
   const { loading, error, cats } = categoriesList;
 
-  console.log(cats);
+  // console.log(cats);
 
-  console.log(cats && cats.map((categroy) => categroy.categoryTitle));
+  // console.log(cats && cats.map((categroy) => categroy.categoryTitle));
 
   const initialValues = {
     productTitle: "",
@@ -43,11 +44,12 @@ const NewProductForm = () => {
     productCategory: "Sneakers",
     productSizes: [],
     productPrice: 0,
+    countInStock: 0,
     productColors: [],
     productGender: [],
     productShippingInfo: "",
     productSizeFit: "",
-    // productImages: [],
+    Images: null,
   };
 
   const validationSchema = Yup.object({
@@ -61,6 +63,7 @@ const NewProductForm = () => {
       .max(600),
     productCategory: Yup.string().required("Please select a Category."),
     productPrice: Yup.number().required("Please enter a valid Price."),
+    countInStock: Yup.number().required("Please enter count in stock."),
     productSizes: Yup.array().required("Please select size/s for the product."),
     productColors: Yup.array().required(
       "Please select product/s available color."
@@ -78,10 +81,31 @@ const NewProductForm = () => {
     productSizeFit: Yup.string().required(
       "Please enter info about size fit for the product."
     ),
-    // productImages: Yup.array().required("Please enter a valid image/s."),
+    Images: Yup.mixed().required("Please enter a valid image/s."),
   });
 
-  const onSubmit = (values) => console.log("New Product Added Form:  ", values);
+  const onSubmit = (values, isSubmitting) => {
+    // console.log("NEW PRODUCT VALUES:",values)
+    console.log("IMAGES :",values.Images)
+    console.log("TYPE OF IMAGE", typeof(values.Images))
+    console.log(values);
+
+    let imagesArray = [...values.Images] // convert filesArray into JavaScript Array using spread operator!
+    // return (console.log("New Product Added Form:  ", values, values.productImages, images.map(img => img.name)))
+    dispatch(createProduct({
+    Title: values.productTitle ,
+    Description: values.productDescription,
+    Price: values.productPrice,
+    CountInStock: values.countInStock,
+    Category: values.productCategory,
+    Sizes: values.productSizes,
+    Colors: values.productColors,
+    Genders: values.productGender,
+    Shipping: values.productShippingInfo,
+    SizeFit: values.productSizeFit,
+    Images: values.Images,
+    }))
+  } 
 
   return (
     <Formik
@@ -123,6 +147,17 @@ const NewProductForm = () => {
             autoComplete="product-price"
             label="Product Price"
             name="productPrice"
+            variant="outlined"
+            size="medium"
+          />
+          <FormikControl
+            control="materialInput"
+            className="FormNewProduct"
+            type="number"
+            fullWidth
+            autoComplete="product-count-in-stock"
+            label="Counn In Stock"
+            name="countInStock"
             variant="outlined"
             size="medium"
           />
@@ -199,15 +234,15 @@ const NewProductForm = () => {
             variant="outlined"
             size="medium"
           />
-          {/* <FormikControl
-            control="input"
+          <FormikControl
+            control="inputImages"
             className="FormNewProduct"
             type="file"
             autoComplete="product-images"
             label="Product Images"
-            name="productImages"
+            name="Images"
             accept="image/*"
-          /> */}
+          />
           <div
             style={{
               display: "flex",

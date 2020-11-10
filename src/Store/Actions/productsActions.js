@@ -109,3 +109,37 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     });
   }
 };
+
+/* Create Product */
+
+export const createProduct = (product) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: actionTypes.PRODUCT_CREATE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(`http://localhost:5000/api/products/`, product, config);
+
+    console.log(data)
+    dispatch({
+      type: actionTypes.PRODUCT_CREATE_SUCCESS,
+      payload: data
+    });
+
+  } catch (err) {
+    dispatch({
+      type: actionTypes.PRODUCT_CREATE_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
