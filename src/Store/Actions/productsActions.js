@@ -127,7 +127,8 @@ export const createProduct = (product) => async (dispatch, getState) => {
     };
     const { data } = await axios.post(`http://localhost:5000/api/products/`, product, config);
 
-    console.log(data)
+    console.log("New Product DATA :", data)
+    console.log("New Product PRODUCT :", product)
     dispatch({
       type: actionTypes.PRODUCT_CREATE_SUCCESS,
       payload: data
