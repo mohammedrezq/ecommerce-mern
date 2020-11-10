@@ -12,6 +12,7 @@ import MaterialSelect from './MaterialSelect';
 import MaterialSelectCountry from './MaterialSelectCountry';
 import MaterialSelectCategories from './MaterialSelectCategories';
 import RadioButtonsArray from './RadioButtonsArray';
+import InputImages from './InputImages';
 
 const FormControl = (props) =>{
     const { control, ...rest } = props
@@ -22,6 +23,7 @@ const FormControl = (props) =>{
         case 'radio': return <RadioButtons {...rest} />
         case 'checkbox': return <CheckboxGroup {...rest} />
         case 'date': return <DatePicker {...rest} />
+        case 'inputImages': return <InputImages {...rest} />
         case 'materialInput': return <MaterialInput {...rest} />
         case 'materialTextarea': return <MaterialTextarea {...rest} />
         case 'materialSelect': return <MaterialSelect {...rest} />
