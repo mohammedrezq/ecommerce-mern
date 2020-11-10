@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
 
 import { catsList } from "../../Store/Actions/categoryActions";
 
@@ -13,7 +14,7 @@ import PorductGender from "../../Shared/Assets/ProductGender";
 
 import FormikControl from "../../Shared/FormElements/FormikControl";
 import Button from "../../Shared/UIElements/Button";
-import "./NewProductForm.css"
+import "./NewProductForm.css";
 import { createProduct } from "../../Store/Actions/productsActions";
 
 const NewProductForm = () => {
@@ -81,31 +82,61 @@ const NewProductForm = () => {
     productSizeFit: Yup.string().required(
       "Please enter info about size fit for the product."
     ),
-    Images: Yup.mixed().required("Please enter a valid image/s."),
+    Images: Yup.string().required("Please enter a valid image/s."),
   });
+
 
   const onSubmit = (values, isSubmitting) => {
     // console.log("NEW PRODUCT VALUES:",values)
-    console.log("IMAGES :",values.Images)
-    console.log("TYPE OF IMAGE", typeof(values.Images))
+    console.log("IMAGES :", values.Images);
+    // console.log("TYPE OF IMAGE", typeof(values.Images))
     console.log(values);
+    const imageUploadHandler = async (name, event) => {
+      // setFieldValue("name", event.target.files[0]);
+      const formData = new FormData();
+      formData.append("Images", values.Images);
+      // console.log(name)
+      // console.log(event.currentTarget.files)
+  
+    try {
+        const config  = {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+  
+        const { data } = await axios.post('http://localhost:5000/api/uploads', formData, config)
+        console.log("Images Data", `http://localhost:5000${data}`);
+        console.log(data);
+          dispatch(
+            createProduct({
+              Title: values.productTitle,
+              Description: values.productDescription,
+              Price: values.productPrice,
+              CountInStock: values.countInStock,
+              Category: values.productCategory,
+              Sizes: values.productSizes,
+              Colors: values.productColors,
+              Genders: values.productGender,
+              Shipping: values.productShippingInfo,
+              SizeFit: values.productSizeFit,
+              Images: `http://localhost:5000${data}`,
+              })
+          );
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
-    let imagesArray = [...values.Images] // convert filesArray into JavaScript Array using spread operator!
+
+  imageUploadHandler("Images", values.Images)
+
+    // let data = new FormData();
+    // data.append("Images", values.Images)
+
+    let imagesArray = [...values.Images]; // convert filesArray into JavaScript Array using spread operator!
     // return (console.log("New Product Added Form:  ", values, values.productImages, images.map(img => img.name)))
-    dispatch(createProduct({
-    Title: values.productTitle ,
-    Description: values.productDescription,
-    Price: values.productPrice,
-    CountInStock: values.countInStock,
-    Category: values.productCategory,
-    Sizes: values.productSizes,
-    Colors: values.productColors,
-    Genders: values.productGender,
-    Shipping: values.productShippingInfo,
-    SizeFit: values.productSizeFit,
-    Images: values.Images,
-    }))
-  } 
+  };
 
   return (
     <Formik
@@ -114,7 +145,14 @@ const NewProductForm = () => {
       onSubmit={onSubmit}
     >
       {(formik) => (
-        <Form style={{padding: "15px", borderRadius:"10px", border: "1px solid #111", marginBottom:"30px"}}>
+        <Form
+          style={{
+            padding: "15px",
+            borderRadius: "10px",
+            border: "1px solid #111",
+            marginBottom: "30px",
+          }}
+        >
           <FormikControl
             control="materialInput"
             className="FormNewProduct"
@@ -234,7 +272,7 @@ const NewProductForm = () => {
             variant="outlined"
             size="medium"
           />
-          <FormikControl
+          {/* <FormikControl
             control="inputImages"
             className="FormNewProduct"
             type="file"
@@ -242,13 +280,24 @@ const NewProductForm = () => {
             label="Product Images"
             name="Images"
             accept="image/*"
-          />
+          /> */}
+          <div>
+            <input
+              multiple
+              accept="image/*"
+              id="file"
+              name="Images"
+              type="file"
+              onChange={(event) => formik.setFieldValue("Images", event.target.files[0])}
+              className="form-control"
+            />
+          </div>
           <div
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "15px 0 10px 0"
+              margin: "15px 0 10px 0",
             }}
           >
             <Button
