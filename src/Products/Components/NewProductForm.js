@@ -36,7 +36,7 @@ const NewProductForm = () => {
   const categoriesList = useSelector((state) => state.categoriesList);
   const { loading, error, cats } = categoriesList;
 
-  // console.log(cats);
+  console.log(cats);
 
   // console.log(cats && cats.map((categroy) => categroy.categoryTitle));
 

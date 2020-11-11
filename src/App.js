@@ -42,6 +42,7 @@ import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
 import CategoryDetailsUsersPage from "./Cats/Pages/CategoryDetailsUsersPage";
 import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
 import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductPage";
+import AddProductForm from "./Products/Components/AddProductForm";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -106,6 +107,9 @@ function App() {
           </Route>
           <Route path="/new-product" exact>
             <CreateProductPage />
+          </Route>
+          <Route path="/add-product" exact>
+            <AddProductForm />
           </Route>
           <Route path="/modaltesting" exact>
             <TheModal />
