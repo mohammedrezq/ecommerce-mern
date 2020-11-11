@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
@@ -18,6 +18,7 @@ import "./NewProductForm.css";
 import { createProduct } from "../../Store/Actions/productsActions";
 
 const NewProductForm = () => {
+  const [img, setImg] = useState([]) 
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -94,9 +95,10 @@ const NewProductForm = () => {
     const imageUploadHandler = async (name, event) => {
       // setFieldValue("name", event.target.files[0]);
       const formData = new FormData();
-      formData.append("Images", values.Images);
+      formData.append("Images", values.Images[0]);
       // console.log(name)
       // console.log(event.currentTarget.files)
+      console.log("IMAGES :", values.Images);
   
     try {
         const config  = {
@@ -105,7 +107,7 @@ const NewProductForm = () => {
             }
         }
   
-        const { data } = await axios.post('http://localhost:5000/api/uploads', formData, config)
+        const { data } = await axios.post('http://localhost:5000/api/uploads/', formData, config)
         console.log("Images Data", `http://localhost:5000${data}`);
         console.log(data);
           dispatch(
@@ -120,7 +122,7 @@ const NewProductForm = () => {
               Genders: values.productGender,
               Shipping: values.productShippingInfo,
               SizeFit: values.productSizeFit,
-              Images: `http://localhost:5000${data}`,
+              Images: [`http://localhost:5000${data}`],
               })
           );
     } catch (error) {
@@ -283,12 +285,12 @@ const NewProductForm = () => {
           /> */}
           <div>
             <input
-              multiple
+              // multiple
               accept="image/*"
               id="file"
               name="Images"
               type="file"
-              onChange={(event) => formik.setFieldValue("Images", event.target.files[0])}
+              onChange={(event) => formik.setFieldValue("Images", event.target.files)}
               className="form-control"
             />
           </div>
