@@ -105,7 +105,7 @@ function App() {
           <Route path="/formcontainer" exact>
             <FormContainer />
           </Route>
-          <Route path="/new-product" exact>
+          <Route path="/admin/new-product" exact>
             <CreateProductPage />
           </Route>
           <Route path="/add-product" exact>
