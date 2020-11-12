@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
+import Axios from "axios";
 
 import AddIcon from "@material-ui/icons/Add";
-import Axios from "axios";
+import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
+
+import * as classes from "./FileUpload.module.css";
 
 const FileUpload = (props) => {
 
     const [Images, setImages] = useState([])
 
+
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
+    // console.log(userInfo)
+
     const onDrop = (files) =>{
         let formData = new FormData();
         const config  = {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${userInfo.token}`,
             }
         }
 
@@ -48,36 +59,29 @@ const FileUpload = (props) => {
 
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-      <Dropzone onDrop={onDrop} multiple={false} maxSize={120000000}>
+    <div className={classes.images_upload_area}>
+      <h3 style={{display: "flex", justifyContent:"center" , alignItems:"center"}}>Upload one image at a time</h3>
+      <Dropzone onDrop={onDrop} multiple maxSize={120000000}>
         {({ getRootProps, getInputProps }) => {
 
             return(
-          <div
-            style={{
-              width: "300px",
-              height: "240px",
-              border: "1px solid #ccc",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
+          <div className={classes.drop_zone_area}
             {...getRootProps()}
           >
             <input {...getInputProps()} />
-            <AddIcon style={{ fontSize: "3rem" }} />
+            <CloudUploadOutlinedIcon style={{fontSize: "7rem"}} className={classes.upload_Icon} />
           </div>
             )
         }}
       </Dropzone>
 
 
-        <div style={{ display: "flex", width: "350px", height: "240px", overflowX:"scroll" }} >
+        <div className={classes.images_display_area} >
 
             {Images.map((image, index) => {
                 return(
-            <div key={index} onClick={() => onDelete(image)}>
-                <img style={{ minWidth:"300px", width:"300px", height: "240px" }} src={image} alt={`productImage-${index}`} />
+            <div className={classes.image_container} key={index} onDoubleClick={() => onDelete(image)}> {/* Remove Image by double click on the image */}
+                <img className={classes.displayed_Images} src={image} alt={`productImage-${index}`} />
             </div>
                 )
             })}
