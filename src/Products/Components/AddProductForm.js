@@ -37,9 +37,11 @@ const AddProductForm = () => {
   const [CountInStock, setCountInStock] = useState(0)
   const [Category, setCategory] = useState("5f83b4d65528ac7b20cc1641") // Set default category in case of forgetting [it is essential data for submitting new product]
   const [Size, setSize] = useState([])
+  const [checkedSizes, setCheckedSizes] = useState(false)
   const [Color, setColor] = useState([])
+  const [checkedColors, setCheckedColors] = useState(false)
   const [Gender, setGender] = useState([])
-  const [checked, setChecked] = useState(false)
+  const [checkedGenders, setCheckedGenders] = useState(false)
   const [Shipping, setShipping] = useState("")
   const [sizeFit, setSizeFit] = useState("")
   const [Images, setImages] = useState([]) 
@@ -82,14 +84,45 @@ const AddProductForm = () => {
     setCategory(e.currentTarget.value);
   }
   const onSizeChange = (e) => {
-    setSize([...Size, e.currentTarget.value]);
+    let TheSizesArray = [...Size, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    console.log("THE SIZES",Size)
+    let SizesChecked = e.currentTarget.checked;
+    if(Size.includes(e.currentTarget.value)) {
+      TheSizesArray = TheSizesArray.filter((size) =>  { 
+        // console.log("TheSize",size) 
+        return (size !== e.currentTarget.value)
+      });
+      setSize(TheSizesArray);
+      setCheckedSizes(SizesChecked);
+    }
+    // console.log(TheSizesArray)
+    setSize(TheSizesArray);
+    setCheckedSizes(SizesChecked);
+
   }
+  console.log(Size)
+  // console.log(checked)
+
   const onColorChange = (e) => {
-    setColor([...Color, e.currentTarget.value]);
+    let TheColorsArray = [...Color, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    // console.log("THE COLORS",Color)
+    if(Color.includes(e.currentTarget.value)) {
+      TheColorsArray = TheColorsArray.filter(color => color !== e.currentTarget.value);
+    }
+    setColor(TheColorsArray)
   }
+
+  // console.log(Color)
+
   const onGenderChange = (e) => {
-    setGender([...Gender, e.currentTarget.value]);
+    let TheGendersArray = [...Gender, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    // console.log("THE GENDERS",Gender)
+    if(Gender.includes(e.currentTarget.value)){
+      TheGendersArray = TheGendersArray.filter(gender => gender !== e.currentTarget.value);
+    }
+    setGender(TheGendersArray);
   }
+  // console.log(Gender)
   const onShippingChange = (e) => {
     setShipping(e.currentTarget.value);
   }
@@ -158,7 +191,7 @@ const AddProductForm = () => {
           {Sizes.map((size, index) => {
             return(
               <FormControlLabel key={index}
-                control={<Checkbox id={size.value} checked={checked[size.value]} onChange={onSizeChange} value={size.value} name={size.value} />}
+                control={<Checkbox id={size.value} checked={checkedSizes[size.key]} onChange={onSizeChange} value={size.value} name={size.value} />}
                 label={size.key}
               />
             )
@@ -173,7 +206,7 @@ const AddProductForm = () => {
           {Colors.map((color, index) => {
             return(
               <FormControlLabel key={index}
-                control={<Checkbox id={color.value} checked={checked[color.value]} onChange={onColorChange} value={color.value} name={color.value} />}
+                control={<Checkbox id={color.value} checked={checkedColors[color.value]} onChange={onColorChange} value={color.value} name={color.value} />}
                 label={color.key}
               />
             )
@@ -188,7 +221,7 @@ const AddProductForm = () => {
           {PorductGender.map((gender, index) => {
             return(
               <FormControlLabel key={index}
-                control={<Checkbox id={gender.value} checked={checked[gender.value]} onChange={onGenderChange} value={gender.value} name={gender.value} />}
+                control={<Checkbox id={gender.value} checked={checkedGenders[gender.value]} onChange={onGenderChange} value={gender.value} name={gender.value} />}
                 label={gender.key}
               />
             )
