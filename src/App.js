@@ -42,7 +42,9 @@ import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
 import CategoryDetailsUsersPage from "./Cats/Pages/CategoryDetailsUsersPage";
 import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
 import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductPage";
+import UpdateProductPage from "./Products/Pages/UpdateProductPage/UpdateProductPage";
 import AddProductForm from "./Products/Components/AddProductForm";
+import UpdateProductForm from "./Products/Components/UpdateProductForm";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -107,6 +109,9 @@ function App() {
           </Route>
           <Route path="/admin/new-product" exact>
             <CreateProductPage />
+          </Route>
+          <Route path="/admin/product/:pid/edit" exact>
+            <UpdateProductPage />
           </Route>
           <Route path="/add-product" exact>
             <AddProductForm />

@@ -38,6 +38,8 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
+
+// Get Product Details By ID
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.PRODUCT_DETAILS_REQUEST });
@@ -127,8 +129,8 @@ export const createProduct = (product) => async (dispatch, getState) => {
     };
     const { data } = await axios.post(`http://localhost:5000/api/products/`, product, config);
 
-    console.log("New Product DATA :", data)
-    console.log("New Product PRODUCT :", product)
+    // console.log("New Product DATA :", data)
+    // console.log("New Product PRODUCT :", product)
     dispatch({
       type: actionTypes.PRODUCT_CREATE_SUCCESS,
       payload: data

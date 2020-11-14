@@ -66,6 +66,8 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
+  console.log(product)
+
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
   const { err, loadingStatus, cartProducts } = productToCart;
   // const productArr =cartProducts.map(p => p);
