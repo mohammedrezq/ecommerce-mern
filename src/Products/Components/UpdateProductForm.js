@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 
 import { catsList } from "../../Store/Actions/categoryActions";
@@ -20,6 +20,7 @@ import PorductGender from "../../Shared/Assets/ProductGender"; //Genders
 
 import FileUpload from "../../Shared/Utils/FileUpload"; //Genders
 import Button from "../../Shared/UIElements/Button";
+import Message from "../../Shared/UIElements/Message";
 
 import * as classes from "../../Shared/Utils/FileUpload.module.css";
 // import "./NewProductForm.css";
@@ -103,7 +104,7 @@ const UpdateProductForm = () => {
 
   // console.log(cats)
 
-  const submitNewProductHandler = (e) => {
+  const submitUpdateProductHandler = (e) => {
     e.preventDefault();
     /* Dispatch Update Product */
 
@@ -210,9 +211,14 @@ const UpdateProductForm = () => {
     // props.refreshFunction(newImages)
   };
 
+  
+  const productUpdate = useSelector(state => state.productUpdate);
+
+  const { success: successUpdate, loading: loadingUpdate, error: errorUpdate } = productUpdate;
+
   return (
     <>
-      <form onSubmit={submitNewProductHandler}>
+      <form onSubmit={submitUpdateProductHandler}>
         <TextField
           id="title_new_product"
           label="Title"
@@ -392,9 +398,12 @@ const UpdateProductForm = () => {
           })}
         </div>
 
-        <Button onClick={submitNewProductHandler} type="submit">
-          Submit
-        </Button>
+        <Button onClick={submitUpdateProductHandler} type="submit">
+        {loadingUpdate ? "processing" : "Update" }
+          </Button>
+          {errorUpdate && <Message>Something went wrong: {errorUpdate}</Message>}
+          {successUpdate && <Message severity="success">Product Updated Successfully! Go Back to <Link to="/admin/productlist">Products List</Link></Message>}
+
       </form>
     </>
   );

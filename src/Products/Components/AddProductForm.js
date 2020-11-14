@@ -29,6 +29,7 @@ import FileUpload from "../../Shared/Utils/FileUpload"; //Genders
 import Button from "../../Shared/UIElements/Button";
 // import "./NewProductForm.css";
 import { createProduct } from "../../Store/Actions/productsActions";
+import Message from "../../Shared/UIElements/Message";
 
 const AddProductForm = () => {
   const [Title, setTitle] = useState("")
@@ -85,7 +86,7 @@ const AddProductForm = () => {
   }
   const onSizeChange = (e) => {
     let TheSizesArray = [...Size, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    console.log("THE SIZES",Size)
+    // console.log("THE SIZES",Size)
     let SizesChecked = e.currentTarget.checked;
     if(Size.includes(e.currentTarget.value)) {
       TheSizesArray = TheSizesArray.filter((size) =>  { 
@@ -93,11 +94,11 @@ const AddProductForm = () => {
         return (size !== e.currentTarget.value)
       });
       setSize(TheSizesArray);
-      setCheckedSizes(SizesChecked);
+      // setCheckedSizes(SizesChecked);
     }
     // console.log(TheSizesArray)
     setSize(TheSizesArray);
-    setCheckedSizes(SizesChecked);
+    // setCheckedSizes(SizesChecked);
 
   }
   console.log(Size)
@@ -155,6 +156,12 @@ const AddProductForm = () => {
     );
     console.log("New Product Submitted");
   }
+
+
+  const productCreate = useSelector(state => state.productCreate);
+
+  const { success: successCreate, loading: loadingCreate, error: errorCreate } = productCreate;
+
 
   // console.log(Color)
   // console.log(Size)
@@ -237,8 +244,10 @@ const AddProductForm = () => {
           <FileUpload refreshFunction={updateImages} />
 
           <Button onClick={submitNewProductHandler} type="submit">
-            Submit
+            {loadingCreate ? "processing" : "Submit" }
           </Button>
+          {errorCreate && <Message>Something went wrong: {errorCreate}</Message>}
+          {successCreate && <Message severity="success">Product created Successfully! Go Back to <Link to="/admin/productlist">Products List</Link></Message>}
 
     </form>    
     </>
