@@ -26,6 +26,7 @@ import * as classes from "../../Shared/Utils/FileUpload.module.css";
 import {
   createProduct,
   listProductDetails,
+  updateProduct
 } from "../../Store/Actions/productsActions";
 
 const UpdateProductForm = () => {
@@ -106,21 +107,22 @@ const UpdateProductForm = () => {
     e.preventDefault();
     /* Dispatch Update Product */
 
-    // dispatch(
-    //   createProduct({
-    //     Title: Title,
-    //     Description: Description,
-    //     Price: Price,
-    //     CountInStock: CountInStock,
-    //     Category: Category,
-    //     Sizes: Size,
-    //     Colors: Color,
-    //     Genders: Gender,
-    //     Shipping: Shipping,
-    //     SizeFit: sizeFit,
-    //     Images: Images,
-    //     })
-    // );
+    dispatch(
+      updateProduct({
+        id: theProduct._id,
+        Title: Title,
+        Description: Description,
+        Price: Price,
+        CountInStock: CountInStock,
+        Category: Category,
+        Sizes: Size,
+        Colors: Color,
+        Genders: Gender,
+        Shipping: Shipping,
+        SizeFit: sizeFit,
+        Images: Images,
+        })
+    );
 
     console.log("Updated Product Submitted");
   };
