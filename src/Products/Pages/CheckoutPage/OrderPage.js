@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { PayPalButton } from  "react-paypal-button-v2";
 
@@ -14,7 +14,8 @@ import Spinner from "../../../Shared/UIElements/Spinner";
 // import "./paymentMethod.css";
 import "./OrderPage.css";
 import HrElemnent from "../../../Shared/UIElements/HrElement";
-import { getOrderDetails, payOrder, orderReset } from "../../../Store/Actions/orderActions";
+import { getOrderDetails, payOrder, orderReset, orderDeliverReset, deliverOrder } from "../../../Store/Actions/orderActions";
+import Button from "../../../Shared/UIElements/Button";
 // import { ORDER_PAY_RESET } from "../../../Store/Actions/actionTypes"
 
 const useStyles = makeStyles((theme) => ({
@@ -52,11 +53,15 @@ const OrderPage = () => {
   const [sdkReady, setSdkReady] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const params = useParams();
   // console.log(params);
   const orderId = params.oid; // :oid is the order id set on App.js for order ID
   // console.log(orderId);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
@@ -65,9 +70,17 @@ const OrderPage = () => {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading:loadingPay, success:successPay } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading:loadingDeliver, success:successDeliver } = orderDeliver;
+
   // console.log(successPay)
   // console.log(loadingPay);
   useEffect(() => {
+
+    if(!userInfo) {
+      history.push("/login")
+    }
+
     const addPayPalScript = async() => {
       const { data: clientId } = await axios.get("http://localhost:5000/api/config/paypal");
       // console.log(clientId)
@@ -85,9 +98,10 @@ const OrderPage = () => {
     // addPayPalScript()
 
     // addPaypalScript()
-    if(!order || successPay) {
+    if(!order || successPay || successDeliver ) {
       // dispatch( {type: ORDER_PAY_RESET} )
-      dispatch(orderReset()) // Dispatch order Reset
+      dispatch(orderReset()) // Dispatch order Paid Reset
+      dispatch(orderDeliverReset()) // Dispatch order Deliver Reset
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if(!window.paypal) {
@@ -97,7 +111,7 @@ const OrderPage = () => {
       }
     }
 
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, successDeliver, order]);
 
 
   const successPaymentHandler = (paymentResult) => {
@@ -105,6 +119,10 @@ const OrderPage = () => {
     dispatch(payOrder(orderId, paymentResult))
   }
 
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
 
   // console.log(sdkReady)
 
@@ -368,6 +386,16 @@ const OrderPage = () => {
                                 {!sdkReady ? <Spinner />: (
                                   <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
                                 )}
+                              </Grid>
+                            </Grid>
+                            )}
+                            {loadingDeliver && <Spinner />}
+                            {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                              <Grid container>
+                              <Grid item sm={12}>
+                               <Button type="button" onClick={deliverHandler} style={{backgroundColor: "#111", color: "#fff", border: "1px solid #111", width: "100%" }} >
+                                 Mark As Delivered
+                               </Button>
                               </Grid>
                             </Grid>
                             )}
