@@ -125,9 +125,9 @@ const TopNavbar = (props) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleAdminMenuClose}>
                   <MenuList id="menu-admin_list-grow" onKeyDown={handleListKeyDown}>
-                  <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userlist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>User List</MenuItem></Link>
-                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderList"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Order List</MenuItem></Link>
-                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productList"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Product List</MenuItem></Link>
+                  <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/userslist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>User List</MenuItem></Link>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/orderslist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Order List</MenuItem></Link>
+                    <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/productslist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Product List</MenuItem></Link>
                     <Link style={{color: "inherit", textDecoration:"inherit"}} to="/admin/categorieslist"><MenuItem style={{fontSize:"0.88rem"}} onClick={handleAdminMenuClose}>Categories List</MenuItem></Link>
                   </MenuList>
                 </ClickAwayListener>

@@ -46,6 +46,7 @@ import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductP
 import UpdateProductPage from "./Products/Pages/UpdateProductPage/UpdateProductPage";
 import AddProductForm from "./Products/Components/AddProductForm";
 import UpdateProductForm from "./Products/Components/UpdateProductForm";
+import StarRating from "./Shared/UIElements/StarRating";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -69,10 +70,10 @@ function App() {
           <Route path="/payment" exact>
             <PaymentPage />
           </Route>
-          <Route path="/admin/userlist" exact>
+          <Route path="/admin/userslist" exact>
             <UsersListPage />
           </Route>
-          <Route path="/admin/productlist" exact>
+          <Route path="/admin/productslist" exact>
             <ProductListPage />
           </Route>
           <Route path="/admin/category" exact>
@@ -99,7 +100,7 @@ function App() {
           <Route path="/order/:oid" exact>
             <OrderPage />
           </Route>
-          <Route path="/admin/ordersList" exact>
+          <Route path="/admin/orderslist" exact>
             <OrdersListPage />
           </Route>
           {/* <Route path="/accordion" exact>
@@ -137,6 +138,9 @@ function App() {
           </Route>
           <Route path="/login" exact>
             <LoginPage />
+          </Route>
+          <Route path="/star" exact>
+            <StarRating />
           </Route>
         </Switch>
       </Router>

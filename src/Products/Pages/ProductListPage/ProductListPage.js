@@ -249,7 +249,7 @@ const ProductListPage = () => {
                                   </EditIcon>
                                 </Button>
                               </Link>
-                              <Link to={"/admin/productlist"}>
+                              <Link to={"/admin/productslist"}>
                                 <Button
                                   onClick={() =>
                                     deleteProductHandler(product._id)

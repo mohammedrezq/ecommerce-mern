@@ -56,7 +56,7 @@ const ProfilePage = () => {
   const ordersListUser = useSelector((state) => state.ordersListUser);
   const { loading: loadingOrders, orders, error: errorOrders } = ordersListUser;
 
-  console.log(orders);
+  // console.log(orders);
   const userDetails = useSelector((state) => state.userDetails);
 
   const { loading, error, user } = userDetails;
@@ -74,7 +74,7 @@ const ProfilePage = () => {
     }
   }, [dispatch, history, userInfo, user]);
 
-  console.log(typeof(orders))
+  // console.log(typeof(orders))
   // console.log(loadingOrders)
   // console.log(orders)
   return (
