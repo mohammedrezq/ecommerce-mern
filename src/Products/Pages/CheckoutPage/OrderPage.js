@@ -13,7 +13,7 @@ import Message from "../../../Shared/UIElements/Message";
 import Spinner from "../../../Shared/UIElements/Spinner";
 // import "./paymentMethod.css";
 import "./OrderPage.css";
-import HrElemnent from "../../../Shared/UIElements/HrElement";
+import HrElement from "../../../Shared/UIElements/HrElement";
 import { getOrderDetails, payOrder, orderReset, orderDeliverReset, deliverOrder } from "../../../Store/Actions/orderActions";
 import Button from "../../../Shared/UIElements/Button";
 // import { ORDER_PAY_RESET } from "../../../Store/Actions/actionTypes"
@@ -347,7 +347,7 @@ const OrderPage = () => {
                         </Grid>
                       </Grid>
                       {/* <hr className={classes.cartSummaryHr} style={{ margin: "12px"}}/> */}
-                      <HrElemnent
+                      <HrElement
                         color="rgba(0,0,0,0.15)"
                         height="1px"
                         width="100%"

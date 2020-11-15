@@ -163,3 +163,13 @@ button.product__addition.product_add_to_whishlist {
   background-color: black;
   color: white;
 }
+
+input[type="radio"] {
+  display: none;
+}
+
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+  font-size: 1.9rem;
+}

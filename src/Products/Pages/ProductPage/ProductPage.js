@@ -3,7 +3,11 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 /* Redux */
-import { listProductDetails } from "../../../Store/Actions/productsActions";
+import {
+  listProductDetails,
+  createProductReview,
+} from "../../../Store/Actions/productsActions";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../../Store/Actions/actionTypes";
 import {
   addProductToCart,
   // setProductSizeAction,
@@ -23,16 +27,23 @@ import {
   Modal,
   Backdrop,
 } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloseIcon from "@material-ui/icons/Close";
+import { FaStar } from 'react-icons/fa';
 
 import Button from "../../../Shared/UIElements/Button";
 import "./ProductPage.css";
 import Spinner from "../../../Shared/UIElements/Spinner";
+import HrElement from "../../../Shared/UIElements/HrElement";
 import Message from "../../../Shared/UIElements/Message";
 import Fade from "../../../Shared/UIElements/Fade";
+
+import Rating from "../../../Shared/UIElements/Rating";
+
 import { array } from "yup";
 import { useField } from "formik";
 // import Backdrop from "../../../Shared/UIElements/Backdrop";
@@ -51,6 +62,10 @@ const ProductPage = (props) => {
   const [qty, setQty] = useState("1");
   const [size, setSize] = useState("");
   const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [TitleReview, setTitleReview] = useState("");
+  const [CommentReview, setCommentReview] = useState("");
+  const [hover, setHover] = useState(null);
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -66,7 +81,17 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
-  console.log(product)
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const productCreateReview = useSelector((state) => state.productCreateReview);
+  const {
+    error: errorProductReview,
+    loading: loadingProductReview,
+    success: successProductReview,
+  } = productCreateReview;
+
+  // console.log(product);
 
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
   const { err, loadingStatus, cartProducts } = productToCart;
@@ -80,6 +105,7 @@ const ProductPage = (props) => {
   const leproduct = product.product; // get product from the product from the payload!!!
 
   // console.log(leproduct.Reviews);
+  // console.log(leproduct);
 
   let productQty = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   let productsCountInStock = [...Array(leproduct.CountInStock).keys()];
@@ -146,7 +172,7 @@ const ProductPage = (props) => {
     setOpen(false);
   };
 
-  setTimeout(handleClose, 7000) // Close the Modal after `7` Seconds from submit
+  setTimeout(handleClose, 7000); // Close the Modal after `7` Seconds from submit
   // let ItemsInCart;
   // const arr = JSON.parse(localStorage.getItem("cartProducts"));
   // ItemsInCart= arr.length + " items"
@@ -157,6 +183,24 @@ const ProductPage = (props) => {
     // Handle View Bag (Cart) and Checkout (Checkout) Buttons
     history.push(item);
   };
+
+
+  const onTitleReveiwChange = (e) =>{
+    setTitleReview(e.target.value);
+  } 
+  const onCommentReview = (e) =>{
+    setCommentReview(e.target.value);
+  } 
+
+  const submitReviewHandler = (e) =>{
+    e.preventDefault();
+    dispatch(createProductReview(id, {
+      title: TitleReview,
+      comment: CommentReview,
+      rating
+    }))
+    console.log("Review Submitted")
+  }
 
   return (
     <>
@@ -186,6 +230,10 @@ const ProductPage = (props) => {
               <h2>{leproduct.Title}</h2>
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
+              <Rating
+                value={leproduct.Rating}
+                text={`${leproduct.NumReviews} Reviews`}
+              />
             </div>
             {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
             {/* <div className={`product-extra-information__Sizes`}>
@@ -486,6 +534,90 @@ const ProductPage = (props) => {
                   <Typography>{leproduct.Shipping}</Typography>
                 </AccordionDetails>
               </Accordion>
+              <Accordion
+                expanded={expanded === "panel4"}
+                onChange={handleAccordionChange("panel4")}
+                style={{ margin: "0" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon style={{ margin: "0" }} />}
+                  aria-controls="panel4a-content"
+                  id="panel4a-header"
+                  style={{display: "flex", justifyContent: "space-between"}}
+                >
+                  <div style={{flex: "1", fontSize: "1.4rem", textAlign:"left"}}>Reviews</div> <Rating  style={{flex: "1", textAlign:"right"}}
+                value={leproduct.Rating} />
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{leproduct.Reviews.length === 0 && (
+                <Message severity="info">No Reviews</Message>
+              )}
+              {leproduct.Reviews.map((review, index) => {
+                return (
+                  <div key={index} className={`productReview review_${index+1}`}>
+                    <span><strong>{`${review.firstName} ${review.lastName}`}</strong><Rating value={review.rating} /></span>
+                <div>{review.createdAt.substring(0,10)}</div>
+                    <strong>{review.title}</strong>
+                    <div>{review.comment}</div>
+                    <HrElement
+                      color="rgba(0,0,0,0.15)"
+                      height=".1px"
+                      width="100%"
+                      border="0"
+                    />
+                  </div>
+                );
+              })}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            </div>
+            <div className="product-reviews">
+              <h2>Reviews</h2>
+              {leproduct.Reviews.length === 0 && (
+                <Message severity="info">No Reviews</Message>
+              )}
+              {leproduct.Reviews.map((review, index) => {
+                return (
+                  <div key={index} className={`productReview review_${index+1}`}>
+                    <span><strong>{`${review.firstName} ${review.lastName}`}</strong><Rating value={review.rating} /></span>
+                <div>{review.createdAt.substring(0,10)}</div>
+                    <strong>{review.title}</strong>
+                    <div>{review.comment}</div>
+                    <HrElement
+                      color="rgba(0,0,0,0.15)"
+                      height=".1px"
+                      width="100%"
+                      border="0"
+                    />
+                  </div>
+                );
+              })}
+
+              <div>
+                <h3>Write a Review</h3>
+                {errorProductReview && (<Message severity="error">{errorProductReview}</Message>)}
+                {userInfo ? (<div></div>): <Message>Please <Link to="/login" >Login</Link> to write a review</Message>}
+                <form onSubmit={submitReviewHandler}>
+                <div>
+                  {[...Array(5)].map((star, index) => {
+                      const ratingValue = index + 1;
+
+                      return (
+                          <label key={index*2}>
+                          <input className="inputStarRating" type="radio" name="starRating" value={ratingValue} onClick={() => setRating(ratingValue)} />
+                          <FaStar onMouseEnter={ () => {setHover(ratingValue)}} onMouseLeave={ () =>{setHover(null)}} color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} className="star" />
+                          </label>
+                      )
+                  })}
+              </div>
+                <TextField id="review_title" label="Review Title" variant="outlined" fullWidth size="small" onChange={onTitleReveiwChange} value={TitleReview} />
+                <TextField id="review_comment" label="Review Comment" variant="outlined" fullWidth size="small" multiline rows="3" onChange={onCommentReview} value={CommentReview} />
+
+                  <Button style={{border: "#111", backgroundColor: "#111", width:"100%"}} type="submit" onClick={submitReviewHandler}>
+                    Submit Review
+                  </Button>
+                </form>
+              </div>
             </div>
           </Grid>
         </Grid>
