@@ -7,7 +7,7 @@ import {
   listProductDetails,
   createProductReview,
 } from "../../../Store/Actions/productsActions";
-import { PRODUCT_CREATE_REVIEW_RESET } from "../../../Store/Actions/actionTypes";
+import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_CREATE_REVIEW_SUCCESS } from "../../../Store/Actions/actionTypes";
 import {
   addProductToCart,
   // setProductSizeAction,
@@ -74,9 +74,26 @@ const ProductPage = (props) => {
   // console.log(id);
   const dispatch = useDispatch();
 
+  const productCreateReview = useSelector((state) => state.productCreateReview);
+  const {
+    error: errorProductReview,
+    loading: loadingProductReview,
+    success: successProductReview,
+  } = productCreateReview;
+
+
   useEffect(() => {
+
+    if(successProductReview) {
+      // alert("Review Submitted");
+      setRating(0);
+      setTitleReview("");
+      setCommentReview("");
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
+
     dispatch(listProductDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, successProductReview]);
 
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
@@ -84,12 +101,6 @@ const ProductPage = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const productCreateReview = useSelector((state) => state.productCreateReview);
-  const {
-    error: errorProductReview,
-    loading: loadingProductReview,
-    success: successProductReview,
-  } = productCreateReview;
 
   // console.log(product);
 
