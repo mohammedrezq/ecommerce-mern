@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useParams, useHistory } from 'react-router-dom'
 import { Grid } from "@material-ui/core";
 
 import ProductGrid from "../../Components/ProductGrid/ProductGrid";
@@ -19,16 +19,24 @@ import { listProducts } from "../../../Store/Actions/productsActions";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
+  
+  const keyword = useParams().keyword;
+  // console.log(keyword)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   // console.log(products)
-  const allProducts = products.products;
+    let allProducts;
+  if(products) {
+    allProducts = products.products;
+  } else {
+    history.push("/404")
+  }
   // console.log(allProducts)
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   const [isFilterToggled, setisFilterToggled] = useState(false);
 

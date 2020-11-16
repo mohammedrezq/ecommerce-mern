@@ -29,6 +29,7 @@ h1.main-navigation__title {
   float: right;
   padding: 0;
   margin-top: 7px;
+  margin-left: 26px;
 }
 
 .main-navigation__title {
@@ -46,6 +47,13 @@ h1.main-navigation__title {
 
 .main-navigation__drawer-nav {
   height: 100%;
+}
+
+.items_Header_Main_Navgiation {
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  align-content: space-between;
 }
 
 @media (min-width: 768px) {

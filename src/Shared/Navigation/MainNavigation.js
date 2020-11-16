@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Route } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import ReactResizeDetector from "react-resize-detector";
+import SearchBox from "../Search/SearchBox";
 
 /* Redux */
 import { connect, useSelector } from 'react-redux';
@@ -77,7 +78,7 @@ const MainNavigation = (props) => {
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
         {/* This check if drawer is open, if so on click on backdrop it will close the drawer */}
-        <MediaQuery query="(max-width: 768px)">
+        <MediaQuery query="(max-width: 767.9px)">
           {drawerIsOpen && <Backdrop menu onClick={closeDrawerHandler} />}
 
           <Drawer
@@ -106,12 +107,15 @@ const MainNavigation = (props) => {
             </svg>
           </Link>
         </h1>
-        <MediaQuery query="(max-width: 768px)">
-          <HamburgerButton onClick={openDrawerHandler} />
-        </MediaQuery>
+        <div className={`items_Header_Main_Navgiation`}>
+        <Route render={({ history }) => <SearchBox history={history} />} />
         <nav className="main-navigation__header-nav">
           <NavLinks number={arr && arr.length <= 9 ? arr.length : "9+"} to="/cart" />
         </nav>
+        <MediaQuery query="(max-width: 767.9px)">
+          <HamburgerButton onClick={openDrawerHandler} />
+        </MediaQuery>
+        </div>
       </MainHeader>
     </>
   );
