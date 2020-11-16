@@ -30,10 +30,6 @@
 
 .nav-links button {
   cursor: pointer;
-  border: 1px solid black;
-  color: red;
-  background: yellow;
-  padding: 0.5rem;
   font: inherit;
 }
 
@@ -41,11 +37,11 @@
   outline: none;
 }
 
-.nav-links button:hover,
+/* .nav-links button:hover,
 .nav-links button:active {
   background: black;
-  color: black;
-}
+  color: white;
+} */
 
 @media (min-width: 768px) {
   .nav-links {
@@ -61,17 +57,14 @@
     text-decoration: none;
   }
 
-  .nav-links button {
-    border: 5px solid yellowgreen;
-    color: black;
-    background: green;
+  /* .nav-links button {
+
   }
 
   .nav-links button:hover,
   .nav-links button:active {
-    background: red;
-    color: black;
-  }
+
+  } */
 }
 
 .activeNavLinkItem {

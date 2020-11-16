@@ -47,6 +47,7 @@ import UpdateProductPage from "./Products/Pages/UpdateProductPage/UpdateProductP
 import AddProductForm from "./Products/Components/AddProductForm";
 import UpdateProductForm from "./Products/Components/UpdateProductForm";
 import StarRating from "./Shared/UIElements/StarRating";
+import ErrorPage from "./Products/Pages/ErrorPage/ErrorPage";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -61,8 +62,14 @@ function App() {
           <Route path="/" exact>
             <ProductsPage />
           </Route>
+          <Route path="/search/:keyword" >
+            <ProductsPage />
+          </Route>
           <Route path="/product/:id" exact>
             <ProductPage />
+          </Route>
+          <Route path="/404" exact>
+            <ErrorPage />
           </Route>
           <Route path="/shipping" exact>
             <ShippingPage />

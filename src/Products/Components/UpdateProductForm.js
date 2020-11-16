@@ -27,7 +27,7 @@ import * as classes from "../../Shared/Utils/FileUpload.module.css";
 import {
   createProduct,
   listProductDetails,
-  updateProduct
+  updateProduct,
 } from "../../Store/Actions/productsActions";
 
 const UpdateProductForm = () => {
@@ -86,7 +86,6 @@ const UpdateProductForm = () => {
     }
   }, [dispatch, history, userInfo, theProduct]);
 
-
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(catsList());
@@ -122,7 +121,7 @@ const UpdateProductForm = () => {
         Shipping: Shipping,
         SizeFit: sizeFit,
         Images: Images,
-        })
+      })
     );
 
     console.log("Updated Product Submitted");
@@ -193,7 +192,7 @@ const UpdateProductForm = () => {
   };
 
   const updateImages = (newImages) => {
-    let newImagesArray = Images.concat(newImages)
+    let newImagesArray = Images.concat(newImages);
     let uniq = [...new Set(newImagesArray)]; // Unique array: https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
     setImages(uniq);
   };
@@ -211,10 +210,13 @@ const UpdateProductForm = () => {
     // props.refreshFunction(newImages)
   };
 
-  
-  const productUpdate = useSelector(state => state.productUpdate);
+  const productUpdate = useSelector((state) => state.productUpdate);
 
-  const { success: successUpdate, loading: loadingUpdate, error: errorUpdate } = productUpdate;
+  const {
+    success: successUpdate,
+    loading: loadingUpdate,
+    error: errorUpdate,
+  } = productUpdate;
 
   return (
     <>
@@ -272,9 +274,12 @@ const UpdateProductForm = () => {
           >
             {cats &&
               cats.map((category, index) => {
-                console.log(category)
                 return (
-                  <option key={index} value={category.id} defaultValue={category.id}>
+                  <option
+                    key={index}
+                    value={category.id}
+                    defaultValue={category.id}
+                  >
                     {category.categoryTitle}
                   </option>
                 );
@@ -295,7 +300,8 @@ const UpdateProductForm = () => {
                   control={
                     <Checkbox
                       id={size.value}
-                      checked={Size.indexOf(size.value) === -1 ? false :true}
+                      // checked={Sizes.inclues(size.value) ? true : false} "Same As indexOf(size.value) === -1 ?false: true"
+                      checked={Size.indexOf(size.value) === -1 ? false : true}
                       onChange={onSizeChange}
                       value={size.value}
                       name={size.value}
@@ -318,7 +324,8 @@ const UpdateProductForm = () => {
                   control={
                     <Checkbox
                       id={color.value}
-                      checked={Color.indexOf(color.value) === -1 ? false :true}
+                      // checked={Color.inclues(color.value) ? true : false} "Same As indexOf(color.value) === -1 ?false: true"
+                      checked={Color.indexOf(color.value) === -1 ? false : true}
                       onChange={onColorChange}
                       value={color.value}
                       name={color.value}
@@ -341,7 +348,10 @@ const UpdateProductForm = () => {
                   control={
                     <Checkbox
                       id={gender.value}
-                      checked={Gender.indexOf(gender.value) === -1 ? false :true}
+                      checked={
+                        // checked={Gender.inclues(gender.value) ? true : false} "Same As indexOf(gender.value) === -1 ?false: true"
+                        Gender.indexOf(gender.value) === -1 ? false : true
+                      }
                       onChange={onGenderChange}
                       value={gender.value}
                       name={gender.value}
@@ -399,11 +409,15 @@ const UpdateProductForm = () => {
         </div>
 
         <Button onClick={submitUpdateProductHandler} type="submit">
-        {loadingUpdate ? "processing" : "Update" }
-          </Button>
-          {errorUpdate && <Message>Something went wrong: {errorUpdate}</Message>}
-          {successUpdate && <Message severity="success">Product Updated Successfully! Go Back to <Link to="/admin/productlist">Products List</Link></Message>}
-
+          {loadingUpdate ? "processing" : "Update"}
+        </Button>
+        {errorUpdate && <Message>Something went wrong: {errorUpdate}</Message>}
+        {successUpdate && (
+          <Message severity="success">
+            Product Updated Successfully! Go Back to{" "}
+            <Link to="/admin/productlist">Products List</Link>
+          </Message>
+        )}
       </form>
     </>
   );
