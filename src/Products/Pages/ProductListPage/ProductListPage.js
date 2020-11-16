@@ -181,8 +181,8 @@ const ProductListPage = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {products.products &&
-                        products.products.map((product, index) => (
+                      {products &&
+                        products.map((product, index) => (
                           <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">
                               {`${index + 1}.`}
