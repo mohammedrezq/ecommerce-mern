@@ -31,7 +31,7 @@ const CategoryDetailsUsersPage = () => {
   console.log(errorCategoryDetails);
   console.log(loadingCategoryDetails);
 
-  const allProducts = products.products;
+  const allProducts = products;
   console.log(allProducts);
 
   useEffect(() => {

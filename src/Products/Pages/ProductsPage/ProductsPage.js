@@ -20,7 +20,6 @@ import { listProducts } from "../../../Store/Actions/productsActions";
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
   const keyword = useParams().keyword;
   // console.log(keyword)
   const productList = useSelector((state) => state.productList);
@@ -28,7 +27,8 @@ const ProductsPage = () => {
   // console.log(products)
     let allProducts;
   if(products) {
-    allProducts = products.products;
+    allProducts = products
+    console.log(products);
   } else {
     history.push("/404")
   }
