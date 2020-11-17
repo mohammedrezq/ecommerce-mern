@@ -27,12 +27,12 @@ const CategoryDetailsUsersPage = () => {
     category,
   } = categoryUsersDetails;
 
-  console.log(category);
-  console.log(errorCategoryDetails);
-  console.log(loadingCategoryDetails);
+  // console.log(category);
+  // console.log(errorCategoryDetails);
+  // console.log(loadingCategoryDetails);
 
   const allProducts = products;
-  console.log(allProducts);
+  // console.log(allProducts);
 
   useEffect(() => {
     dispatch(listProducts());
@@ -42,7 +42,7 @@ const CategoryDetailsUsersPage = () => {
   let productsInCategory;
   if (allProducts) {
     productsInCategory = allProducts.filter(
-      (productCat) => productCat.Category === catId
+      (productCat) => productCat.Category.includes(catId)
     ); // Check if product has the same the category
   }
   console.log(productsInCategory);
