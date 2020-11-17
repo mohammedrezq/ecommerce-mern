@@ -19,6 +19,63 @@ export const productListReducer = (state = { products: [] }, action) => {
     }
   }
   
+
+/* Reducer for Products List (ProductsPage By Highest Pirce) */
+export const productListHighestPriceReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+      case actionTypes.PRODUCT_LIST_HIGHEST_REQUEST:
+        return { loading: true, products: [] }
+      case actionTypes.PRODUCT_LIST_HIGHEST_SUCCESS:
+        return {
+          loading: false,
+          products: action.payload.products,
+          pages: action.payload.pages,
+          page: action.payload.page
+        }
+      case actionTypes.PRODUCT_LIST_HIGHEST_FAIL:
+        return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+
+/* Reducer for Products List (ProductsPage By Lowest Pirce) */
+export const productListLowestPriceReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+      case actionTypes.PRODUCT_LIST_LOWEST_REQUEST:
+        return { loading: true, products: [] }
+      case actionTypes.PRODUCT_LIST_LOWEST_SUCCESS:
+        return {
+          loading: false,
+          products: action.payload.products,
+          pages: action.payload.pages,
+          page: action.payload.page
+        }
+      case actionTypes.PRODUCT_LIST_LOWEST_FAIL:
+        return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+  
+
+/* Reducer for Top Rated Products */
+export const topRatedProductsReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+      case actionTypes.TOP_RATED_PRODUCT_REQUEST:
+        return { loading: true, products: [] }
+      case actionTypes.TOP_RATED_PRODUCT_SUCCESS:
+        return {
+          loading: false,
+          products: action.payload.products,
+        }
+      case actionTypes.TOP_RATED_PRODUCT_FAIL:
+        return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+  
   /* Reducer for Product Details (ProductPage) */
   export const productDetailsReducer = (
     state = { product: { product:{ Reviews: [] } } },

@@ -38,6 +38,76 @@ export const listProducts = (keyword = "", pageNumber = "") => async (dispatch) 
   }
 };
 
+// NEW /* GET All Products (Highest Price) */
+
+export const listProductsHighestPrice = (keyword = "", pageNumber = "") => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.PRODUCT_LIST_HIGHEST_REQUEST });
+
+    const { data } = await axios.get(`http://localhost:5000/api/products/HighestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
+
+    dispatch({
+      type: actionTypes.PRODUCT_LIST_HIGHEST_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: actionTypes.PRODUCT_LIST_HIGHEST_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+// NEW /* GET All Products (Lowest Price) */
+
+export const listProductsLowestPrice = (keyword = "", pageNumber = "") => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.PRODUCT_LIST_LOWEST_REQUEST });
+
+    const { data } = await axios.get(`http://localhost:5000/api/products/LowestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
+
+    dispatch({
+      type: actionTypes.PRODUCT_LIST_LOWEST_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: actionTypes.PRODUCT_LIST_LOWEST_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+// NEW /* GET Top Rated Products (21 product) */
+
+export const topRatedProductsList = () => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.TOP_RATED_PRODUCT_REQUEST });
+
+    const { data } = await axios.get(`http://localhost:5000/api/products/TopRated`);
+    console.log(data)
+
+    dispatch({
+      type: actionTypes.TOP_RATED_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: actionTypes.TOP_RATED_PRODUCT_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
 // Get Product Details By ID
 export const listProductDetails = (id) => async (dispatch) => {
   try {

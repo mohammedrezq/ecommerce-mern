@@ -9,6 +9,9 @@ import {
   productCreateReducer,
   productUpdateReducer,
   productCreateReviewReducer,
+  productListHighestPriceReducer,
+  productListLowestPriceReducer,
+  topRatedProductsReducer,
 } from "./Store/Reducers/productReducers";
 import {
   cartReducer,
@@ -72,6 +75,9 @@ const reducer = combineReducers({
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
   productCreateReview: productCreateReviewReducer,
+  productListHighestPrice:productListHighestPriceReducer,
+  productListLowestPrice:productListLowestPriceReducer,
+  topRatedProducts:topRatedProductsReducer,
 });
 
 // const cartItemsFromStorage = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []

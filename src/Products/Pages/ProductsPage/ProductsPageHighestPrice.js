@@ -1,15 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Link } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { Grid } from "@material-ui/core";
-
-import ProductGrid from "../../Components/ProductGrid/ProductGrid";
-import SecondaryHeader from "../../../Shared/UIElements/SecondaryHeader";
-import classes from "../../Components/ProductGrid/ProductGrid.module.css";
-// import productsPageStyle from "./ProductsPage.module.css";
-import secondaryHeaderCSS from "../../../Shared/UIElements/SecondaryHeader.module.css";
-import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
-import filteringMenuNavCSS from "../../../Shared/UIElements/FilteringMenu.module.css";
 
 
 import Button from '@material-ui/core/Button';
@@ -20,14 +12,22 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
+import ProductGrid from "../../Components/ProductGrid/ProductGrid";
+import SecondaryHeader from "../../../Shared/UIElements/SecondaryHeader";
+import classes from "../../Components/ProductGrid/ProductGrid.module.css";
+// import productsPageStyle from "./ProductsPage.module.css";
+import secondaryHeaderCSS from "../../../Shared/UIElements/SecondaryHeader.module.css";
+import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
+import filteringMenuNavCSS from "../../../Shared/UIElements/FilteringMenu.module.css";
+
 import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
 
-import { listProducts } from "../../../Store/Actions/productsActions";
+import { listProductsHighestPrice } from "../../../Store/Actions/productsActions";
 import Paginate from "../../../Shared/Navigation/Paginate";
 
 
-const ProductsPage = () => {
+const ProductsPageHighestPice = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -39,8 +39,8 @@ const ProductsPage = () => {
   const pageNumber = useParams().pageNumber || 1;
   
   // console.log(keyword)
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const productListHighestPrice = useSelector((state) => state.productListHighestPrice);
+  const { loading, error, products, pages, page } = productListHighestPrice;
   // console.log(products)
     let allProducts;
   if(products) {
@@ -52,7 +52,7 @@ const ProductsPage = () => {
   // console.log(allProducts)
 
   useEffect(() => {
-    dispatch(listProducts(keyword, pageNumber));
+    dispatch(listProductsHighestPrice(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
   const [isFilterToggled, setisFilterToggled] = useState(false);
@@ -95,7 +95,7 @@ const ProductsPage = () => {
     <Grid container direction="column">
       <div className={secondaryHeaderCSS.stickySecondaryHeader}>
         <SecondaryHeader className={secondaryHeaderCSS.ProductsPaddingTop}>
-          <h1 className={secondaryHeaderCSS.secondaryHeader}>All Products</h1>
+          <h1 className={secondaryHeaderCSS.secondaryHeader}>All Products Sorted By High to Low Prices </h1>
           <nav className={secondaryHeaderCSS.secondaryHeaderNav}>
             <div
               className={`${secondaryHeaderCSS.filterToggle} ${secondaryHeaderCSS.filterToggleBtn}`}
@@ -167,4 +167,5 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+
+export default ProductsPageHighestPice;
