@@ -54,7 +54,18 @@ input[type="search"]::-webkit-search-cancel-button { /* Remove default [X] in in
 .search-icon-button {
   min-height: 38px;
   background-color: transparent;
-  padding: 5px 12px 2px 4px;
+  padding: 4px 6px 2px 4px;
+  z-index: 1;
+  border-radius: 100px;
+  border: none;
+  border-radius: 29px;
+  margin-right: -44px;
+}
+
+.search-icon-button:hover {
+  min-height: 38px;
+  background-color: rgb(238, 238, 238);
+  padding: 4px 6px 2px 4px;
   z-index: 1;
   border-radius: 100px;
   border: none;

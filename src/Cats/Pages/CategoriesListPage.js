@@ -132,7 +132,7 @@ const CategoriesListPage = () => {
                           {category.id}
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {category.categoryTitle}
+                          <Link to={`/category/${category._id}`}>{category.categoryTitle}</Link>
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {category.categoryDescription}

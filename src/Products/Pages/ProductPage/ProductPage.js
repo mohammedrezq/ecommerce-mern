@@ -241,10 +241,10 @@ const ProductPage = (props) => {
               <h2>{leproduct.Title}</h2>
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
-              <Rating
+              {/* <Rating
                 value={leproduct.Rating}
                 text={`${leproduct.NumReviews} Reviews`}
-              />
+              /> */}
             </div>
             {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
             {/* <div className={`product-extra-information__Sizes`}>
@@ -556,7 +556,7 @@ const ProductPage = (props) => {
                   id="panel4a-header"
                   style={{display: "flex", justifyContent: "space-between"}}
                 >
-                  <div style={{flex: "1", fontSize: "1.4rem", textAlign:"left"}}>Reviews</div> <Rating  style={{flex: "1", textAlign:"right"}}
+                  <div style={{flex: "1", fontSize: "1.4rem", textAlign:"left"}}>Reviews ({leproduct.NumReviews})</div> <Rating  style={{flex: "1", textAlign:"right"}}
                 value={leproduct.Rating} />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -583,7 +583,7 @@ const ProductPage = (props) => {
               </Accordion>
             </div>
             <div className="product-reviews">
-              <h2>Reviews</h2>
+              {/* <h2>Reviews</h2>
               {leproduct.Reviews.length === 0 && (
                 <Message severity="info">No Reviews</Message>
               )}
@@ -602,7 +602,7 @@ const ProductPage = (props) => {
                     />
                   </div>
                 );
-              })}
+              })} */}
 
               <div>
                 <h3>Write a Review</h3>

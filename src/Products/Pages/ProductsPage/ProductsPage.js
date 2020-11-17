@@ -15,15 +15,20 @@ import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
 
 import { listProducts } from "../../../Store/Actions/productsActions";
+import Paginate from "../../../Shared/Navigation/Paginate";
 
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const keyword = useParams().keyword;
+
+  const pageNumber = useParams().pageNumber || 1;
+  
   // console.log(keyword)
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, pages, page } = productList;
   // console.log(products)
     let allProducts;
   if(products) {
@@ -35,8 +40,8 @@ const ProductsPage = () => {
   // console.log(allProducts)
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   const [isFilterToggled, setisFilterToggled] = useState(false);
 
@@ -84,7 +89,10 @@ const ProductsPage = () => {
           ) : error ? (
             <Message>{error}</Message>
           ) : (
+            <>
             <ProductGrid items={allProducts} />
+            <Paginate activeClass={`activePage`} pages={pages} pageNum={page} keyword={keyword ? keyword : ""} />
+            </>
           )}
         </Grid>
       </Grid>

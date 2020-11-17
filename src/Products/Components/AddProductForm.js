@@ -247,7 +247,7 @@ const AddProductForm = () => {
             {loadingCreate ? "processing" : "Submit" }
           </Button>
           {errorCreate && <Message>Something went wrong: {errorCreate}</Message>}
-          {successCreate && <Message severity="success">Product created Successfully! Go Back to <Link to="/admin/productlist">Products List</Link></Message>}
+          {successCreate && <Message severity="success">Product created Successfully! Go Back to <Link to="/admin/productslist">Products List</Link></Message>}
 
     </form>    
     </>

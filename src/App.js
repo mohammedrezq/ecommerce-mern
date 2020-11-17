@@ -62,6 +62,12 @@ function App() {
           <Route path="/" exact>
             <ProductsPage />
           </Route>
+          <Route path="/page/:pageNumber" exact>
+            <ProductsPage />
+          </Route>
+          <Route path="/search/:keyword/page/:pageNumber" exact>
+            <ProductsPage />
+          </Route>
           <Route path="/search/:keyword" >
             <ProductsPage />
           </Route>
