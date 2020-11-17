@@ -11,6 +11,9 @@ import { Provider } from "react-redux";
 import Store from './Store';
 
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
+import ProductsPageHighestPrice from "./Products/Pages/ProductsPage/ProductsPageHighestPrice";
+import ProductsPageLowestPrice from "./Products/Pages/ProductsPage/ProductsPageLowestPrice";
+import TopRatedProducts from "./Products/Pages/ProductsPage/TopRatedProducts";
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
 import ProductListPage from "./Products/Pages/ProductListPage/ProductListPage";
 import NewProductForm from "./Products/Components/NewProductForm";
@@ -62,8 +65,26 @@ function App() {
           <Route path="/" exact>
             <ProductsPage />
           </Route>
+          <Route path="/top-rated" exact>
+            <TopRatedProducts />
+          </Route>
+          <Route path="/lowprice" exact>
+            <ProductsPageLowestPrice />
+          </Route>
+          <Route path="/highprice" exact>
+            <ProductsPageHighestPrice />
+          </Route>
           <Route path="/page/:pageNumber" exact>
             <ProductsPage />
+          </Route>
+          <Route path="/highprice/page/:pageNumber" exact>
+            <ProductsPageHighestPrice />
+          </Route>
+          <Route path="/highprice/search/:keyword/page/:pageNumber" exact>
+            <ProductsPageHighestPrice />
+          </Route>
+          <Route path="/highprice/search/:keyword" >
+            <ProductsPageHighestPrice />
           </Route>
           <Route path="/search/:keyword/page/:pageNumber" exact>
             <ProductsPage />
