@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import Store from './Store';
 
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
+import ProductsListTestingGround from "./Products/Pages/ProductsPage/ProductsListTestingGround";
 import ProductsPageHighestPrice from "./Products/Pages/ProductsPage/ProductsPageHighestPrice";
 import ProductsPageLowestPrice from "./Products/Pages/ProductsPage/ProductsPageLowestPrice";
 import TopRatedProducts from "./Products/Pages/ProductsPage/TopRatedProducts";
@@ -64,6 +65,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <ProductsPage />
+          </Route>
+          <Route path="/TestingGround" exact>
+            <ProductsListTestingGround />
           </Route>
           <Route path="/top-rated" exact>
             <TopRatedProducts />

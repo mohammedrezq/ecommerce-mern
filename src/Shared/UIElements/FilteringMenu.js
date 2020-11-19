@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { catsListUsers } from "../../Store/Actions/categoryActions";
 
 import classes from "./FilteringMenu.module.css";
 
 //https://www.w3schools.com/howto/howto_js_sidenav.asp
 const FilteringMenu = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(catsListUsers());
+  }, [dispatch]);
+  const categoryListUsers = useSelector((state) => state.categoryListUsers);
+  const { cats } = categoryListUsers;
+
+  // console.log(cats);
   return (
     <div className={props.className}>
       <nav>
-        <div style={{width: "192px"}}>
+        <div style={{ width: "192px" }}>
           <div className={classes.categories}>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/shoes">
-              Shoes
-            </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/tops-tshirts">
-              Tops&T-shirts
-            </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/hoodies-pullovers">
-              Hoodies&Pullovers
-            </Link>
-            <Link className={`${classes.categoryItem} ${classes.isLink}`} to="/jackets-vests">
-              Jackets&Vests
-            </Link>
+            <h2>Category</h2>
+            {cats &&
+              cats.map((category, index) => {
+                return (
+                  <Link key={index}
+                    className={`${classes.categoryItem} ${classes.isLink}`}
+                    to={`/category/${category.id}`}
+                  >
+                    {category.categoryTitle}
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </nav>

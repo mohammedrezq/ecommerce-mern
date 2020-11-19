@@ -378,6 +378,7 @@ const ProductPage = (props) => {
                     }}
                   >
                     <Fade in={open}>
+                      <>
                       <div
                         className={`product-addition-verified-in-modal`}
                         style={{
@@ -477,6 +478,7 @@ const ProductPage = (props) => {
                           </button>
                         </Grid>
                       </Grid>
+                      </>
                     </Fade>
                   </Modal>
                 </>
@@ -560,7 +562,7 @@ const ProductPage = (props) => {
                 value={leproduct.Rating} />
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>{leproduct.Reviews.length === 0 && (
+                  <Typography component={"span"}>{leproduct.Reviews.length === 0 && (
                 <Message severity="info">No Reviews</Message>
               )}
               {leproduct.Reviews.map((review, index) => {
