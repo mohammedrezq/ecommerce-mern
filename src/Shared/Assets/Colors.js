@@ -9,7 +9,7 @@ const Colors = [
     {key: "Green", value: "green"},
     {key: "Brown", value: "brown"},
     {key: "Pink", value: "pink"},
-    {key: "Grey", value: "gery"},
+    {key: "Grey", value: "grey"},
     {key: "Multi-Color", value: "multicolor"},
 ]
 
