@@ -8,7 +8,7 @@ import SecondaryHeader from "../../../Shared/UIElements/SecondaryHeader";
 import classes from "../../Components/ProductGrid/ProductGrid.module.css";
 // import productsPageStyle from "./ProductsPage.module.css";
 import secondaryHeaderCSS from "../../../Shared/UIElements/SecondaryHeader.module.css";
-import FilteringMenu from "../../../Shared/UIElements/FilteringMenu";
+import FilteringMenuTesting from "../../../Shared/UIElements/FilteringMenuTesting";
 import filteringMenuNavCSS from "../../../Shared/UIElements/FilteringMenu.module.css";
 
 
@@ -29,12 +29,20 @@ import Message from "../../../Shared/UIElements/Message";
 import { listProducts } from "../../../Store/Actions/productsActions";
 import Paginate from "../../../Shared/Navigation/Paginate";
 import Sizes from "../../../Shared/Assets/Sizes";
+import Genders from "../../../Shared/Assets/Gender";
 
 
 const ProductsPage = () => {
   const [open, setOpen] = useState(false);
   const [Size, setSize] = useState([]);
+  const [Gender, setGender] = useState([]);
+  const [Filters, setFilters] = useState({
+    productSizes: [],
+    productGenders: [],
+    productColors: [],
+  })
 
+  console.log(Filters)
   const anchorRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -47,7 +55,7 @@ const ProductsPage = () => {
   // console.log(keyword)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
-  console.log(products)
+  // console.log(products)
 
   // console.log(allProducts)
 
@@ -83,8 +91,10 @@ const ProductsPage = () => {
     }
   }
 
-  console.log(Size)
-  let someProducts = products.filter(product => {
+  // console.log(Size)
+  // console.log(Gender)
+  let someProducts;
+  someProducts = products.filter(product => {
     // console.log(product.Sizes)
     // if( Size === [] ){
     //   return (products)
@@ -95,25 +105,42 @@ const ProductsPage = () => {
   });
   console.log(someProducts)
 
-  // let thegenderedProducts = someProducts.filter(product => {
-  //   return (product.Genders.some(gender => {
-  //     return (["female"].includes(gender));
-  //   }))
-  // })
-  // console.log(thegenderedProducts)
+  let thegenderedProducts = someProducts.filter(product => {
+    return (product.Genders.some(gender => {
+      return (["female"].includes(gender));
+    }))
+  })
+  console.log(thegenderedProducts)
 
-  const highestPriceHandler = () => {
-    history.push("/highprice")
-  }
-  const lowestPriceHandler = () => {
-    history.push("/lowprice")
-  }
-  const topRatedHandler = () => {
-    history.push("/top-rated")
-  }
 
-  console.log(Size)
-  const onSizeChange = (e) => {
+
+  let newProductGenders = products.filter(product => {
+
+    return (product.Genders.some(genders => {
+      return (Filters.productGenders.includes(genders))
+    }));
+  });
+  console.log(newProductGenders)
+
+  // let newProducts;
+  let newProductsSizes = newProductGenders.filter(product => {
+
+    return (product.Sizes.some(sizes => {
+      return (Filters.productSizes.includes(sizes))
+    }));
+  });
+
+  let SizesFilteringOnly = products.filter(product => {
+
+    return (product.Sizes.some(sizes => {
+      return (Filters.productSizes.includes(sizes))
+    }));
+  });
+
+  console.log(newProductsSizes)
+
+
+    const onSizeChange = (e) => {
     let TheSizesArray = [...Size, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
     // console.log("THE SIZES",Size)
     let SizesChecked = e.currentTarget.checked;
@@ -128,6 +155,67 @@ const ProductsPage = () => {
     // console.log(TheSizesArray)
     setSize(TheSizesArray);
     // setCheckedSizes(SizesChecked);
+
+  }
+
+  const highestPriceHandler = () => {
+    history.push("/highprice")
+  }
+  const lowestPriceHandler = () => {
+    history.push("/lowprice")
+  }
+  const topRatedHandler = () => {
+    history.push("/top-rated")
+  }
+
+  // console.log(Size)
+  const onSizeFilterChange = (e) => {
+    let TheSizesArray = [...Filters.productSizes, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    if(Filters.productSizes.includes(e.currentTarget.value)) {
+      TheSizesArray = TheSizesArray.filter((size) =>  { 
+        return (size !== e.currentTarget.value)
+      });
+      setFilters({
+        ...Filters,
+        productSizes: TheSizesArray
+      });
+    }
+    // console.log(TheSizesArray)
+    setFilters({
+      ...Filters,
+      productSizes: TheSizesArray
+    });
+  }
+  const onGenderFilterChange = (e) => {
+    let theGenderArray = [...Filters.productGenders, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    if(Filters.productGenders.includes(e.currentTarget.value)) {
+      theGenderArray = theGenderArray.filter((genders) =>  { 
+        return (genders !== e.currentTarget.value)
+      });
+      setFilters({
+        ...Filters,
+        productGenders: theGenderArray
+      });
+    }
+    // console.log(theGenderArray)
+    setFilters({
+      ...Filters,
+      productGenders: theGenderArray
+    });
+  }
+
+
+  const onGenderChange = (e) => {
+    let TheGenderArray = [...Gender, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    let GendersChecked = e.currentTarget.checked;
+    if(Gender.includes(e.currentTarget.value)) {
+      TheGenderArray = TheGenderArray.filter((gender) =>  { 
+        // console.log(gender)
+        return (gender !== e.currentTarget.value)
+      });
+      setGender(TheGenderArray);
+    }
+    setGender(TheGenderArray);
 
   }
 
@@ -186,8 +274,8 @@ const ProductsPage = () => {
           <Checkbox
             id={size.value}
             // checked={Sizes.inclues(size.value) ? true : false} "Same As indexOf(size.value) === -1 ?false: true"
-            checked={Size[size.key]}
-            onChange={onSizeChange}
+            checked={Filters.productSizes[size.key]}
+            onChange={onSizeFilterChange}
             value={size.value}
             name={size.value}
           />
@@ -197,12 +285,32 @@ const ProductsPage = () => {
     )
   })};
   </div>
+            <div style={{maxWidth:"300px"}}>
+            {Genders.map((gender, index) => {
+    return (
+        <FormControlLabel
+        key={index}
+        control={
+          <Checkbox
+            id={gender.value}
+            // checked={Sizes.inclues(size.value) ? true : false} "Same As indexOf(size.value) === -1 ?false: true"
+            checked={Filters.productGenders[gender.key]}
+            onChange={onGenderFilterChange}
+            value={gender.value}
+            name={gender.value}
+          />
+        }
+        label={gender.key}
+      />
+    )
+  })}
+  </div>
           </nav>
           <div className={secondaryHeaderCSS.headerOffset}></div>
         </SecondaryHeader>
       </div>
       <Grid item container>
-        <FilteringMenu
+        <FilteringMenuTesting
           className={
             isFilterToggled
               ? filteringMenuNavCSS.showLeftNav
@@ -217,7 +325,10 @@ const ProductsPage = () => {
             <Message>{error}</Message>
           ) : (
             <>
-            {(Size.length === 0) ? <ProductGrid items={products} /> : <ProductGrid items={someProducts} /> }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 ) && <ProductGrid items={products} />}
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 ) && <ProductGrid items={newProductGenders} />}
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0) && <ProductGrid items={SizesFilteringOnly} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0) && <ProductGrid items={newProductsSizes} />  }
             
             <Paginate activeClass={`activePage`} pages={pages} pageNum={page} keyword={keyword ? keyword : ""} />
             </>
