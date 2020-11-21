@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "formik": "^2.1.5",
+    "rc-slider": "^9.6.4",
     "react": "^16.13.1",
     "react-datepicker": "^3.2.2",
     "react-dom": "^16.13.1",

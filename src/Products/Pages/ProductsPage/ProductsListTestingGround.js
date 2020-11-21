@@ -30,6 +30,9 @@ import { listProducts } from "../../../Store/Actions/productsActions";
 import Paginate from "../../../Shared/Navigation/Paginate";
 import Sizes from "../../../Shared/Assets/Sizes";
 import Genders from "../../../Shared/Assets/Gender";
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import PricesRange from "../../../Shared/Assets/PricesRange";
+import Colors from "../../../Shared/Assets/Colors";
 
 
 const ProductsPage = () => {
@@ -40,9 +43,10 @@ const ProductsPage = () => {
     productSizes: [],
     productGenders: [],
     productColors: [],
+    productPrices: 0,
   })
 
-  console.log(Filters)
+  // console.log(Filters)
   const anchorRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -112,7 +116,14 @@ const ProductsPage = () => {
   })
   console.log(thegenderedProducts)
 
+  let productsByColorOnly = products.filter(product => {
 
+    return (product.Colors.some(colors => {
+      return (Filters.productColors.includes(colors))
+    }));
+  });
+
+  console.log(productsByColorOnly)
 
   let newProductGenders = products.filter(product => {
 
@@ -120,15 +131,22 @@ const ProductsPage = () => {
       return (Filters.productGenders.includes(genders))
     }));
   });
-  console.log(newProductGenders)
 
-  // let newProducts;
   let newProductsSizes = newProductGenders.filter(product => {
 
     return (product.Sizes.some(sizes => {
       return (Filters.productSizes.includes(sizes))
     }));
   });
+
+  let productsByColorSizeNGender = newProductsSizes.filter(product => {
+
+    return (product.Colors.some(colors => {
+      return (Filters.productColors.includes(colors))
+    }));
+  });
+
+  console.log(productsByColorSizeNGender)
 
   let SizesFilteringOnly = products.filter(product => {
 
@@ -137,7 +155,70 @@ const ProductsPage = () => {
     }));
   });
 
-  console.log(newProductsSizes)
+  let filterSizeOnlyByPrice = SizesFilteringOnly.filter(product => {
+    // console.log(product);
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filterGenderOnlyByPrice = newProductGenders.filter(product => {
+    // console.log(product);
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filterByPrice = newProductsSizes.filter(product => {
+    // console.log(product);
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filterGendersNColors = newProductGenders.filter(product => {
+    // console.log(product);
+    return (product.Colors.some(colors => {
+      return (Filters.productColors.includes(colors))
+    }))
+    })
+
+  let filterSizesNColors = SizesFilteringOnly.filter(product => {
+    return (product.Colors.some(colors => {
+      return (Filters.productColors.includes(colors))
+    }))
+    })
+
+    
+  let filterSizeNColorNPrice = filterSizeOnlyByPrice.filter(product => {
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filterByPriceOnly = products.filter(product => {
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filterByColorsOnly = products.filter(product => {
+    return (product.Colors.some(colors => {
+      return (Filters.productColors.includes(colors))
+    }))  
+  })
+
+  let filteryByColorsNPrices = filterByColorsOnly.filter(product => {
+    return (product.Price <= Filters.productPrices)
+  })
+
+  let filteryByColorsNPricesNGenders = filteryByColorsNPrices.filter(product => {
+    return (product.Genders.some(genders => {
+      return (Filters.productGenders.includes(genders))
+    }));
+  })
+
+
+
+  // Filter By Sizes, Gender, Colors and Price
+  let filterByAll = productsByColorSizeNGender.filter(product => {
+    return (product.Price <= Filters.productPrices)
+  })
+
+  // console.log(SizesFilteringOnly)
+  // console.log(newProductGenders)
+  // console.log(filterGenderOnlyByPrice)
+  // console.log(filterByPrice)
 
 
     const onSizeChange = (e) => {
@@ -204,6 +285,41 @@ const ProductsPage = () => {
     });
   }
 
+  const onColorFilterChange = (e) => {
+    let theColorArray = [...Filters.productColors, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+    if(Filters.productColors.includes(e.currentTarget.value)) {
+      theColorArray = theColorArray.filter((color) =>  { 
+        return (color !== e.currentTarget.value)
+      });
+      setFilters({
+        ...Filters,
+        productColors: theColorArray
+      });
+    }
+    // console.log(theGenderArray)
+    setFilters({
+      ...Filters,
+      productColors: theColorArray
+    });
+  }
+
+  // const onPriceFilterChange = (e) => {
+  //   let thePriceArray = [...Filters., e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
+  //   if(Filters.productPrices.includes(e.currentTarget.value)) {
+  //     thePriceArray = thePriceArray.filter((prices) =>  { 
+  //       return (prices !== e.currentTarget.value)
+  //     });
+  //     setFilters({
+  //       ...Filters,
+  //       productPrices: thePriceArray
+  //     });
+  //   }
+  //   setFilters({
+  //     ...Filters,
+  //     productPrices: thePriceArray
+  //   });
+  // }
+
 
   const onGenderChange = (e) => {
     let TheGenderArray = [...Gender, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
@@ -218,6 +334,19 @@ const ProductsPage = () => {
     setGender(TheGenderArray);
 
   }
+
+  const inputPriceHandler = (e) => {
+    setFilters({...Filters, productPrices: e.target.value})
+    // Filters.productPrices = inputPrice
+    // console.log(Filters.productPrices)
+    console.log(Filters)
+  }
+
+  console.log(Filters.productPrices)
+
+  // useEffect(() => {
+  //   Filters.productPrices = e.target.value;
+  // }, [])
 
   return (
     <Grid container direction="column">
@@ -305,6 +434,50 @@ const ProductsPage = () => {
     )
   })}
   </div>
+            <div style={{maxWidth:"300px"}}>
+            {Colors.map((color, index) => {
+    return (
+        <FormControlLabel
+        key={index}
+        control={
+          <Checkbox
+            id={color.value}
+            // checked={Sizes.inclues(size.value) ? true : false} "Same As indexOf(size.value) === -1 ?false: true"
+            checked={Filters.productColors[color.key]}
+            onChange={onColorFilterChange}
+            value={color.value}
+            name={color.value}
+          />
+        }
+        label={color.key}
+      />
+    )
+  })}
+  </div>
+            {/* <div style={{maxWidth:"300px"}}>
+            {PricesRange.map((price, index) => {
+    return (
+        <FormControlLabel
+        key={index}
+        control={
+          <Checkbox
+            id={price.value}
+            // checked={Sizes.inclues(size.value) ? true : false} "Same As indexOf(size.value) === -1 ?false: true"
+            checked={Filters.productPrices[price.key]}
+            onChange={onPriceFilterChange}
+            value={price.value}
+            name={price.value}
+          />
+        }
+        label={price.key}
+      />
+    )
+  })}
+  </div> */}
+  <div>
+  <input type="range" onClick={inputPriceHandler} step={10} min={0} max={500} />
+  </div>
+
           </nav>
           <div className={secondaryHeaderCSS.headerOffset}></div>
         </SecondaryHeader>
@@ -325,10 +498,23 @@ const ProductsPage = () => {
             <Message>{error}</Message>
           ) : (
             <>
-            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 ) && <ProductGrid items={products} />}
-            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 ) && <ProductGrid items={newProductGenders} />}
-            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0) && <ProductGrid items={SizesFilteringOnly} />  }
-            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0) && <ProductGrid items={newProductsSizes} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 && Filters.productPrices == 0 && Filters.productColors.length === 0) && <ProductGrid items={products} />}
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 && Filters.productPrices == 0 && Filters.productColors.length > 0) && <ProductGrid items={productsByColorOnly} />}
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 && Filters.productPrices == 0 && Filters.productColors.length === 0) && <ProductGrid items={newProductGenders} />}
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0 && Filters.productPrices == 0 && Filters.productColors.length === 0) && <ProductGrid items={SizesFilteringOnly} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0 && Filters.productPrices > 0 && Filters.productColors.length === 0) && <ProductGrid items={filterSizeOnlyByPrice} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 && Filters.productPrices > 0 && Filters.productColors.length === 0) && <ProductGrid items={filterGenderOnlyByPrice} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0 && Filters.productPrices > 0 && Filters.productColors.length === 0) && <ProductGrid items={filterByPrice} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0 && Filters.productPrices > 0 && Filters.productColors.length > 0) && <ProductGrid items={filterSizeNColorNPrice} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length === 0 && Filters.productPrices == 0 && Filters.productColors.length > 0) && <ProductGrid items={filterSizesNColors} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0 && Filters.productPrices == 0 && Filters.productColors.length > 0) && <ProductGrid items={productsByColorSizeNGender} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 && Filters.productPrices == 0 && Filters.productColors.length > 0) && <ProductGrid items={filterGendersNColors} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 && Filters.productPrices > 0 && Filters.productColors.length === 0) && <ProductGrid items={filterByPriceOnly} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 && Filters.productPrices == 0 && Filters.productColors.length > 0) && <ProductGrid items={filterByColorsOnly} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length === 0 && Filters.productPrices > 0 && Filters.productColors.length > 0) && <ProductGrid items={filteryByColorsNPrices} />  }
+            {(Filters.productSizes.length === 0 && Filters.productGenders.length > 0 && Filters.productPrices > 0 && Filters.productColors.length > 0) && <ProductGrid items={filteryByColorsNPricesNGenders} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0 && Filters.productPrices > 0 && Filters.productColors.length > 0) && <ProductGrid items={filterByAll} />  }
+            {(Filters.productSizes.length > 0 && Filters.productGenders.length > 0 && Filters.productPrices == 0 && Filters.productColors.length === 0) && <ProductGrid items={newProductsSizes} />  }
             
             <Paginate activeClass={`activePage`} pages={pages} pageNum={page} keyword={keyword ? keyword : ""} />
             </>
