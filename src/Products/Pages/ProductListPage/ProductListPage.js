@@ -127,7 +127,7 @@ const ProductListPage = () => {
             >
               <Grid item xs={12}>
                 <Link
-                  to="/add-product"
+                  to="/admin/new-product"
                   style={{
                     color: "inherit",
                     textDecoration: "inherit",

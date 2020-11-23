@@ -150,9 +150,9 @@ function App() {
           <Route path="/formcontainer" exact>
             <FormContainer />
           </Route>
-          <Route path="/admin/new-product" exact>
+          {/* <Route path="/admin/new-product" exact>
             <CreateProductPage />
-          </Route>
+          </Route> */}
           <Route path="/admin/product/:pid/edit" exact>
             <UpdateProductPage />
           </Route>
@@ -168,7 +168,7 @@ function App() {
           <Route path="/cart/:id?">
             <CartPage />
           </Route>
-          <Route path="/new-product" exact>
+          <Route path="/admin/new-product" exact>
             <NewProduct />
           </Route>
           <Route path="/register" exact>

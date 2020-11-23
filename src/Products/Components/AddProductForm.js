@@ -168,12 +168,12 @@ const AddProductForm = () => {
   return (
     <>
   <form onSubmit={submitNewProductHandler}>
-  <TextField id="title_new_product" label="Title" variant="outlined" fullWidth size="small" onChange={onTitleChange} value={Title} />
-  <TextField id="description_new_product" label="Description" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onDescriptionChange} value={Description} />
-  <TextField id="price_new_product" label="Price" variant="outlined" fullWidth size="small" type="number" onChange={onPriceChange} value={Price} />
-  <TextField id="countinstock_new_product" label="Count In Stock" variant="outlined" fullWidth size="small" type="number" onChange={onCountInStockChange} value={CountInStock} />
+  <TextField  style={{marginTop: "20px"}} id="title_new_product" label="Title" variant="outlined" fullWidth size="small" onChange={onTitleChange} value={Title} />
+  <TextField  style={{marginTop: "20px"}} id="description_new_product" label="Description" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onDescriptionChange} value={Description} />
+  <TextField  style={{marginTop: "20px"}} id="price_new_product" label="Price" variant="outlined" fullWidth size="small" type="number" onChange={onPriceChange} value={Price} />
+  <TextField  style={{marginTop: "20px"}} id="countinstock_new_product" label="Count In Stock" variant="outlined" fullWidth size="small" type="number" onChange={onCountInStockChange} value={CountInStock} />
 
-  <FormControl>
+  <FormControl  style={{marginTop: "20px"}}>
         {/* <InputLabel htmlFor="productCategory">Category</InputLabel> */}
         <NativeSelect
           value={Category}
@@ -192,7 +192,7 @@ const AddProductForm = () => {
         <FormHelperText>Select a Category for your Product</FormHelperText>
       </FormControl>
 
-      <div className="product_sizes">
+      <div className="product_sizes" style={{marginTop: "20px"}}>
         <FormLabel component="legend">Sizes</FormLabel>
         <FormGroup  style={{flexDirection: "row"}}>
           {Sizes.map((size, index) => {
@@ -207,7 +207,7 @@ const AddProductForm = () => {
         </FormGroup>
       </div>
 
-      <div className="product_colors">
+      <div className="product_colors" style={{marginTop: "20px"}}>
         <FormLabel component="legend">Colors</FormLabel>
         <FormGroup  style={{flexDirection: "row"}}>
           {Colors.map((color, index) => {
@@ -222,7 +222,7 @@ const AddProductForm = () => {
         </FormGroup>
       </div>
 
-      <div className="product_genders">
+      <div className="product_genders" style={{marginTop: "20px"}}>
         <FormLabel component="legend">Gender</FormLabel>
         <FormGroup  style={{flexDirection: "row"}}>
           {PorductGender.map((gender, index) => {
@@ -238,8 +238,8 @@ const AddProductForm = () => {
       </div>
   
 
-      <TextField id="shipping_new_product" label="Product Shipping" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onShippingChange} value={Shipping} />
-      <TextField id="sizeFit_new_product" label="Product Size Fit" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onsizeFitChange} value={sizeFit} />
+      <TextField  style={{marginTop: "20px"}} id="shipping_new_product" label="Product Shipping" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onShippingChange} value={Shipping} />
+      <TextField  style={{marginTop: "20px"}} id="sizeFit_new_product" label="Product Size Fit" variant="outlined" fullWidth size="small" multiline rows="5" onChange={onsizeFitChange} value={sizeFit} />
 
           <FileUpload refreshFunction={updateImages} />
 
