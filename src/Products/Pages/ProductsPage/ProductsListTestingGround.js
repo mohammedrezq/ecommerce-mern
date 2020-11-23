@@ -231,23 +231,7 @@ const ProductsPage = () => {
         topRated: productTopRated,
       });
     }
-    // console.log(productSortedHighest)
-
-    // history.push("/highprice");
   };
-  // const lowestPriceHandler = () => {
-
-  //   // console.log(productSortedLowest)
-
-  //   setFilters({
-  //     ...Filters,
-  //     lowestPrices:  productSortedLowest
-  //   });
-  //   // history.push("/lowprice");
-  // };
-  // const topRatedHandler = () => {
-  //   history.push("/top-rated");
-  // };
 
   console.log(Filters.highestPrices)
 
