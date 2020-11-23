@@ -35,11 +35,17 @@ import "./PorductsListTestingGround.css"
 
 const ProductsPage = () => {
   const [open, setOpen] = useState(false);
+  // const [sortProducts, setSortProducts] = useState({
+    
+  // });
   const [Filters, setFilters] = useState({
     productSizes: [],
     productGenders: [],
     productColors: [],
     productPrices: 0,
+    highestPrices: [],
+    lowestPrices: [],
+    topRated: [],
   });
 
   const anchorRef = useRef(null);
@@ -92,6 +98,12 @@ const ProductsPage = () => {
       setOpen(false);
     }
   }
+  // const SortProductsByPrice = (event) => {
+  //   const sort = event.target.value;
+  //   if(sort === "highest") {
+  //     setSort(products)
+  //   }
+  // }
 
   let productsByColorOnly = products.filter((product) => {
     return product.Colors.some((colors) => {
@@ -181,15 +193,63 @@ const ProductsPage = () => {
   });
 
 
-  const highestPriceHandler = () => {
-    history.push("/highprice");
+  const FiltersHandler = (e) => {
+    let levalue = e.currentTarget.getAttribute('data-value');
+
+    console.log(levalue)
+    if(levalue === "highest") {
+      let productSortedHighest = products.sort((a,b)=> {
+        return(
+          a.Price < b.Price ? 1 : -1
+        )
+      }
+      )
+      setFilters({
+        ...Filters,
+        highestPrices: productSortedHighest,
+      });
+    } else if(levalue === "lowest") {
+      let productSortedLowest = products.sort((a,b)=> {
+        return(
+          a.Price > b.Price ? 1 : -1
+        )
+      }
+      )
+      setFilters({
+        ...Filters,
+        lowestPrices: productSortedLowest,
+      });
+    } else if (levalue === "toprated") {
+      let productTopRated = products.sort((a,b)=> {
+        return(
+          a.Rating < b.Rating ? 1 : -1
+        )
+      }
+      )
+      setFilters({
+        ...Filters,
+        topRated: productTopRated,
+      });
+    }
+    // console.log(productSortedHighest)
+
+    // history.push("/highprice");
   };
-  const lowestPriceHandler = () => {
-    history.push("/lowprice");
-  };
-  const topRatedHandler = () => {
-    history.push("/top-rated");
-  };
+  // const lowestPriceHandler = () => {
+
+  //   // console.log(productSortedLowest)
+
+  //   setFilters({
+  //     ...Filters,
+  //     lowestPrices:  productSortedLowest
+  //   });
+  //   // history.push("/lowprice");
+  // };
+  // const topRatedHandler = () => {
+  //   history.push("/top-rated");
+  // };
+
+  console.log(Filters.highestPrices)
 
   // console.log(Size)
   const onSizeFilterChange = (e) => {
@@ -247,7 +307,7 @@ const ProductsPage = () => {
     setFilters({ ...Filters, productPrices: e.target.value });
   };
 
-  console.log(Filters.productPrices);
+  // console.log(Filters.productPrices);
 
 
   return (
@@ -279,7 +339,6 @@ const ProductsPage = () => {
               >
                 Sort By
               </Button>
-              {/* {console.log(open)} */}
               <Popper
                 style={{ zIndex: "1000" }}
                 open={open}
@@ -305,7 +364,8 @@ const ProductsPage = () => {
                           <div>
                             <MenuItem
                               style={{ fontSize: "0.88rem" }}
-                              onClick={highestPriceHandler}
+                              onClick={FiltersHandler}
+                              data-value="highest"
                             >
                               Highest Price
                             </MenuItem>
@@ -313,7 +373,8 @@ const ProductsPage = () => {
                           <div>
                             <MenuItem
                               style={{ fontSize: "0.88rem" }}
-                              onClick={lowestPriceHandler}
+                              onClick={FiltersHandler}
+                              data-value="lowest"
                             >
                               Lowest Price
                             </MenuItem>
@@ -321,7 +382,8 @@ const ProductsPage = () => {
                           <div>
                             <MenuItem
                               style={{ fontSize: "0.88rem" }}
-                              onClick={topRatedHandler}
+                              onClick={FiltersHandler}
+                              data-value="toprated"
                             >
                               Top Rated
                             </MenuItem>
@@ -528,6 +590,10 @@ const ProductsPage = () => {
                 Filters.productColors.length === 0 && (
                   <ProductGrid items={newProductsSizes} />
                 )}
+
+                {/* {Filters.highestPrices && <ProductGrid items={Filters.highestPrices} />}
+                {Filters.lowestPrices ? <ProductGrid items={Filters.lowestPrices} />: <ProductGrid items={products} /> } */}
+                {/* {sortProducts.lowestPrices ? <ProductGrid items={sortProducts.lowestPrices} />: <ProductGrid items={products} /> } */}
 
               <Paginate
                 activeClass={`activePage`}
