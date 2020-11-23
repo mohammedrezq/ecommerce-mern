@@ -415,7 +415,7 @@ const UpdateProductForm = () => {
         {successUpdate && (
           <Message severity="success">
             Product Updated Successfully! Go Back to{" "}
-            <Link to="/admin/productlist">Products List</Link>
+            <Link to="/admin/productslist">Products List</Link>
           </Message>
         )}
       </form>

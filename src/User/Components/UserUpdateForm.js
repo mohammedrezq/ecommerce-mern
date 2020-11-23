@@ -40,7 +40,6 @@ const UserUpdateForm = () => {
 
   // console.log(userInfo)
 
-
   const userUpdateAdmin = useSelector((state) => state.userUpdateAdmin);
   const { success, loading: loadingAdmin, error: errorAdmin } = userUpdateAdmin;
   // console.log(userUpdateAdmin)
@@ -49,10 +48,10 @@ const UserUpdateForm = () => {
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
-    } else if (!user.email || user._id !== userId)  {
+    } else if (!user.email || user._id !== userId) {
       dispatch(getUserDetailsForAdmin(userId));
-    }  else if ( user.email === undefined || user.email === null ) {
-      history.push("/")
+    } else if (user.email === undefined || user.email === null) {
+      history.push("/");
     }
   }, [dispatch, user, userId, history, userInfo, success]);
 
@@ -63,9 +62,9 @@ const UserUpdateForm = () => {
       isAdmin: user.isAdmin || false, // initial Value is false for users
       email: user.email || "",
       firstName: user.firstName || "",
-      lastName: user.lastName ||  "",
+      lastName: user.lastName || "",
       country: user.Country || "US",
-      gender: user.Gender ||  "",
+      gender: user.Gender || "",
     };
   }
 
@@ -150,10 +149,10 @@ const UserUpdateForm = () => {
                 />
                 {/* Checkbox isAdmin */}
                 <div className="checkbox__isAdmin">
-                <label>
-                  <Field type="checkbox" name="isAdmin" />
-                  {`Role Admin`}
-                </label>
+                  <label>
+                    <Field type="checkbox" name="isAdmin" />
+                    {`Role Admin`}
+                  </label>
                 </div>
                 <FormikControl
                   fullWidth
@@ -182,6 +181,7 @@ const UserUpdateForm = () => {
                   fullWidth
                   className="genderItems"
                   classes="gender_radio_item"
+                  secondClass="genderElement"
                   control="radio"
                   name="gender"
                   options={Gender}

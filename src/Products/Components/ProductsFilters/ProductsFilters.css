@@ -1,0 +1,32 @@
+.products__Filtering_Checkbox {
+  color: gray;
+}
+
+.products__Filtering_Checkbox {
+  color: rgb(0, 0, 0);
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 1.1rem;
+}
+
+.products__Filtering_Checkbox > input[type="checkbox"] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.6); /* IE */
+  -moz-transform: scale(1.6); /* FF */
+  -webkit-transform: scale(1.6); /* Safari and Chrome */
+  -o-transform: scale(1.6); /* Opera */
+  transform: scale(1.6);
+  padding: 5px 10px;
+  margin: 5px;
+  /* background-color: red; */
+}
+
+.products__Filtering_Checkbox > label {
+    margin: 5px;
+}
+
+.products__Filtering_Checkbox > input[type="checkbox"]:checked {
+  background-color: #a77e2d;
+  /* color: #c00000 !important; */
+}
+

@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { getUserDetails, updateUserProfile } from "../../Store/Actions/userActions";
+import {
+  getUserDetails,
+  updateUserProfile,
+} from "../../Store/Actions/userActions";
 import FormikControl from "../../Shared/FormElements/FormikControl";
 import Message from "../../Shared/UIElements/Message";
 
@@ -42,17 +45,15 @@ const ProfileForm = () => {
     }
   }, [dispatch, history, userInfo, user]);
 
-
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
 
   const { success } = userUpdateProfile;
-    // console.log(success);
-//   console.log(userInfo);
+  // console.log(success);
+  //   console.log(userInfo);
 
-//   console.log(user);
+  //   console.log(user);
 
-
-//   console.log(user);
+  //   console.log(user);
   //   let initialValues = {
   //     email: user.email || '',
   //     firstName: user.firstName|| '',
@@ -82,9 +83,9 @@ const ProfileForm = () => {
   // console.log(user.lastName)
   // console.log(user.bio)
 
-//   console.log(initialValues);
+  //   console.log(initialValues);
 
-//   console.log(user.email);
+  //   console.log(user.email);
 
   // console.log(userDetails)
 
@@ -92,16 +93,20 @@ const ProfileForm = () => {
     bio: Yup.string(),
     email: Yup.string().email("Please enter a valid email address."),
     password: Yup.string().min(6),
-    confirmPassword: Yup.string().oneOf([Yup.ref("password"), ""], "Passwords don't must match"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), ""],
+      "Passwords don't must match"
+    ),
     firstName: Yup.string().min(2),
     lastName: Yup.string().min(2),
     DateOfBirth: Yup.date().nullable(),
     country: Yup.string(),
-    gender: Yup.string()
+    gender: Yup.string(),
   });
 
   const onSubmit = (values, isSubmitting) => {
-      dispatch(updateUserProfile(
+    dispatch(
+      updateUserProfile(
         // values.email,
         // values.firstName,
         // values.lastName,
@@ -114,23 +119,23 @@ const ProfileForm = () => {
         {
           id: user._id, //  from the backend
           bio: values.bio,
-        email: values.email,
-        password: values.password,
-        confirmPassword:values.confirmPassword,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        DateOfBirth: user.DateOfBirth, //  from the backend
-        Country: values.country,
-        Gender: values.gender
-      }
-        ))
+          email: values.email,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          DateOfBirth: user.DateOfBirth, //  from the backend
+          Country: values.country,
+          Gender: values.gender,
+        }
+      )
+    );
 
-        console.log("VALUES FROM UPDATE",values)
-        console.log(user._id)
-        isSubmitting(true);
-        isSubmitting(false);
-
-  }
+    console.log("VALUES FROM UPDATE", values);
+    console.log(user._id);
+    isSubmitting(true);
+    isSubmitting(false);
+  };
 
   return (
     <Formik
@@ -241,7 +246,9 @@ const ProfileForm = () => {
             />
             <FormikControl
               fullWidth
-              className="FormElement"
+              className="genderItems"
+              classes="gender_radio_item"
+              secondClass="genderElement"
               control="radio"
               name="gender"
               options={Gender}
@@ -251,9 +258,13 @@ const ProfileForm = () => {
               Terms of Use.
             </p> */}
             <button className={`Signup__Form--Btn Submit__Btn`}>
-              {!loading ? <span>Update User</span>: <span>Processing...</span>}
+              {!loading ? <span>Update User</span> : <span>Processing...</span>}
             </button>
-            {success && <Message severity="success">User Info Updated Successfully!</Message>}
+            {success && (
+              <Message severity="success">
+                User Info Updated Successfully!
+              </Message>
+            )}
             {/* )} */}
             {/* Spinner for the whole login Form ! */}
           </Form>

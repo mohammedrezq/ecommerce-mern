@@ -166,6 +166,7 @@ const RegistrationForm = () => {
               fullWidth
               className="genderItems"
               classes="gender_radio_item"
+              secondClass="genderElement"
               control="radio"
               name="gender"
               options={Gender}

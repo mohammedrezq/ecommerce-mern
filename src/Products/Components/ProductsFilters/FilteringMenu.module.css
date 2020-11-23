@@ -1,0 +1,41 @@
+.showLeftNav {
+  min-width: 240px;
+  padding: 0px 0px 1em 48px;
+  transition: all 300ms ease 0s;
+}
+
+.hideLeftNav {
+  transform: translateX(-192px);
+  margin-left: -192px;
+  transition: all 300ms ease 0s;
+}
+
+/* .leftNav__Categories {
+
+} */
+
+.isLink {
+  background: transparent;
+  cursor: pointer;
+  /* display: block; */
+  margin: 0px 0px 0px 4px;
+  /* overflow-wrap: break-word; */
+  /* position: relative; */
+  /* text-align: left; */
+  white-space: nowrap;
+  width: 96%;
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 100;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.categoryItem {
+  font-weight: 500;
+  white-space: normal;
+  display: block;
+  overflow-wrap: break-word;
+  line-height: 1.35em;
+  padding-bottom: 10px;
+  padding-right: 1.1em;
+}
