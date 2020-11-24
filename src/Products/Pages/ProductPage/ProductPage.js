@@ -112,7 +112,7 @@ const ProductPage = (props) => {
   // console.log(nr.map(item => console.log(item.title))); // all items in LocalStorage
   // cartProducts.map(p => p)
   // console.log(productDetails);
-
+console.log(product)
   const leproduct = product.product; // get product from the product from the payload!!!
 
   // console.log(leproduct.Reviews);
@@ -222,6 +222,16 @@ const ProductPage = (props) => {
       ) : (
         <Grid container>
           <Grid item sm={12} md={8}>
+            <div className="product-images-container">
+          <div className={`product-basic-information-2`}>
+              <h2>{leproduct.Title}</h2>
+              <h1>{leproduct.Title}</h1>
+              <div>${leproduct.Price}</div>
+              {/* <Rating
+                value={leproduct.Rating}
+                text={`${leproduct.NumReviews} Reviews`}
+              /> */}
+            </div>
             {leproduct.Images ? (
               leproduct.Images.map((img, index) => (
                 <div
@@ -234,8 +244,10 @@ const ProductPage = (props) => {
             ) : (
               <div>There no available Images for this product</div>
             )}
+            </div>
           </Grid>
           <Grid item sm={12} md={4} className={`gird__item__4`}>
+            <div className="productInfo_Details">
             {/* <h1>Product ADDED TO CART: {addToCart} </h1> */}
             <div className={`product-basic-information`}>
               <h2>{leproduct.Title}</h2>
@@ -277,8 +289,8 @@ const ProductPage = (props) => {
                 </div>
               )}
             </div> */}
-
-            <div style={{ margin: "8px", paddingTop: "12px" }}>
+          <div className="product__Sizes_Selection">
+            <div className="product__Sizes_Label">
               <span style={{ fontSize: "1.2rem" }}>Select Size</span>
             </div>
             <div
@@ -311,6 +323,7 @@ const ProductPage = (props) => {
                     </label>
                   </div>
                 ))}
+            </div>
             </div>
             <div>
               {cartBtnClicked && !isChecked ? (
@@ -631,6 +644,7 @@ const ProductPage = (props) => {
                   </Button>
                 </form>
               </div>
+            </div>
             </div>
           </Grid>
         </Grid>
