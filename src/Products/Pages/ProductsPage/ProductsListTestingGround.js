@@ -46,6 +46,7 @@ const ProductsPage = () => {
     highestPrices: [],
     lowestPrices: [],
     topRated: [],
+    newestProducts: [],
   });
 
   const anchorRef = useRef(null);
@@ -230,6 +231,16 @@ const ProductsPage = () => {
         ...Filters,
         topRated: productTopRated,
       });
+    } else if (levalue === "newest") {
+      let newestProducts = products.sort((a,b) => {
+        return (
+          a.createdAt < b.createdAt ? 1 : -1
+        )
+      });
+      setFilters({
+        ...Filters,
+        newestProducts: newestProducts
+      });
     }
   };
 
@@ -349,6 +360,15 @@ const ProductsPage = () => {
                             <MenuItem
                               style={{ fontSize: "0.88rem" }}
                               onClick={FiltersHandler}
+                              data-value="newest"
+                            >
+                              Newest Products
+                            </MenuItem>
+                          </div>
+                          <div>
+                            <MenuItem
+                              style={{ fontSize: "0.88rem" }}
+                              onClick={FiltersHandler}
                               data-value="highest"
                             >
                               Highest Price
@@ -423,6 +443,7 @@ const ProductsPage = () => {
         })}
         </div>
           <h2>Colors</h2>
+          <div className="color__Container">
         {Colors.map((color, index) => {
           return (
             <ProductsFilters
@@ -438,7 +459,9 @@ const ProductsPage = () => {
             />
           );
         })}
+        </div>
           <h2>Genders</h2>
+          <div className="gender__Container">
         {Genders.map((gender, index) => {
           return (
             <ProductsFilters
@@ -454,7 +477,9 @@ const ProductsPage = () => {
             />
           );
         })}
+        </div>
         <h2>Price</h2>
+        <div className="price__Container">
         {<ProductsPriceRangeFilters
           Type="range"
           onChange={inputPriceHandler}
@@ -463,6 +488,7 @@ const ProductsPage = () => {
           Max="1000"
           Title={<div style={{fontSize: "20px", padding: "5px"}}>${Filters.productPrices}</div>}
         />}
+        </div>
         </FilteringMenuTesting>
         <Grid item className={`${classes.grid12} ${classes.productGridResult}`}>
           {/* Products List Grid */}

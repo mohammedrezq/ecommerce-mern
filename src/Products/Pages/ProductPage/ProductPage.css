@@ -1,17 +1,20 @@
 /* Radio Buttons Sizes Styling*/
 
+.product-basic-information-2 {
+  display: none;
+}
 .product-extra-information {
-  list-style-type: none;
-  margin: 20px 0 0 0;
-  padding: 20px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
   margin-top: 20px;
+  margin-top: 5px;
 }
 
 .selection-radio-btn {
   float: left;
   margin: 0 5px 0 0;
-  width: 108px;
+  /* width: 108px; */
   max-height: 115px;
   position: relative;
 }
@@ -40,11 +43,20 @@
 }
 
 .product-extra-information label {
-  height: 48px;
+  height: 38px;
   border-radius: 4px;
-  padding: 20px 10px;
+  /* padding: 20px 0 0 0; */
+  text-align: center;
   border: 1px solid #ccc;
   cursor: pointer;
+  /* display: block; */
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
   z-index: 90;
 }
 
@@ -57,27 +69,71 @@ button.product__addition.product_add_to_cart,
 button.product__addition.product_add_to_whishlist {
   display: block;
   background-color: red !important;
-  width: 430px;
+  width: 350px;
 }
 
 .product-extra-information label:hover {
   background: #ddd;
 }
 
+.product-images-container {
+  padding: 0 48px 0 44px;
+  margin: 44px 0 0 0;
+}
+
 .productImage__css {
-  /* height: 80px;
-    width: 30px; */
-  margin-right: 20px;
-  margin-top: 30px;
+  margin: 5px;
 }
 
 .productImage__css img {
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .gird__item__4 {
   padding-right: 20px;
+}
+
+@media (max-width: 1419px) {
+  .button--basic {
+    width: 50%;
+    padding: 18px 0;
+  }
+
+  .product-extra-information {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 959.9px) {
+  .product-basic-information {
+    display: none;
+  }
+  .product-basic-information-2 {
+    padding: 20px 12px 24px 24px;
+    font-size: 0.8rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: block;
+  }
+  .productInfo_Details {
+    padding: 0 44px 0 48px;
+    margin: 20px 0 0 0;
+  }
+  .product-images-container {
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .productInfo_Details {
+    padding: 0 22px 0 24px;
+    margin: 20px 0 0 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -94,27 +150,24 @@ button.product__addition.product_add_to_whishlist {
 }
 
 .product-to-cart-modal {
-  /* position: absolute; */
   top: 100px;
   left: 100px;
   display: flex;
-  /* max-width: 400px; */
   align-items: center;
   justify-content: center;
-  /* width: 400px; */
 }
 .product-info-in-modal {
   display: flex;
   z-index: 1400;
   width: 400px;
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   padding: 0 20px;
 }
 .product-btns-in-modal {
   display: flex;
   z-index: 1400;
   width: 400px;
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   padding: 5px 20px 15px;
   justify-content: center;
 }
@@ -123,36 +176,34 @@ button.product__addition.product_add_to_whishlist {
   z-index: 1400;
   text-align: center;
   width: 400px;
-  /* font-size: 18px; */
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   padding: 15px 20px;
 }
-.product_cart_info{
+.product_cart_info {
   display: block;
   min-width: 80%;
 }
 
-.product-to-cart-modal>div {
+.product-to-cart-modal > div {
   z-index: 100;
 }
 
 .modal_btn {
-    display: block;
-    justify-content: center;
-    text-align: center;
-    width: 180px;
-    margin: 0 auto;
-    min-width: 120px;
-    font-size: 16px;
-    padding: 15px;
-    border-radius: 43px;
-    font-family: arial;
-    /* border: 2px solid #000; */
-    margin: 0 6px;
+  display: block;
+  justify-content: center;
+  text-align: center;
+  width: 180px;
+  margin: 0 auto;
+  min-width: 120px;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 43px;
+  font-family: arial;
+  margin: 0 6px;
 }
 .modal_btn > a {
-    text-decoration: inherit;
-    color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 .view_bag_modal {
@@ -168,7 +219,7 @@ input[type="radio"] {
   display: none;
 }
 
-.star{
+.star {
   cursor: pointer;
   transition: color 200ms;
   font-size: 1.9rem;
