@@ -11,10 +11,13 @@ const NavLinks = (props) => {
   return (
     <ul className="nav-links">
       <li>
-        <NavLink to="/favorites" exact><FavoriteBorderOutlinedIcon /></NavLink>
+  <NavLink to="/" exact><span>{props.textHome}</span></NavLink>
       </li>
       <li>
-        <NavLink to="/cart" onClick={props.onClick} exact><LocalMallOutlinedIcon  /><span>{`${props.number}`}</span></NavLink>
+  <NavLink to="/favorites" exact>{props.IconFavorite}<span>{props.textFavorite}</span></NavLink>
+      </li>
+      <li>
+        <NavLink to="/cart" onClick={props.onClick} exact><div className="cart__Icon">{props.IconCart}{props.textCart}<span>{props.number}</span></div></NavLink>
       </li>
     </ul>
   );

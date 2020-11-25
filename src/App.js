@@ -52,6 +52,7 @@ import AddProductForm from "./Products/Components/AddProductForm";
 import UpdateProductForm from "./Products/Components/UpdateProductForm";
 import StarRating from "./Shared/UIElements/StarRating";
 import ErrorPage from "./Products/Pages/ErrorPage/ErrorPage";
+import Footer from "./Shared/Navigation/Footer";
 // import { usersList } from "./Store/Actions/userActions";
 
 
@@ -181,6 +182,7 @@ function App() {
             <StarRating />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </Provider>
   );

@@ -215,7 +215,7 @@ button.product__addition.product_add_to_whishlist {
   color: white;
 }
 
-input[type="radio"] {
+label >input[type="radio"] {
   display: none;
 }
 
