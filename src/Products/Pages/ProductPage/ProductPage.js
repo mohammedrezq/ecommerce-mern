@@ -623,7 +623,7 @@ console.log(product)
                 <h3>Write a Review</h3>
                 {errorProductReview && (<Message severity="error">{errorProductReview}</Message>)}
                 {userInfo ? (<div></div>): <Message>Please <Link to="/login" >Login</Link> to write a review</Message>}
-                <form onSubmit={submitReviewHandler}>
+                <form className="RatingForm" onSubmit={submitReviewHandler}>
                 <div>
                   {[...Array(5)].map((star, index) => {
                       const ratingValue = index + 1;
