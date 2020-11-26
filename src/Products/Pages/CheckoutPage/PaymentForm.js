@@ -18,7 +18,7 @@ import "./PaymentForm.css";
 const PaymentForm = () => {
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
   console.log(productToCart);
-  const { shippingAddress, paymentMethod } = productToCart;
+  const { paymentMethod } = productToCart;
 
   const history = useHistory();
 

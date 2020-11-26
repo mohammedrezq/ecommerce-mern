@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
 
-import AddIcon from "@material-ui/icons/Add";
 import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
 
 import * as classes from "./FileUpload.module.css";

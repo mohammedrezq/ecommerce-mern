@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 import ProductGrid from "../../Components/ProductGrid/ProductGrid";
@@ -8,7 +8,7 @@ import SecondaryHeader from "../../../Shared/UIElements/SecondaryHeader";
 import classes from "../../Components/ProductGrid/ProductGrid.module.css";
 // import productsPageStyle from "./ProductsPage.module.css";
 import secondaryHeaderCSS from "../../../Shared/UIElements/SecondaryHeader.module.css";
-import FilteringMenuTesting from "../../Components/ProductsFilters/FilteringMenuTesting";
+import FilteringMenu from "../../Components/ProductsFilters/FilteringMenu";
 import filteringMenuNavCSS from "../../../Shared/UIElements/FilteringMenu.module.css";
 
 import Button from "@material-ui/core/Button";
@@ -31,13 +31,11 @@ import Colors from "../../../Shared/Assets/Colors";
 import ProductsFilters from "../../Components/ProductsFilters/ProductsFilters";
 import ProductsPriceRangeFilters from "../../Components/ProductsFilters/ProductsPriceRangeFilters";
 
-import "./PorductsListTestingGround.css"
+import "./PorductsPage.css"
 
 const ProductsPage = () => {
   const [open, setOpen] = useState(false);
-  // const [sortProducts, setSortProducts] = useState({
-    
-  // });
+
   const [Filters, setFilters] = useState({
     productSizes: [],
     productGenders: [],
@@ -52,7 +50,6 @@ const ProductsPage = () => {
   const anchorRef = useRef(null);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const keyword = useParams().keyword;
 
@@ -99,12 +96,6 @@ const ProductsPage = () => {
       setOpen(false);
     }
   }
-  // const SortProductsByPrice = (event) => {
-  //   const sort = event.target.value;
-  //   if(sort === "highest") {
-  //     setSort(products)
-  //   }
-  // }
 
   let productsByColorOnly = products.filter((product) => {
     return product.Colors.some((colors) => {
@@ -244,9 +235,6 @@ const ProductsPage = () => {
     }
   };
 
-  console.log(Filters.highestPrices)
-
-  // console.log(Size)
   const onSizeFilterChange = (e) => {
     let TheSizesArray = [...Filters.productSizes, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
     if (Filters.productSizes.includes(e.currentTarget.value)) {
@@ -297,12 +285,9 @@ const ProductsPage = () => {
     });
   };
 
-
   const inputPriceHandler = (e) => {
     setFilters({ ...Filters, productPrices: e.target.value });
   };
-
-  // console.log(Filters.productPrices);
 
 
   return (
@@ -405,7 +390,7 @@ const ProductsPage = () => {
         </SecondaryHeader>
       </div>
       <Grid item container>
-        <FilteringMenuTesting
+        <FilteringMenu
           className={
             isFilterToggled
               ? filteringMenuNavCSS.showLeftNav
@@ -489,7 +474,7 @@ const ProductsPage = () => {
           Title={<div style={{fontSize: "20px", padding: "5px"}}>${Filters.productPrices}</div>}
         />}
         </div>
-        </FilteringMenuTesting>
+        </FilteringMenu>
         <Grid item className={`${classes.grid12} ${classes.productGridResult}`}>
           {/* Products List Grid */}
           {loading ? (
@@ -500,25 +485,25 @@ const ProductsPage = () => {
             <>
               {Filters.productSizes.length === 0 &&
                 Filters.productGenders.length === 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length === 0 && (
                   <ProductGrid items={products} />
                 )}
               {Filters.productSizes.length === 0 &&
                 Filters.productGenders.length === 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length > 0 && (
                   <ProductGrid items={productsByColorOnly} />
                 )}
               {Filters.productSizes.length === 0 &&
                 Filters.productGenders.length > 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length === 0 && (
                   <ProductGrid items={newProductGenders} />
                 )}
               {Filters.productSizes.length > 0 &&
                 Filters.productGenders.length === 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length === 0 && (
                   <ProductGrid items={SizesFilteringOnly} />
                 )}
@@ -548,19 +533,19 @@ const ProductsPage = () => {
                 )}
               {Filters.productSizes.length > 0 &&
                 Filters.productGenders.length === 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length > 0 && (
                   <ProductGrid items={filterSizesNColors} />
                 )}
               {Filters.productSizes.length > 0 &&
                 Filters.productGenders.length > 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length > 0 && (
                   <ProductGrid items={productsByColorSizeNGender} />
                 )}
               {Filters.productSizes.length === 0 &&
                 Filters.productGenders.length > 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length > 0 && (
                   <ProductGrid items={filterGendersNColors} />
                 )}
@@ -572,7 +557,7 @@ const ProductsPage = () => {
                 )}
               {Filters.productSizes.length === 0 &&
                 Filters.productGenders.length === 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length > 0 && (
                   <ProductGrid items={filterByColorsOnly} />
                 )}
@@ -596,14 +581,10 @@ const ProductsPage = () => {
                 )}
               {Filters.productSizes.length > 0 &&
                 Filters.productGenders.length > 0 &&
-                Filters.productPrices == 0 &&
+                Filters.productPrices === 0 &&
                 Filters.productColors.length === 0 && (
                   <ProductGrid items={newProductsSizes} />
                 )}
-
-                {/* {Filters.highestPrices && <ProductGrid items={Filters.highestPrices} />}
-                {Filters.lowestPrices ? <ProductGrid items={Filters.lowestPrices} />: <ProductGrid items={products} /> } */}
-                {/* {sortProducts.lowestPrices ? <ProductGrid items={sortProducts.lowestPrices} />: <ProductGrid items={products} /> } */}
 
               <Paginate
                 activeClass={`activePage`}

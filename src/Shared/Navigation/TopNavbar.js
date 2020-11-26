@@ -1,4 +1,4 @@
-import React, { useState, useRef ,useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
@@ -27,12 +27,10 @@ const TopNavbar = (props) => {
 
   const history = useHistory();
   const logoutHandler = () => {
-    // console.log("LoggedOut!")
     dispatch(logout());
     setOpen(false) // Make menu close on logout so it will not open when we loggin again (Second time logging in -issue solved-)
     setAdminMenu(false) // Make menu close on logout so it will not open when we loggin again (Second time logging in -issue solved-)
     history.push('/login')
-    // history.push('/login') // Redirect user to homepage ('/') after logout 
   }
 
   const handleToggle = () => {
@@ -67,42 +65,12 @@ const TopNavbar = (props) => {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
-
-  // const prevOpen = useRef(open);
-  // useEffect(() => {
-  //   if (prevOpen.current === true && open === false) {
-  //     anchorRef.current.focus();
-  //   }
-
-  //   prevOpen.current = open;
-  // }, [open]);
-
   const userLogin = useSelector(state =>  state.userLogin);
-
-  // console.log(userLogin)
   const { userInfo } = userLogin;
-  // const { userInfo } = userSignup;
 
-  // const userSignup = useSelector(state =>  state.userSignup);
-  // const { userInfo } = userSignup;
-
-  // console.log("Signup Info",userSignup)
-
-  // const userInfoFromLS = JSON.parse(localStorage.getItem("userInfo"));
-  // console.log(userInfoFromLS);
-
-
-
-
-  // console.log("User INFO",userInfo)
-  // console.log(userInfo.users)
-
-  // console.log(open)
   return (
     <div className="top__navbar">
       <div className="brand__items" style={{fontSize:".88rem"}}>AnyThing..</div>
-      {/* {console.log(userInfo)} */}
       {userInfo ? (
         <div className="topNav_Right">
           {userInfo.isAdmin && ( // If User is Admin add Second Menu for Main Admin Pages

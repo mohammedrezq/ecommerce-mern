@@ -6,7 +6,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../Shared/FormElements/FormikControl";
 import Message from "../../Shared/UIElements/Message";
-import Spinner from "../../Shared/UIElements/Spinner";
 import { categoryCreateAction } from "../../Store/Actions/categoryActions";
 
 const CategoryCreateForm = () => {
@@ -16,9 +15,7 @@ const CategoryCreateForm = () => {
 
   const categoryCreate = useSelector((state) => state.categoryCreate);
 
-  // console.log(userSignup);
   const { loading, error, success, category } = categoryCreate;
-  // console.log(category);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -71,7 +68,6 @@ const CategoryCreateForm = () => {
               placeholder="Category Title"
               label="Category Title"
               variant="outlined"
-              //   size="small"
             />
 
             <FormikControl
@@ -85,7 +81,6 @@ const CategoryCreateForm = () => {
               variant="outlined"
               label="Category Description"
               maxLength="150"
-              //   size="small"
             />
             <FormikControl
               fullWidth
@@ -97,7 +92,6 @@ const CategoryCreateForm = () => {
               placeholder="Image Link"
               label="Category Image"
               variant="outlined"
-              //   size="small"
             />
             <button className={`category__Create`} type="submit">
               {!loading ? (

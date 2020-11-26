@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./Paginate.css"
 
@@ -8,13 +8,11 @@ const Paginate = ({ pages, activeClass, pageNum, isAdmin = false, keyword = "" }
       <div className="paginateContainer">
     {pages > 1 && (
         [...Array(pages).keys()].map((x) => {
-          console.log(x);
           return (
               <NavLink
                 activeClassName={activeClass}
                 key={x + 1}
                 className="paginate"
-                // pageNum={pageNum}
                 to={
                   keyword
                     ? `/search/${keyword}/page/${x + 1}`

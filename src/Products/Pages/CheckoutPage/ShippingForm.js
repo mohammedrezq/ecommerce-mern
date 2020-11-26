@@ -167,7 +167,6 @@ const ShippingForm = () => {
                   <FormikControl
                     fullWidth
                     className="FormElement"
-                    fullWidth
                     control="materialSelectCountry"
                     label="Country/Region"
                     name="Country"

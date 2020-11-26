@@ -22,7 +22,7 @@
 
 h1.main-navigation__title {
   margin: 0;
-  padding: 0 15px;
+  padding-left: 48px;
   float: left;
 }
 .main-navigation__humburger-btn {

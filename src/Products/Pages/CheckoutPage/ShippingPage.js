@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Accordion,
@@ -8,10 +8,8 @@ import {
   Grid,
 } from "@material-ui/core";
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
 import ShippingForm from "./ShippingForm";
-// import PaymentForm from "./PaymentForm";
+
 import CheckoutSteps from '../../Components/CheckoutSteps';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,15 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ShippingPage() {
-  const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
-
-  const AddAccordionExpanded = () => {
-    setExpanded((prevState) => !prevState );
-  };
-  const RemoveAccordionExpanded = () => {
-    setExpanded(false);
-  };
 
   return (
     <>

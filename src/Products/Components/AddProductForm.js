@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import axios from 'axios';
 
 import { catsList } from "../../Store/Actions/categoryActions";
 
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import Radio from '@material-ui/core/Radio';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
-
-
-
 
 import Sizes from "../../Shared/Assets/Sizes"; //Sizes
 import Colors from "../../Shared/Assets/Colors"; // Colors
@@ -27,7 +19,7 @@ import PorductGender from "../../Shared/Assets/ProductGender"; //Genders
 
 import FileUpload from "../../Shared/Utils/FileUpload"; //Genders
 import Button from "../../Shared/UIElements/Button";
-// import "./NewProductForm.css";
+
 import { createProduct } from "../../Store/Actions/productsActions";
 import Message from "../../Shared/UIElements/Message";
 
@@ -64,7 +56,7 @@ const AddProductForm = () => {
   }, [dispatch, userInfo, history]);
 
   const categoriesList = useSelector((state) => state.categoriesList);
-  const { loading, error, cats } = categoriesList;
+  const { cats } = categoriesList;
 
 // console.log(cats)
 
@@ -86,44 +78,33 @@ const AddProductForm = () => {
   }
   const onSizeChange = (e) => {
     let TheSizesArray = [...Size, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE SIZES",Size)
-    let SizesChecked = e.currentTarget.checked;
     if(Size.includes(e.currentTarget.value)) {
       TheSizesArray = TheSizesArray.filter((size) =>  { 
-        // console.log("TheSize",size) 
         return (size !== e.currentTarget.value)
       });
       setSize(TheSizesArray);
-      // setCheckedSizes(SizesChecked);
     }
-    // console.log(TheSizesArray)
     setSize(TheSizesArray);
-    // setCheckedSizes(SizesChecked);
 
   }
-  console.log(Size)
-  // console.log(checked)
+
 
   const onColorChange = (e) => {
     let TheColorsArray = [...Color, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE COLORS",Color)
     if(Color.includes(e.currentTarget.value)) {
       TheColorsArray = TheColorsArray.filter(color => color !== e.currentTarget.value);
     }
     setColor(TheColorsArray)
   }
 
-  // console.log(Color)
 
   const onGenderChange = (e) => {
     let TheGendersArray = [...Gender, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE GENDERS",Gender)
     if(Gender.includes(e.currentTarget.value)){
       TheGendersArray = TheGendersArray.filter(gender => gender !== e.currentTarget.value);
     }
     setGender(TheGendersArray);
   }
-  // console.log(Gender)
   const onShippingChange = (e) => {
     setShipping(e.currentTarget.value);
   }
@@ -132,7 +113,7 @@ const AddProductForm = () => {
   }
 
   const updateImages = (newImages) => {
-    console.log(newImages)
+    // console.log(newImages)
     setImages(newImages)
   }
 
@@ -154,7 +135,7 @@ const AddProductForm = () => {
         Images: Images,
         })
     );
-    console.log("New Product Submitted");
+    // console.log("New Product Submitted");
   }
 
 
@@ -162,9 +143,6 @@ const AddProductForm = () => {
 
   const { success: successCreate, loading: loadingCreate, error: errorCreate } = productCreate;
 
-
-  // console.log(Color)
-  // console.log(Size)
   return (
     <>
   <form onSubmit={submitNewProductHandler}>

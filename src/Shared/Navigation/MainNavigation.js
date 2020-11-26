@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Route } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import ReactResizeDetector from "react-resize-detector";
 import SearchBox from "../Search/SearchBox";
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 
 /* Redux */
-import { connect, useSelector } from 'react-redux';
-import * as actions from '../../Store/Actions'
-
+// import { useSelector } from 'react-redux';
 
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
@@ -18,7 +15,6 @@ import HamburgerButton from "../UIElements/HamburgerButton";
 import Backdrop from "../UIElements/Backdrop";
 import "./MainNavigation.css";
 import classes from "./Drawer.module.css";
-import CartPage from "../../Products/Pages/CartPage/CartPage";
 
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -37,45 +33,14 @@ const MainNavigation = (props) => {
     window.addEventListener("resize", closeDrawerHandler);
   };
 
-  // useEffect (() => {
-  //   actions.getProductsNumber();
-  // }, [])
-
-  let history = useHistory();
-
-  // const goToCartPage = () => {
-  //   history.push('/cart');
-  // }
-
-
-
   
-  const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
-  // console.log(productToCart)
-  const { err, loadingStatus, cartProducts } = productToCart;
+  // const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
 
-  // console.log(cartProducts);
+  // const { err, loadingStatus, cartProducts } = productToCart;
 
 
   let arr = JSON.parse(localStorage.getItem("cartProducts"));
-  // if( arr === null || undefined ) arr = [];
-  // localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-  // localStorage.setItem("cartProducts", JSON.stringify(arr))
-
-// console.log(arr)
-
-
-  // const productArr = arr.map((p) => p);
-  // const nr = productArr.map((x) => x[0]);
-  // const productItem = nr.map((item) => item); // all items in LocalStorage
-
-
-  // if (productItem && productItem.length <= 9) {
-  //   productItem.length
-  // } else {
-  //   <span>9+</span>
-  // }
-  // console.log(productItem.length)
+ 
   return (
     <>
       <ReactResizeDetector onResize={handleWindowResizing}>
@@ -122,17 +87,5 @@ const MainNavigation = (props) => {
     </>
   );
 };
-
-// const mapStateToProps = state => {
-//   return {
-//     productsNumber: state.addtoCartReducer
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getProductsNumber: () => dispatch(actions.getProductsNumber())
-//   }
-// }
 
 export default MainNavigation;
