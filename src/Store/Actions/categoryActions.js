@@ -27,7 +27,7 @@ export const categoryCreateAction = (
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/cats",
+      process.env.REACT_APP_BACKEND_URL+"/cats",
       {
         categoryTitle,
         categoryDescription,
@@ -75,7 +75,7 @@ export const catsList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`http://localhost:5000/api/cats`, config);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/cats`, config);
 
     dispatch({
       type: actionTypes.CATS_LIST_SUCCESS,
@@ -119,7 +119,7 @@ export const updateCategoryByAdmin = (id, cat) => async (
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/cats/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/cats/${id}`,
       cat,
       config
     );
@@ -165,7 +165,7 @@ export const getCategoryDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/cats/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/cats/${id}`,
       config
     );
 
@@ -204,7 +204,7 @@ export const deleteCategory = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`http://localhost:5000/api/cats/${id}`, config);
+    await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cats/${id}`, config);
 
     dispatch({
       type: actionTypes.CAT_DELETE_SUCCESS,
@@ -234,7 +234,7 @@ export const catsListUsers = () => async (dispatch, getState) => {
       type: actionTypes.CATEGORY_LIST_REQUEST,
     });
 
-    const { data } = await axios.get(`http://localhost:5000/api/categories`); // For All Users and Guests
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories`); // For All Users and Guests
 
     // console.log(data)
     dispatch({
@@ -280,7 +280,7 @@ export const getCategoryDetailsUser = (id) => async ( dispatch ) => {
     // };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/categories/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/categories/${id}`,
       // config
     );
 

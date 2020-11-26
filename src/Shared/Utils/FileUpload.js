@@ -29,7 +29,7 @@ const FileUpload = (props) => {
         formData.append("file", files[0] );
 
         // Save the image we choose inside Node Server
-        Axios.post('http://localhost:5000/api/uploads/uploadImage', formData , config)
+        Axios.post(process.env.REACT_APP_BACKEND_URL+'/uploads/uploadImage', formData , config)
         .then(response => {
             if(response.data.success) {
                 setImages([ ...Images, response.data.image]);

@@ -20,7 +20,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/users/login",
+      process.env.REACT_APP_BACKEND_URL+"/users/login",
       { email, password },
       config
     );
@@ -88,7 +88,7 @@ export const signup = (
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/users/signup",
+      process.env.REACT_APP_BACKEND_URL+"/users/signup",
       {
         email,
         password,
@@ -150,7 +150,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/users/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${id}`,
       config
     );
 
@@ -198,7 +198,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     };
 
     await axios.delete(
-      `http://localhost:5000/api/users/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${id}`,
       config
     );
 
@@ -253,7 +253,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 //     };
 
 //     const { data } = await axios.put(
-//       `http://localhost:5000/api/users/profile/`, user,
+//       `${process.env.REACT_APP_BACKEND_URL}/users/profile/`, user,
 //       config
 //     );
 
@@ -303,7 +303,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put( `http://localhost:5000/api/users/profile`, user, config );
+    const { data } = await axios.put( `${process.env.REACT_APP_BACKEND_URL}/users/profile`, user, config );
 
     console.log(data)
 
@@ -349,7 +349,7 @@ export const usersList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get( `http://localhost:5000/api/users`,  config );
+    const { data } = await axios.get( `${process.env.REACT_APP_BACKEND_URL}/users`,  config );
 
 
     dispatch({
@@ -393,7 +393,7 @@ export const updateUserByAdmin = (id, user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put( `http://localhost:5000/api/users/${id}`, user, config );
+    const { data } = await axios.put( `${process.env.REACT_APP_BACKEND_URL}/users/${id}`, user, config );
 
     // console.log(data)
 
@@ -443,7 +443,7 @@ export const getUserDetailsForAdmin = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/users/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${id}`,
       config
     );
 
