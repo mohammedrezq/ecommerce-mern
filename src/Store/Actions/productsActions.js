@@ -21,7 +21,7 @@ export const listProducts = (keyword = "", pageNumber = "") => async (dispatch) 
   try {
     dispatch({ type: actionTypes.PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products?keyword=${keyword}&pageNumber=${pageNumber}`);
 
     dispatch({
       type: actionTypes.PRODUCT_LIST_SUCCESS,
@@ -44,7 +44,7 @@ export const listProductsHighestPrice = (keyword = "", pageNumber = "") => async
   try {
     dispatch({ type: actionTypes.PRODUCT_LIST_HIGHEST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/products/HighestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/HighestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
 
     dispatch({
       type: actionTypes.PRODUCT_LIST_HIGHEST_SUCCESS,
@@ -67,7 +67,7 @@ export const listProductsLowestPrice = (keyword = "", pageNumber = "") => async 
   try {
     dispatch({ type: actionTypes.PRODUCT_LIST_LOWEST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/products/LowestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/LowestPrice?keyword=${keyword}&pageNumber=${pageNumber}`);
 
     dispatch({
       type: actionTypes.PRODUCT_LIST_LOWEST_SUCCESS,
@@ -90,7 +90,7 @@ export const topRatedProductsList = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.TOP_RATED_PRODUCT_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/products/TopRated`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/TopRated`);
     console.log(data)
 
     dispatch({
@@ -113,7 +113,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(
-      `http://localhost:5000/api/products/${id}`
+      `${process.env.REACT_APP_BACKEND_URL}/products/${id}`
     );
     dispatch({ type: actionTypes.PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (err) {
@@ -132,7 +132,7 @@ export const listProductDetails = (id) => async (dispatch) => {
 //   try {
 //     dispatch({ type: actionTypes.PRODUCT_DETAILS_REQUEST, payload: productId });
 
-//     const { data } = await axios.get(`http://localhost:5000/api/products/5f83bb785334a975a4ac287a`);
+//     const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/5f83bb785334a975a4ac287a`);
 
 //     dispatch({
 //       type: actionTypes.PRODUCT_DETAILS_SUCCESS,
@@ -164,7 +164,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+    await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`, config);
 
     dispatch({
       type: actionTypes.PRODUCT_DELETE_SUCCESS,
@@ -196,7 +196,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.post(
-      `http://localhost:5000/api/products/`,
+      `${process.env.REACT_APP_BACKEND_URL}/products/`,
       product,
       config
     );
@@ -236,7 +236,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     console.log(product);
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/products/${product.id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/products/${product.id}`,
       product,
       config
     );
@@ -272,7 +272,7 @@ export const createProductReview = (productId, review) => async (
 
 
     await axios.post(
-      `http://localhost:5000/api/products/${productId}/reviews`,
+      `${process.env.REACT_APP_BACKEND_URL}/products/${productId}/reviews`,
       review,
       config
     );

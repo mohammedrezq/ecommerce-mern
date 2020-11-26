@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as actionTypes from '../Actions/actionTypes';
 
 export const addToCart = (id, qty, size) => async(dispatch, getState) => {
-    const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`);
 
     // console.log(data);
     const {product} = data;
@@ -26,7 +26,7 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
 
     try {
         dispatch({type: actionTypes.PRODUCT_ADD_REQUEST})
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`);
         const { product } = data;
         // console.log(product)
         

@@ -25,7 +25,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     // {console.log(order)}
     // {console.log(config)}
     const { data } = await axios.post(
-      `http://localhost:5000/api/orders`,
+      `${process.env.REACT_APP_BACKEND_URL}/orders`,
       order,
       config
     );
@@ -72,7 +72,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/orders/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/orders/${id}`,
       config
     );
 
@@ -114,7 +114,7 @@ export const payOrder = (orderId, paymentResult) => async (
     };
     // console.log(paymentResult)
     const { data } = await axios.put(
-      `http://localhost:5000/api/orders/${orderId}/pay`,
+      `${process.env.REACT_APP_BACKEND_URL}/orders/${orderId}/pay`,
       paymentResult,
       config
     );
@@ -163,7 +163,7 @@ export const deliverOrder = (order) => async (
     };
     // console.log(paymentResult)
     const { data } = await axios.put(
-      `http://localhost:5000/api/orders/${order._id}/deliver`,
+      `${process.env.REACT_APP_BACKEND_URL}/orders/${order._id}/deliver`,
       {},
       config
     );
@@ -209,7 +209,7 @@ export const getUserListOrders = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/orders/myorders`,
+      `${process.env.REACT_APP_BACKEND_URL}/orders/myorders`,
       config
     );
 
@@ -240,7 +240,7 @@ export const getOrdersList = () => async(dispatch, getState) => {
       }
     }
 
-    const { data } = await axios.get(`http://localhost:5000/api/orders`, config);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/orders`, config);
 
     dispatch({
       type: actionTypes.ORDERS_LIST_SUCCESS,
