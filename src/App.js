@@ -11,13 +11,12 @@ import { Provider } from "react-redux";
 import Store from './Store';
 
 import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
-import ProductsListTestingGround from "./Products/Pages/ProductsPage/ProductsListTestingGround";
 import ProductsPageHighestPrice from "./Products/Pages/ProductsPage/ProductsPageHighestPrice";
 import ProductsPageLowestPrice from "./Products/Pages/ProductsPage/ProductsPageLowestPrice";
 import TopRatedProducts from "./Products/Pages/ProductsPage/TopRatedProducts";
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
 import ProductListPage from "./Products/Pages/ProductListPage/ProductListPage";
-import NewProductForm from "./Products/Components/NewProductForm";
+// import NewProductForm from "./Products/Components/NewProductForm";
 // import CheckoutPage from "./Products/Pages/CheckoutPage/CheckoutPage";
 import CartPage from "./Products/Pages/CartPage/CartPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
@@ -25,8 +24,6 @@ import NewProduct from "./Products/Pages/NewProduct/NewProduct";
 import RegistrationPage from "./User/Pages/RegistrationPage";
 import LoginPage from "./User/Pages/LoginPage";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
-import TheModal from "./Shared/UIElements/TheModal";
-import CartModal from "./Shared/UIElements/CartModal";
 // import Accordion from "./Products/PagesF/CheckoutPage/Accordion";
 import ShippingPage from "./Products/Pages/CheckoutPage/ShippingPage";
 import PaymentPage from "./Products/Pages/CheckoutPage/PaymentPage";
@@ -43,14 +40,14 @@ import ProfilePage from "./User/Pages/ProfilePage";
 import UpdateUserPage from "./User/Pages/UpdateUserPage";
 import CategoryCreateForm from "./Cats/Components/CategoryCreateForm";
 import CategoriesListPage from "./Cats/Pages/CategoriesListPage";
-import CateogryListUsersPage from "./Cats/Pages/CateogryListUsersPage";
+import CategoryListUsersPage from "./Cats/Pages/CategoryListUsersPage";
 import CategoryDetailsUsersPage from "./Cats/Pages/CategoryDetailsUsersPage";
 import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
-import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductPage";
+// import CreateProductPage from "./Products/Pages/CreateProductPage/CreateProductPage";
 import UpdateProductPage from "./Products/Pages/UpdateProductPage/UpdateProductPage";
-import AddProductForm from "./Products/Components/AddProductForm";
-import UpdateProductForm from "./Products/Components/UpdateProductForm";
-import StarRating from "./Shared/UIElements/StarRating";
+// import AddProductForm from "./Products/Components/AddProductForm";
+// import UpdateProductForm from "./Products/Components/UpdateProductForm";
+// import StarRating from "./Shared/UIElements/StarRating";
 import ErrorPage from "./Products/Pages/ErrorPage/ErrorPage";
 import Footer from "./Shared/Navigation/Footer";
 // import { usersList } from "./Store/Actions/userActions";
@@ -66,9 +63,6 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <ProductsPage />
-          </Route>
-          <Route path="/TestingGround" exact>
-            <ProductsListTestingGround />
           </Route>
           <Route path="/top-rated" exact>
             <TopRatedProducts />
@@ -122,7 +116,7 @@ function App() {
             <CategoriesListPage />
           </Route>
           <Route path="/categories" exact>
-            <CateogryListUsersPage />
+            <CategoryListUsersPage />
           </Route>
           <Route path="/category/:cid" exact>
             <CategoryDetailsUsersPage />
@@ -157,15 +151,9 @@ function App() {
           <Route path="/admin/product/:pid/edit" exact>
             <UpdateProductPage />
           </Route>
-          <Route path="/add-product" exact>
+          {/* <Route path="/add-product" exact>
             <AddProductForm />
-          </Route>
-          <Route path="/modaltesting" exact>
-            <TheModal />
-          </Route>
-          <Route path="/cartmodal" exact>
-            <CartModal />
-          </Route>
+          </Route> */}
           <Route path="/cart/:id?">
             <CartPage />
           </Route>
@@ -178,9 +166,9 @@ function App() {
           <Route path="/login" exact>
             <LoginPage />
           </Route>
-          <Route path="/star" exact>
+          {/* <Route path="/star" exact>
             <StarRating />
-          </Route>
+          </Route> */}
         </Switch>
         <Footer />
       </Router>

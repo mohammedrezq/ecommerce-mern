@@ -1,10 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
-
 import './NavLinks.css';
 
 const NavLinks = (props) => {

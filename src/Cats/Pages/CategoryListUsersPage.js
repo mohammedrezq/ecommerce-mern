@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Link, useHistory } from "react-router-dom";
 
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -13,17 +13,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-// import CloseIcon from "@material-ui/icons/Close";
-// import CheckIcon from "@material-ui/icons/Check";
-// import EditIcon from '@material-ui/icons/Edit';
-// import DeleteIcon from '@material-ui/icons/Delete';
-
 import { catsListUsers } from "../../Store/Actions/categoryActions";
 import Spinner from "../../Shared/UIElements/Spinner";
 import Message from "../../Shared/UIElements/Message";
-import { deleteCategory } from "../../Store/Actions/categoryActions";
 import { Link } from "react-router-dom";
-// import Button from "../../Shared/UIElements/Button";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

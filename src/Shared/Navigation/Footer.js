@@ -57,6 +57,7 @@ const Footer = () => {
                           data-path="sign up for email"
                           className="footer-url-nav"
                           data-pre="ILink"
+                          to="/newsLetter"
                         >
                           SIGN UP FOR EMAIL
                         </Link>
@@ -100,7 +101,7 @@ const Footer = () => {
                 <Grid item xs={12} md={4} lg={3}>
                   <Grid container>
                     <ul className="footer-links-list">
-                      <li class="footer-link footer-url-header">
+                      <li className="footer-link footer-url-header">
                         <Link
                           language="en"
                           aria-label="main-footer, main-footer, Get Help"
@@ -146,7 +147,7 @@ const Footer = () => {
                           Returns
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="get help:payment options"
@@ -157,7 +158,7 @@ const Footer = () => {
                           Payment Options
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="get help:gift card balance"
@@ -168,7 +169,7 @@ const Footer = () => {
                           Gift Card Balance
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="get help:contact us"
@@ -185,20 +186,20 @@ const Footer = () => {
                 <Grid item xs={12} md={4} lg={3}>
                   <Grid container>
                     <ul className="footer-links-list">
-                      <li class="footer-link footer-url-header">
+                      <li className="footer-link footer-url-header">
                         <Link
                           language="en"
                           aria-label="main-footer, About Nike"
                           data-type="click_navFooter"
                           data-path="about nike"
-                          class="nav-uppercase nav-brand"
+                          className="nav-uppercase nav-brand"
                           to="http://about.nike.com/"
                           data-pre="ILink"
                         >
                           About Nike
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:news"
@@ -209,7 +210,7 @@ const Footer = () => {
                           News
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:careers"
@@ -220,7 +221,7 @@ const Footer = () => {
                           Careers
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:investors"
@@ -231,7 +232,7 @@ const Footer = () => {
                           Investors
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:purpose"
@@ -242,7 +243,7 @@ const Footer = () => {
                           Purpose
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:sustainability"
@@ -253,7 +254,7 @@ const Footer = () => {
                           Sustainability
                         </Link>
                       </li>
-                      <li class="footer-link">
+                      <li className="footer-link">
                         <Link
                           data-type="click_navFooter"
                           data-path="about nike:ca supply chains act"

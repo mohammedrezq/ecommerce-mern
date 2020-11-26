@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams, useLocation, useHistory } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,11 +7,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Message from "../../../Shared/UIElements/Message";
 import Spinner from "../../../Shared/UIElements/Spinner";
 import {
-  addToCart,
   removeProductFromCart,
   updateQuantityFromCart,
 } from "../../../Store/Actions/cartActions";
-import { FormControl, Grid, InputLabel, Select } from "@material-ui/core";
+import { FormControl, Grid, Select } from "@material-ui/core";
 
 import HrElemnent from "../../../Shared/UIElements/HrElement";
 import "./CartPage.css";
@@ -95,27 +94,14 @@ const useStyles = makeStyles((theme) => ({
 const CartPage = (props) => {
   const classes = useStyles();
 
-  // const productId = useParams().id;
-  // console.log(productId);
-
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  // const qty = Number(useLocation().search.split("?")[2].split("=")[1]);
-  // const size = useLocation().search.split("?")[1].split("=")[1];
-  // console.log(qty);
-  // console.log(size);
-  // console.log('CART PAGE PROPS', props);
-
-  // const cart = useSelector(state => state.cart);
-  // const { cartItems } = cart;
 
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
-  // console.log(productToCart)
-  const { err, loadingStatus, cartProducts } = productToCart;
+  const { err, cartProducts } = productToCart;
 
-  console.log(cartProducts);
 
   let arr = [];
   arr = JSON.parse(localStorage.getItem("cartProducts"));
@@ -123,31 +109,10 @@ const CartPage = (props) => {
   localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
   localStorage.setItem("cartProducts", JSON.stringify(arr)); // save to the LocalStorage
 
-  console.log(arr);
-
-  // const productArr = arr.map((p) => p);
-  // const cartProductItems = arr.map((x) => console.log(x));
-
-  // console.log(cartProductItems)
-  // console.log(cartProduct.title)
-  // console.log(cartProduct.image)
-  // console.log(cartProduct.price)
-  // console.log(cartProduct.size)
-  // console.log(cartProduct.qty)
-  // const productItem = nr.map((item) => item); // all items in LocalStorage
-
-  // console.log(productItem);
-
-  // productItem.reverse();
-  // console.log(productItem);
   let productQty = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const removeProductFromCartHandler = (id, size, qty, price) => {
-    // console.log(id)
-    // console.log(size)
-    // console.log(qty)
     let arr = JSON.parse(localStorage.getItem("cartProducts")) || [];
-    // console.log(arr)
 
     let i = arr.findIndex(
       (item) =>
@@ -156,126 +121,38 @@ const CartPage = (props) => {
         item.qty === qty &&
         item.price === price
     ); // removing product based on its id & size & qty & price
-    // console.log(i)
 
-    // arr.filter(item => item.product !== id)
-    // let filteredProducts = arr.filter(arr.product !== id)
     arr.splice(i, 1);
     localStorage.setItem("cartProducts", JSON.stringify(arr));
     dispatch(removeProductFromCart(id, size, qty, price));
 
-    console.log("Product Removed!");
   };
   const updateProductQuantityFromCartHandler = (id, size, qty, price) => {
-    // console.log(id)
-    // console.log(size)
-    // console.log(qty)
+  
     let arr = JSON.parse(localStorage.getItem("cartProducts"));
-    // console.log(arr)
 
     let i = arr.findIndex(
       (item) => item.product === id && item.size === size
-      // && item.qty === qty
-      // item.price === price
     ); // removing product based on its id & size & qty & price
-    // console.log(i)
 
-    // arr.filter(item => item.product !== id)
-    // let filteredProducts = arr.filter(arr.product !== id)
-    console.log(arr[i].qty);
     arr[i].qty = qty;
     localStorage.setItem("cartProducts", JSON.stringify(arr));
     dispatch(updateQuantityFromCart(id, size, qty));
 
-    // console.log("Product selected!");
   };
-
-
-  // const uniqueProductsInCart = (id, size) => {
-  //   const arr = JSON.parse.localStorage.getItem("cartProducts");
-  //   console.log(arr);
-  // }
-
-  // uniqueProductsInCart(cart.)
-
-    // let filtered;
-    // filtered = arr.filter(
-    //   (v, i, a) =>
-    //     a.findIndex((t) => t.size === v.size && t.product === v.product) === i // size or product(id) or size etc
-    // );
-    // console.log(filtered);
-
-    // localStorage.setItem("cartProducts", JSON.stringify(filtered))
-
-  //   console.log(productItem.map((item) => item.title));
-  //     const listOfTags = productItem,
-  //     keys = ['size', 'product'],
-  //     filtered = listOfTags.filter(
-  //         (s => o =>
-  //             (k => !s.has(k) && s.add(k))
-  //             (keys.map(k => o[k]).join('|'))
-  //         )
-  //         (new Set)
-  //     );
-
-  // console.log(filtered);
-
-  // const unique = [];
-
-  // productItem.map(x => {
-  //     console.log(x.title)
-  //     return (
-  //         unique.filter(a => {
-  //             console.log(a.title)
-  //             return (
-  //             a.title !== x.title && a.product !== x.product
-  //             )
-  //         }
-  //             ).length > 0 ? null : unique.push(x)
-  //     )
-  // }
-  //     );
-
-  // console.log(unique)
-
-  // useEffect(() => {
-  // if(productId);
-  //     dispatch(addToCart(productId))
-  // },[dispatch])
-
-  // const productLink = (id) => {
-  // console.log(id)
-  // console.log(size)
-  // console.log(qty)
-  // let productsInLS = JSON.parse(localStorage.getItem("cartProducts")) || [];
-  // console.log(arr)
-
-  // let i = productsInLS.findIndex(
-  //   (item) =>
-  //     item.product === id
-  // );
-
-  // console.log("Product Image Was Clicked!");
-
-  // history.push(`product/${id}`);
-
-  // };
 
   const SubTotal = arr.reduce((acc, item) => acc + item.qty * item.price, 0);
   const FixedSubTotal = SubTotal.toFixed(2);
 
-  // const Shipping = SubTotal >= 300 ? 0 : ((SubTotal * 10 )/ 100);
   const Shipping = SubTotal >= 300 || SubTotal === 0 ? 0 : 25;
   const FixedShipping = Shipping.toFixed(2);
 
   const Taxes = (SubTotal * 14) / 100;
   const FixedTaxes = Taxes.toFixed(2);
 
-  console.log(Shipping);
 
   const TheTotal = (SubTotal + Shipping + Taxes).toFixed(2);
 
-  console.log(TheTotal);
 
   const handleCheckoutBtn = () => {
     return history.push("/shipping");
@@ -371,7 +248,6 @@ const CartPage = (props) => {
                                           className={`quantity_product_cart`}
                                           style={{ minWidth: "100%" }}
                                         >
-                                          {/* <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel> */}
                                           <Select
                                             fullWidth={true}
                                             native
@@ -404,15 +280,6 @@ const CartPage = (props) => {
                                 <div
                                   className={`${classes.cartItemPrice} cartItems--Cart cartItem__Price`}
                                 >
-                                  {/* <span
-                                    style={{
-                                      fontSize: ".8rem",
-                                      marginRight: ".5rem",
-                                      // background: "greenyellow",
-                                    }}
-                                  >
-                                    Qty:{item.qty} @ ${item.price}{" "}
-                                  </span> */}
                                   <span>
                                     $
                                     {Number(`${item.qty * item.price}`).toFixed(
@@ -490,9 +357,6 @@ const CartPage = (props) => {
                   >
                     <div>Summary</div>
                   </Grid>
-                  {/* <Grid className={`${classes.aligningSummary} Promo__code__Cart`} item xs={9} md={12}>
-                    <div>Do you have a Promo Code?</div>
-                  </Grid> */}
                   <Grid
                     container
                     className={`${classes.aligningSummary} cartSummary__Item`}
@@ -526,7 +390,6 @@ const CartPage = (props) => {
                       <span>${FixedTaxes}</span>
                     </Grid>
                   </Grid>
-                  {/* <hr className={classes.cartSummaryHr} style={{ margin: "12px"}}/> */}
                   <HrElemnent
                     color="rgba(0,0,0,0.15)"
                     height="1px"
@@ -573,19 +436,6 @@ const CartPage = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {/* CartPage: {productItem.length}
-      <div>Price: </div>
-      {productItem && productItem.map((item, i) => {
-        return (
-            <div key={i}>
-        <div>{(item) && item.price}</div>
-        <div>{(item) && item.size}</div>
-        <div>{(item) && item.qty}</div>
-        <div>{(item) && item.title}</div>
-        <img src={(item) && item.image} />
-        </div>
-        )
-      })} */}
         </Grid>
       )}
     </>

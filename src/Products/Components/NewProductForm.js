@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 import { catsList } from "../../Store/Actions/categoryActions";
@@ -18,7 +18,6 @@ import "./NewProductForm.css";
 import { createProduct } from "../../Store/Actions/productsActions";
 
 const NewProductForm = () => {
-  const [img, setImg] = useState([]) 
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -34,11 +33,8 @@ const NewProductForm = () => {
   }, [dispatch, userInfo, history]);
 
   const categoriesList = useSelector((state) => state.categoriesList);
-  const { loading, error, cats } = categoriesList;
+  const { cats } = categoriesList;
 
-  console.log(cats);
-
-  // console.log(cats && cats.map((categroy) => categroy.categoryTitle));
 
   const initialValues = {
     productTitle: "",
@@ -88,17 +84,13 @@ const NewProductForm = () => {
 
 
   const onSubmit = (values, isSubmitting) => {
-    // console.log("NEW PRODUCT VALUES:",values)
     console.log("IMAGES :", values.Images);
-    // console.log("TYPE OF IMAGE", typeof(values.Images))
     console.log(values);
     const imageUploadHandler = async (name, event) => {
-      // setFieldValue("name", event.target.files[0]);
       const formData = new FormData();
       formData.append("Images", values.Images[0]);
-      // console.log(name)
-      // console.log(event.currentTarget.files)
-      console.log("IMAGES :", values.Images);
+
+      // console.log("IMAGES :", values.Images);
   
     try {
         const config  = {
@@ -133,11 +125,7 @@ const NewProductForm = () => {
 
   imageUploadHandler("Images", values.Images)
 
-    // let data = new FormData();
-    // data.append("Images", values.Images)
-
     let imagesArray = [...values.Images]; // convert filesArray into JavaScript Array using spread operator!
-    // return (console.log("New Product Added Form:  ", values, values.productImages, images.map(img => img.name)))
   };
 
   return (
@@ -274,15 +262,6 @@ const NewProductForm = () => {
             variant="outlined"
             size="medium"
           />
-          {/* <FormikControl
-            control="inputImages"
-            className="FormNewProduct"
-            type="file"
-            autoComplete="product-images"
-            label="Product Images"
-            name="Images"
-            accept="image/*"
-          /> */}
           <div>
             <input
               // multiple

@@ -1,31 +1,18 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
 
-// import Dropzone from "react-dropzone";
 import TextError from "./TextError";
 
-// import Thumb from "./Thumb";
 import axios from "axios";
 
-// const dropzoneStyle = {
-//   width: "100%",
-//   height: "auto",
-//   backgroundColor: "red",
-//   borderWidth: 2,
-//   borderColor: "rgb(102, 102, 102)",
-//   borderStyle: "dashed",
-//   borderRadius: 5,
-// };
-
 const InputImages = (props) => {
-  const { label, name, className, ...rest } = props;
+  const { label, name, className} = props;
   return (
     <div className={className}>
       <label htmlFor={name}>{label}</label>
       <Field name={name}>
         {({ form, field }) => {
           const { setFieldValue } = form;
-          const { value } = field;
             
           const imageUploadHandler = async (name, event) => {
               setFieldValue(name, event.target.files[0]);

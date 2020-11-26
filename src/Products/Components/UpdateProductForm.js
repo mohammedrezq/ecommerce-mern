@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
-import axios from "axios";
 
 import { catsList } from "../../Store/Actions/categoryActions";
 
@@ -25,7 +24,6 @@ import Message from "../../Shared/UIElements/Message";
 import * as classes from "../../Shared/Utils/FileUpload.module.css";
 // import "./NewProductForm.css";
 import {
-  createProduct,
   listProductDetails,
   updateProduct,
 } from "../../Store/Actions/productsActions";
@@ -41,7 +39,6 @@ const UpdateProductForm = () => {
   const [Size, setSize] = useState([]);
   const [Color, setColor] = useState([]);
   const [Gender, setGender] = useState([]);
-  const [checked, setChecked] = useState(false);
   const [Shipping, setShipping] = useState("");
   const [sizeFit, setSizeFit] = useState("");
   const [Images, setImages] = useState([]);
@@ -54,19 +51,13 @@ const UpdateProductForm = () => {
 
   const productDetails = useSelector((state) => state.productDetails);
 
-  const { error, loading, product } = productDetails;
+  const { product } = productDetails;
 
   let theProduct = product.product;
-  // console.log("THE PRODUCT ", theProduct);
-
-  //   console.log(userDetails)
-  // console.log(productId);
 
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
-      // if (!theProduct.email || theProduct._id !== productId)  {
-      //   dispatch(getUserDetailsForAdmin(userId));
     } else {
       if (!theProduct._id) {
         dispatch(listProductDetails(productId));
@@ -84,7 +75,7 @@ const UpdateProductForm = () => {
         setImages(theProduct.Images);
       }
     }
-  }, [dispatch, history, userInfo, theProduct]);
+  }, [dispatch, history, userInfo, theProduct, productId]);
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -96,8 +87,6 @@ const UpdateProductForm = () => {
 
   const categoriesList = useSelector((state) => state.categoriesList);
   const {
-    loading: loadingCategory,
-    error: errorCategory,
     cats,
   } = categoriesList;
 
@@ -124,11 +113,8 @@ const UpdateProductForm = () => {
       })
     );
 
-    console.log("Updated Product Submitted");
   };
 
-  // console.log(Color)
-  // console.log(Size)
 
   const onTitleChange = (e) => {
     setTitle(e.currentTarget.value);
@@ -147,22 +133,17 @@ const UpdateProductForm = () => {
   };
   const onSizeChange = (e) => {
     let TheSizesArray = [...Size, e.currentTarget.value]; // Filtering Array : https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE SIZES", Size);
     if (Size.includes(e.currentTarget.value)) {
       TheSizesArray = TheSizesArray.filter((size) => {
-        // console.log("TheSize",size)
         return size !== e.currentTarget.value;
       });
       setSize(TheSizesArray);
     }
-    // console.log(TheSizesArray)
     setSize(TheSizesArray);
   };
-  // console.log(Size);
 
   const onColorChange = (e) => {
     let TheColorsArray = [...Color, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE COLORS",Color)
     if (Color.includes(e.currentTarget.value)) {
       TheColorsArray = TheColorsArray.filter(
         (color) => color !== e.currentTarget.value
@@ -171,11 +152,9 @@ const UpdateProductForm = () => {
     setColor(TheColorsArray);
   };
 
-  // console.log(Color)
 
   const onGenderChange = (e) => {
     let TheGendersArray = [...Gender, e.currentTarget.value]; // https://stackoverflow.com/questions/61986464/react-checkbox-if-checked-add-value-to-array
-    // console.log("THE GENDERS",Gender)
     if (Gender.includes(e.currentTarget.value)) {
       TheGendersArray = TheGendersArray.filter(
         (gender) => gender !== e.currentTarget.value
@@ -183,7 +162,6 @@ const UpdateProductForm = () => {
     }
     setGender(TheGendersArray);
   };
-  // console.log(Gender)
   const onShippingChange = (e) => {
     setShipping(e.currentTarget.value);
   };
@@ -196,18 +174,15 @@ const UpdateProductForm = () => {
     let uniq = [...new Set(newImagesArray)]; // Unique array: https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
     setImages(uniq);
   };
-  // console.log(Images);
 
   const onDelete = (image) => {
     const currentIndex = Images.indexOf(image);
-    // console.log(currentIndex);
 
     let newImages = [...Images];
     newImages.splice(currentIndex, 1);
 
     setImages(newImages);
 
-    // props.refreshFunction(newImages)
   };
 
   const productUpdate = useSelector((state) => state.productUpdate);
@@ -263,7 +238,6 @@ const UpdateProductForm = () => {
         />
 
         <FormControl>
-          {/* <InputLabel htmlFor="productCategory">Category</InputLabel> */}
           <NativeSelect
             value={Category}
             onChange={onCategoryChange}
@@ -287,13 +261,10 @@ const UpdateProductForm = () => {
           </NativeSelect>
           <FormHelperText>Select a Category for your Product</FormHelperText>
         </FormControl>
-
         <div className="product_sizes">
           <FormLabel component="legend">Sizes</FormLabel>
           <FormGroup style={{ flexDirection: "row" }}>
             {Sizes.map((size, index) => {
-              // console.log(size)
-              // console.log(Size)
               return (
                 <FormControlLabel
                   key={index}
@@ -396,7 +367,6 @@ const UpdateProductForm = () => {
                 key={index}
                 onDoubleClick={() => onDelete(image)}
               >
-                {" "}
                 {/* Remove Image by double click on the image */}
                 <img
                   className={classes.displayed_Images}

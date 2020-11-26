@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 import { getCategoryDetailsUser } from "../../Store/Actions/categoryActions";
@@ -23,21 +23,16 @@ const CategoryDetailsUsersPage = () => {
   );
   const {
     loading: loadingCategoryDetails,
-    error: errorCategoryDetails,
     category,
   } = categoryUsersDetails;
 
-  // console.log(category);
-  // console.log(errorCategoryDetails);
-  // console.log(loadingCategoryDetails);
 
   const allProducts = products;
-  // console.log(allProducts);
 
   useEffect(() => {
     dispatch(listProducts());
     dispatch(getCategoryDetailsUser(catId));
-  }, [dispatch]);
+  }, [dispatch, catId]);
 
   let productsInCategory;
   if (allProducts) {

@@ -7,16 +7,13 @@ import { PayPalButton } from  "react-paypal-button-v2";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { savePaymentMethod } from "../../../Store/Actions/cartActions";
-// import CheckoutSteps from "../../Components/CheckoutSteps";
+
 import Message from "../../../Shared/UIElements/Message";
 import Spinner from "../../../Shared/UIElements/Spinner";
-// import "./paymentMethod.css";
 import "./OrderPage.css";
 import HrElement from "../../../Shared/UIElements/HrElement";
 import { getOrderDetails, payOrder, orderReset, orderDeliverReset, deliverOrder } from "../../../Store/Actions/orderActions";
 import Button from "../../../Shared/UIElements/Button";
-// import { ORDER_PAY_RESET } from "../../../Store/Actions/actionTypes"
 
 const useStyles = makeStyles((theme) => ({
   cartSummary: {
@@ -56,16 +53,14 @@ const OrderPage = () => {
   const history = useHistory();
 
   const params = useParams();
-  // console.log(params);
+
   const orderId = params.oid; // :oid is the order id set on App.js for order ID
-  // console.log(orderId);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
-  // console.log(orderDetails)
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading:loadingPay, success:successPay } = orderPay;
@@ -73,8 +68,6 @@ const OrderPage = () => {
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading:loadingDeliver, success:successDeliver } = orderDeliver;
 
-  // console.log(successPay)
-  // console.log(loadingPay);
   useEffect(() => {
 
     if(!userInfo) {
@@ -83,7 +76,7 @@ const OrderPage = () => {
 
     const addPayPalScript = async() => {
       const { data: clientId } = await axios.get("http://localhost:5000/api/config/paypal");
-      // console.log(clientId)
+
       const script = document.createElement('script');
       script.type= "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
@@ -92,14 +85,9 @@ const OrderPage = () => {
         setSdkReady(true)
       }
       document.body.appendChild(script)
-      // console.log(script)
     }
 
-    // addPayPalScript()
-
-    // addPaypalScript()
     if(!order || successPay || successDeliver ) {
-      // dispatch( {type: ORDER_PAY_RESET} )
       dispatch(orderReset()) // Dispatch order Paid Reset
       dispatch(orderDeliverReset()) // Dispatch order Deliver Reset
       dispatch(getOrderDetails(orderId));
@@ -111,11 +99,10 @@ const OrderPage = () => {
       }
     }
 
-  }, [dispatch, orderId, successPay, successDeliver, order]);
+  }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo]);
 
 
   const successPaymentHandler = (paymentResult) => {
-    // console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult))
   }
 
@@ -123,8 +110,6 @@ const OrderPage = () => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
   }
-
-  // console.log(sdkReady)
 
   return loading ? (
     <Spinner />

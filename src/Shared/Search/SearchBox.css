@@ -1,17 +1,22 @@
+@media (min-width: 700px) {
+  .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    transition: 0.5s all;
+  }
+  .search-box:hover,
+  .search-box:focus, .search-box:active {
+    width: 300px;
+    transition: 0.5s all;
+  }
+}
 .search-box {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 190px;
-  transition: 0.5s all;
-}
-
-.search-box:hover,
-.search-box:focus, .search-box:active {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 300px;
   transition: 0.5s all;
 }
 

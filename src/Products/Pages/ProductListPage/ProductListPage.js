@@ -13,20 +13,15 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-// import CloseIcon from "@material-ui/icons/Close";
-// import CheckIcon from "@material-ui/icons/Check";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-// import { usersList } from "../../Store/Actions/userActions";
 import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
-// import Button from "../../../Shared/UIElements/Button";
 import {
   listProducts,
   deleteProduct,
 } from "../../../Store/Actions/productsActions";
-// import Button from "../../Shared/UIElements/Button";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -60,11 +55,6 @@ const ProductListPage = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
-  //   const userDelete = useSelector((state) => state.userDelete);
-  //   const { success: successDelete } = userDelete;
-
-  console.log(products);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -74,9 +64,7 @@ const ProductListPage = () => {
     error: errorDelete,
     success: successDelete,
   } = productDelete;
-  // console.log(successDelete);
-  // console.log(loadingDelete);
-  // console.log(errorDelete);
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listProducts());
@@ -89,12 +77,8 @@ const ProductListPage = () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       dispatch(deleteProduct(id));
     }
-    console.log("Delete Product");
   };
 
-  //   const handleCreateProduct = () => {
-  //     return <Link to="/new-product" />
-  // }
 
   return (
     <>

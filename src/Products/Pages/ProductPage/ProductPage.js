@@ -7,11 +7,9 @@ import {
   listProductDetails,
   createProductReview,
 } from "../../../Store/Actions/productsActions";
-import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_CREATE_REVIEW_SUCCESS } from "../../../Store/Actions/actionTypes";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../../Store/Actions/actionTypes";
 import {
   addProductToCart,
-  // setProductSizeAction,
-  // setProductQtyAction,
 } from "../../../Store/Actions/cartActions";
 
 /* Material UI Components */
@@ -21,15 +19,12 @@ import {
   Typography,
   Accordion,
   Grid,
-  InputLabel,
-  FormControl,
-  Select,
   Modal,
   Backdrop,
 } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloseIcon from "@material-ui/icons/Close";
@@ -44,9 +39,6 @@ import Fade from "../../../Shared/UIElements/Fade";
 
 import Rating from "../../../Shared/UIElements/Rating";
 
-import { array } from "yup";
-import { useField } from "formik";
-// import Backdrop from "../../../Shared/UIElements/Backdrop";
 
 const styledBackdrop = withStyles({
   // Change (Material UI) Backdrop styling
@@ -71,7 +63,7 @@ const ProductPage = (props) => {
   };
 
   const id = useParams().id;
-  // console.log(id);
+
   const dispatch = useDispatch();
 
   const productCreateReview = useSelector((state) => state.productCreateReview);
@@ -85,7 +77,6 @@ const ProductPage = (props) => {
   useEffect(() => {
 
     if(successProductReview) {
-      // alert("Review Submitted");
       setRating(0);
       setTitleReview("");
       setCommentReview("");
@@ -101,48 +92,24 @@ const ProductPage = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-
-  // console.log(product);
-
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
-  const { err, loadingStatus, cartProducts } = productToCart;
-  // const productArr =cartProducts.map(p => p);
-  // const nr = productArr.map(x => x[0])
+  const { cartProducts } = productToCart;
 
-  // console.log(nr.map(item => console.log(item.title))); // all items in LocalStorage
-  // cartProducts.map(p => p)
-  // console.log(productDetails);
-console.log(product)
+// console.log(product)
   const leproduct = product.product; // get product from the product from the payload!!!
 
-  // console.log(leproduct.Reviews);
-  // console.log(leproduct);
-
-  let productQty = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let productsCountInStock = [...Array(leproduct.CountInStock).keys()];
-
-  let availableQuantity =
-    leproduct.CountInStock >= 10 ? productQty : productsCountInStock;
 
   let history = useHistory();
-
-  // const productFeature = useSelector((state) => state.setProductFeature);
-
-  // console.log(productFeature)
 
   const addToCartHandler = (id) => {
     dispatch(addProductToCart(id, size, qty));
     setOpen(true);
-    // history.push(`/cart/${id}?size=${size||"M"}?qty=${qty}`)
   };
 
-  // const productSizeToCart = (size) => {
-  //   dispatch(setProductSizeAction(size));
+
+  // const productQtyToCart = (qty) => {
+  //   setQty(qty);
   // };
-
-  const productQtyToCart = (qty) => {
-    setQty(qty);
-  };
 
   // Check if Product Size is Selected (Checked)
   const checkSizesChecked = () => {
@@ -160,35 +127,13 @@ console.log(product)
   const selectProductSize = (size) => {
     setSize(size);
   };
-  // Set Quantity for the product
 
-  // const selectProductQty = (qty) => {
-  //   setQty(qty)
-  // }
-
-  // console.log(size)
-  // console.log(qty)
-
-  // console.log(isChecked)
-
-  // let disabled = isChecked
-
-  // console.log(cartBtnClicked)
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
 
   const handleClose = () => {
     setOpen(false);
   };
 
   setTimeout(handleClose, 7000); // Close the Modal after `7` Seconds from submit
-  // let ItemsInCart;
-  // const arr = JSON.parse(localStorage.getItem("cartProducts"));
-  // ItemsInCart= arr.length + " items"
-
-  // console.log(cartProducts.length)
 
   const handleClickBtn = (item) => {
     // Handle View Bag (Cart) and Checkout (Checkout) Buttons
@@ -210,7 +155,6 @@ console.log(product)
       comment: CommentReview,
       rating
     }))
-    console.log("Review Submitted")
   }
 
   return (
@@ -227,10 +171,6 @@ console.log(product)
               <h2>{leproduct.Title}</h2>
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
-              {/* <Rating
-                value={leproduct.Rating}
-                text={`${leproduct.NumReviews} Reviews`}
-              /> */}
             </div>
             {leproduct.Images ? (
               leproduct.Images.map((img, index) => (
@@ -248,47 +188,13 @@ console.log(product)
           </Grid>
           <Grid item sm={12} md={4} className={`gird__item__4`}>
             <div className="productInfo_Details">
-            {/* <h1>Product ADDED TO CART: {addToCart} </h1> */}
             <div className={`product-basic-information`}>
               <h2>{leproduct.Title}</h2>
               <h1>{leproduct.Title}</h1>
               <div>${leproduct.Price}</div>
-              {/* <Rating
-                value={leproduct.Rating}
-                text={`${leproduct.NumReviews} Reviews`}
-              /> */}
-            </div>
-            {/* Change radio btns into Buttons https://stackoverflow.com/questions/16242980/making-radio-buttons-look-like-buttons-instead */}
-            {/* <div className={`product-extra-information__Sizes`}>
-              {leproduct.Sizes && (
-                <div>
-                  <FormControl
-                    className={`quantity_product_cart`}
-                    style={{ minWidth: "100%" }}
-                  >
-                    <InputLabel htmlFor="size_to_cart">Size</InputLabel>
-                    <Select
-                      fullWidth={true}
-                      native
-                      value={productFeature.size}
-                      onChange={(e) => productSizeToCart(e.target.value)}
-                      inputProps={{
-                        name: "size",
-                        id: "size_to_cart",
-                      }}
-                    >
-                      {leproduct.Sizes.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
 
-                    </Select>
-                  </FormControl>
-                  {console.log(productFeature)}
-                </div>
-              )}
-            </div> */}
+            </div>
+
           <div className="product__Sizes_Selection">
             <div className="product__Sizes_Label">
               <span style={{ fontSize: "1.2rem" }}>Select Size</span>
@@ -336,39 +242,12 @@ console.log(product)
             </div>
             {/* {console.log(productFeature)} */}
             <div className={`product__selections`}>
-              {/* {leproduct.CountInStock > 0 && (
-                <div>
-                  <FormControl
-                    className={`quantity_product_cart`}
-                    style={{ minWidth: "100%" }}
-                  >
-                    <InputLabel htmlFor="quantity_to_cart">Quantity</InputLabel>
-                    <Select
-                      fullWidth={true}
-                      native
-                      value={qty}
-                      onChange={(e) => productQtyToCart(e.target.value)}
-                      inputProps={{
-                        name: "quantity",
-                        id: "quantity_to_cart",
-                      }}
-                    >
-                      {leproduct.CountInStock &&
-                        availableQuantity.map((q) => (
-                          <option key={q + 1} value={q + 1}>
-                            {q + 1}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              )} */}
+ 
             </div>
             <div className={`product__addition`}>
               {leproduct.CountInStock > 0 ? (
                 <>
                   <Button
-                    // disabled = {!disabled}
                     onClick={(e) => {
                       !isChecked ? preventAddToCart(e) : addToCartHandler(id);
                     }}
@@ -461,13 +340,6 @@ console.log(product)
                             >
                               <span>Size: {cartProducts.size}</span>
                             </div>
-
-                            {/* <div
-                              className="product_cart_info cart-product-qty"
-                              id="add-to-cart-qty-modal"
-                            >
-                              <span>Quantity: {cartProducts.qty}</span>
-                            </div> */}
                           </Grid>
                         </Grid>
                       </div>
@@ -598,27 +470,6 @@ console.log(product)
               </Accordion>
             </div>
             <div className="product-reviews">
-              {/* <h2>Reviews</h2>
-              {leproduct.Reviews.length === 0 && (
-                <Message severity="info">No Reviews</Message>
-              )}
-              {leproduct.Reviews.map((review, index) => {
-                return (
-                  <div key={index} className={`productReview review_${index+1}`}>
-                    <span><strong>{`${review.firstName} ${review.lastName}`}</strong><Rating value={review.rating} /></span>
-                <div>{review.createdAt.substring(0,10)}</div>
-                    <strong>{review.title}</strong>
-                    <div>{review.comment}</div>
-                    <HrElement
-                      color="rgba(0,0,0,0.15)"
-                      height=".1px"
-                      width="100%"
-                      border="0"
-                    />
-                  </div>
-                );
-              })} */}
-
               <div>
                 <h3>Write a Review</h3>
                 {errorProductReview && (<Message severity="error">{errorProductReview}</Message>)}
@@ -640,7 +491,7 @@ console.log(product)
                 <TextField id="review_comment" label="Review Comment" variant="outlined" fullWidth size="small" multiline rows="3" onChange={onCommentReview} value={CommentReview} />
 
                   <Button style={{border: "#111", backgroundColor: "#111", width:"100%"}} type="submit" onClick={submitReviewHandler}>
-                    Submit Review
+                    {!loadingProductReview ? "Submit Review" : "Adding a Review..." }
                   </Button>
                 </form>
               </div>

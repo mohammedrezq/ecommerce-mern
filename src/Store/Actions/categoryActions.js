@@ -111,8 +111,6 @@ export const updateCategoryByAdmin = (id, cat) => async (
       userLogin: { userInfo },
     } = getState();
 
-    // console.log(userInfo)
-    // console.log(userInfo.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -127,8 +125,6 @@ export const updateCategoryByAdmin = (id, cat) => async (
     );
 
     console.log(data);
-
-    // const { users } = data;
 
     dispatch({
       type: actionTypes.CAT_UPDATE_SUCCESS,
@@ -161,8 +157,6 @@ export const getCategoryDetails = (id) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    //   console.log(userInfo)
-
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -175,12 +169,6 @@ export const getCategoryDetails = (id) => async (dispatch, getState) => {
       config
     );
 
-    console.log(data);
-
-    const { category } = data;
-
-    // console.log(user)
-    // Sign up user success
     dispatch({
       type: actionTypes.CAT_DETAILS_SUCCESS,
       payload: data,
@@ -245,16 +233,6 @@ export const catsListUsers = () => async (dispatch, getState) => {
     dispatch({
       type: actionTypes.CATEGORY_LIST_REQUEST,
     });
-
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
-
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${userInfo.token}`,
-    //   },
-    // };
 
     const { data } = await axios.get(`http://localhost:5000/api/categories`); // For All Users and Guests
 
