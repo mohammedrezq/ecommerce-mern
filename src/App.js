@@ -109,6 +109,9 @@ function App() {
           <Route path="/admin/productslist" exact>
             <ProductListPage />
           </Route>
+          <Route path="/admin/productslist/:pageNumber" exact>
+            <ProductListPage />
+          </Route>
           <Route path="/admin/category" exact>
             <CategoryCreateForm />
           </Route>

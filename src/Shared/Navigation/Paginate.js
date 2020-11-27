@@ -13,10 +13,9 @@ const Paginate = ({ pages, activeClass, pageNum, isAdmin = false, keyword = "" }
                 activeClassName={activeClass}
                 key={x + 1}
                 className="paginate"
-                to={
-                  keyword
+                to={!isAdmin ? keyword
                     ? `/search/${keyword}/page/${x + 1}`
-                    : `/page/${x + 1}`
+                    : `/page/${x + 1}`: `/admin/productslist/${x + 1}`
                 }
               >
                 {x + 1}

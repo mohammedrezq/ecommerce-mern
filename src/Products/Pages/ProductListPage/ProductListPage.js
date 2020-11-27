@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import { Grid, Typography, Button } from "@material-ui/core";
 
@@ -18,6 +18,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import Spinner from "../../../Shared/UIElements/Spinner";
 import Message from "../../../Shared/UIElements/Message";
+import Paginate from "../../../Shared/Navigation/Paginate";
+
 import {
   listProducts,
   deleteProduct,
@@ -52,8 +54,10 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const pageNumber = useParams().pageNumber || 1;
+
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -67,11 +71,11 @@ const ProductListPage = () => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
+      dispatch(listProducts("", pageNumber));
     } else {
       history.push("/");
     }
-  }, [dispatch, userInfo, history, successDelete]);
+  }, [dispatch, userInfo, history, successDelete, pageNumber]);
 
   const deleteProductHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
@@ -254,6 +258,7 @@ const ProductListPage = () => {
                     </TableBody>
                   </Table>
                 </TableContainer>
+                <Paginate pages={pages} page={page} isAdmin={true} activeClass={`activePage`} />
               </Grid>
             </Grid>
           </>

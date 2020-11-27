@@ -100,6 +100,35 @@ const CategoriesListPage = () => {
         ) : error ? (
           <Message severity="error">{error}</Message>
         ) : (
+          <>
+                      <Grid
+              container
+              direction="column"
+              justify="flex-end"
+              alignItems="flex-end"
+            >
+              <Grid item xs={12}>
+                <Link
+                  to="/admin/category"
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                    display: "inline-block",
+                  }}
+                >
+                  <Button
+                    style={{
+                      backgroundColor: "#111",
+                      color: "#fff",
+                      border: "1px solid #111",
+                      margin: "0 20px 20px 20px",
+                    }}
+                  >
+                    Create Category
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
           <Grid container direction="row" justify="center" alignItems="center">
             <Grid item xs={12}>
               <TableContainer component={Paper}>
@@ -169,6 +198,7 @@ const CategoriesListPage = () => {
               </TableContainer>
             </Grid>
           </Grid>
+          </>
         )}
       </div>
     </>
