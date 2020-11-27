@@ -1,5 +1,8 @@
 footer {
   background: rgb(17, 17, 17);
+  clear: both;
+  position: relative;
+  height: 400px;
 }
 
 .footer__Container {
