@@ -422,7 +422,7 @@ const ProductsPage = () => {
               onChangeFilters={onSizeFilterChange}
               Value={size.value}
               Name={size.value}
-              Label={size.key}
+              Label={size.value}
             />
           );
         })}

@@ -10,7 +10,7 @@ const NavLinks = (props) => {
   <NavLink to="/" exact><span>{props.textHome}</span></NavLink>
       </li>
       <li>
-  <NavLink to="/favorites" exact>{props.IconFavorite}<span>{props.textFavorite}</span></NavLink>
+  <NavLink to="/" exact>{props.IconFavorite}<span>{props.textFavorite}</span></NavLink>
       </li>
       <li>
         <NavLink to="/cart" onClick={props.onClick} exact><div className="cart__Icon">{props.IconCart}{props.textCart}<span>{props.number}</span></div></NavLink>
