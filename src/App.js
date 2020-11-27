@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -43,7 +43,6 @@ function App() {
           <Route path="/" exact>
             <ProductsPage />
           </Route>
-          <Suspense fallback={<Spinner />}>
             <Route path="/page/:pageNumber" exact>
               <ProductsPage />
             </Route>
@@ -119,7 +118,6 @@ function App() {
             <Route path="/login" exact>
               <LoginPage />
             </Route>
-          </Suspense>
         </Switch>
         <Footer />
       </Router>
