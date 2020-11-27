@@ -33,28 +33,6 @@ import CategoryDetailsForm from "./Cats/Components/CategoryDetailsForm";
 import UpdateProductPage from "./Products/Pages/UpdateProductPage/UpdateProductPage";
 import ErrorPage from "./Products/Pages/ErrorPage/ErrorPage";
 
-// const ProductListPage = React.lazy(() => import("./Products/Pages/ProductListPage/ProductListPage"));
-// const CartPage = React.lazy(() => import("./Products/Pages/CartPage/CartPage"));
-// const NewProduct = React.lazy(() => import("./Products/Pages/NewProduct/NewProduct"));
-// const RegistrationPage = React.lazy(() => import("./User/Pages/RegistrationPage"));
-// const LoginPage = React.lazy(() => import("./User/Pages/LoginPage"));
-// const ShippingPage = React.lazy(() => import("./Products/Pages/CheckoutPage/ShippingPage"));
-// const PaymentPage = React.lazy(() => import("./Products/Pages/CheckoutPage/PaymentPage"));
-// const PlaceOrderPage = React.lazy(() => import("./Products/Pages/CheckoutPage/PlaceOrderPage"));
-// const OrderPage = React.lazy(() => import("./Products/Pages/CheckoutPage/OrderPage"));
-// const OrdersListPage = React.lazy(() => import("./Products/Pages/CheckoutPage/OrdersListPage"));
-// const UsersListPage = React.lazy(() => import("./User/Pages/UsersListPage"));
-// const ProfilePage = React.lazy(() => import("./User/Pages/ProfilePage"));
-// const UpdateUserPage = React.lazy(() => import("./User/Pages/UpdateUserPage"));
-// const CategoryCreateForm = React.lazy(() => import("./Cats/Components/CategoryCreateForm"));
-// const CategoriesListPage = React.lazy(() => import("./Cats/Pages/CategoriesListPage"));
-// const CategoryListUsersPage = React.lazy(() => import("./Cats/Pages/CategoryListUsersPage"));
-// const CategoryDetailsUsersPage = React.lazy(() => import("./Cats/Pages/CategoryDetailsUsersPage"));
-// const CategoryDetailsForm = React.lazy(() => import("./Cats/Components/CategoryDetailsForm"));
-// const UpdateProductPage = React.lazy(() => import("./Products/Pages/UpdateProductPage/UpdateProductPage"));
-// const ErrorPage = React.lazy(() => import("./Products/Pages/ErrorPage/ErrorPage"));
-
-
 function App() {
   return (
     <Provider store={Store}>
