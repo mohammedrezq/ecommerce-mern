@@ -72,4 +72,8 @@ h1.main-navigation__title {
   h1.main-navigation__title {
     padding-left: 12px;
   }
+  .main-navigation__humburger-btn{
+  margin-left: 8px;
+  margin-top: 15px;
+  }
 }

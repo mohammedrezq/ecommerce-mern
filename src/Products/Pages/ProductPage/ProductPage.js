@@ -260,6 +260,7 @@ const ProductPage = (props) => {
                   <Modal
                     aria-labelledby={props.ariaLabelledBy}
                     aria-describedby={props.ariaDescribedBy}
+                    id="add-product-to-cart-modal"
                     className={`product-to-cart-modal`}
                     open={open}
                     onClose={handleClose}

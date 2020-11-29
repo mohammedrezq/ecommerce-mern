@@ -92,4 +92,28 @@ figure.item__image {
   .Summary__Cart__Nums {
     text-align: right;
   }
+  .item__image img {
+    width: 120px;
+    height: 170px;
+    display: block;
+    object-fit: contain;
+    max-width: 100%;
+}
+.cartItems--Cart{
+  font-size: .9rem;
+}
+}
+
+@media (max-width: 330px) {
+  .item__image img {
+    width: 108px;
+    height: 148px;
+  }
+}
+
+@media (max-width: 280px) {
+  .item__image img {
+    width: 98px;
+    height: 125px;
+  }
 }

@@ -300,11 +300,7 @@ const CartPage = (props) => {
                                     }}
                                   >
                                     <button
-                                      className={classes.productItemActions}
-                                      style={{
-                                        fontSize: "1rem",
-                                        fontWeight: "100",
-                                      }}
+                                      className={`${classes.productItemActions} btn__cart__item`}
                                     >
                                       Move to Favorites
                                     </button>
@@ -324,11 +320,7 @@ const CartPage = (props) => {
                                           item.price
                                         )
                                       }
-                                      className={classes.productItemActions}
-                                      style={{
-                                        fontSize: "1rem",
-                                        fontWeight: "100",
-                                      }}
+                                      className={`${classes.productItemActions} btn__cart__item`}                                      
                                     >
                                       Remove
                                     </button>

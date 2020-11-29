@@ -95,6 +95,10 @@ button.product__addition.product_add_to_whishlist {
   padding-right: 20px;
 }
 
+.btn__cart__item{
+  font-size:1rem;
+}
+
 @media (max-width: 1419px) {
   .button--basic {
     width: 50%;
@@ -223,4 +227,22 @@ label >input[type="radio"] {
   cursor: pointer;
   transition: color 200ms;
   font-size: 1.9rem;
+}
+
+
+@media (max-width: 767.9px) {
+  .product-info-in-modal, .product-addition-verified-in-modal, .product-btns-in-modal{
+    width: 240px;
+  }
+  .product-btns-in-modal.MuiGrid-container {
+    width: 280px;
+    min-width: 280px;
+  }
+  .view_bag_modal, .checkout_modal{
+    width: 200px;
+    margin-top: 12px;
+  }
+  .btn__cart__item{
+    font-size: .8rem;
+  }
 }
