@@ -118,17 +118,8 @@ const OrderPage = () => {
   ) : (
     <>
       <Grid container direction="row" justify="center" alignItems="center">
-        <h1
-          style={{
-            fontFamily: `roboto, "Helvetica Neue", sans-serif`,
-            fontWeight: "100",
-            fontSize: "34px",
-            textTransform: "uppercase",
-            lineHeight: "1.4",
-            letterSpacing: "0.5",
-          }}
-        >
-          <div>
+        <h1>
+          <div className="orderId_orderPage">
             Order ID:{" "}
             <span style={{ fontFamily: "monospace   " }}>{order.id}</span>
           </div>

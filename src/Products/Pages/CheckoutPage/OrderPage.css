@@ -4,3 +4,19 @@
 .deliveredStatus{
   margin-top: 18px;
 }
+
+.orderId_orderPage {
+  font-Family: "roboto", "Helvetica Neue", sans-serif;
+  font-Weight: 100;
+  font-size: 2rem;
+  text-Transform: uppercase;
+  line-Height: 1.4;
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 639.9px) {
+  
+.orderId_orderPage {
+  font-size: 1.2rem;
+}
+}
