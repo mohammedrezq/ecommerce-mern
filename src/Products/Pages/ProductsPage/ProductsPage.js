@@ -300,18 +300,14 @@ const ProductsPage = () => {
               className={`${secondaryHeaderCSS.filterToggle} ${secondaryHeaderCSS.filterToggleBtn}`}
             >
               {isFilterToggled ? (
-                <Button onClick={closeFilters}>Hide Filters</Button>
+                <Button className={secondaryHeaderCSS.btnToggleFilters} onClick={closeFilters}>Hide Filters</Button>
               ) : (
-                <Button onClick={openFilters}>Show Filters</Button>
+                <Button className={secondaryHeaderCSS.btnToggleFilters} onClick={openFilters}>Show Filters</Button>
               )}
             </div>
             <div className={secondaryHeaderCSS.sortBy}>
               <Button
-                style={{
-                  textTransform: "capitalize",
-                  fontSize: "1rem",
-                  backgroundColor: "#f2f2f2",
-                }}
+                className={secondaryHeaderCSS.btnSortBy} 
                 ref={anchorRef}
                 aria-controls={open ? "menu-list-grow" : undefined}
                 aria-haspopup="true"

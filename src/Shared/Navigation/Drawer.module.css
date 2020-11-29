@@ -11,8 +11,14 @@
 }
 
 .show {
-  width: 350px;
+  width: 250px;
 }
 .hide {
   width: 0;
+}
+
+@media (min-width: 450px) {
+  .show {
+    width: 350px;
+  }
 }

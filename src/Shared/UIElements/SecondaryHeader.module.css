@@ -2,6 +2,34 @@
   padding: 0 48px;
 }
 
+@media(max-width: 640px) {
+  .ProductsPaddingTop{
+    padding: 0 12px;
+  }
+  h1.secondaryHeader{
+    font-size: 16px;
+  }
+  .sortBy{
+    display: none;
+  }
+  .filterToggle{
+    margin-right: 0;
+  }
+  div.filterToggleBtn{
+    background-color: white;
+    border: 1px solid rgb(56, 56, 56);
+    border-radius: 15px;
+  }
+  button.btnToggleFilters{
+    font-size: 0.8rem;
+    /* background-color: #fff; */
+    /* border-radius: 12px; */
+  }
+  .stickySecondaryHeader {
+    box-shadow: 0px 1px #95959536
+  }
+}
+
 .secondaryHeader {
   display: flex;
   flex: 1 1 0%;
@@ -33,27 +61,36 @@
 
 .filterToggle {
   align-self: center;
+  margin-right: 4px;
 }
 
 .filterToggleBtn {
   display: flex;
   font-size: 1rem;
-  margin-right: 8px;
-  /* padding: 8px 6px; */
-  border: 1px solid #ccc;
-  background: #f2f2f2;
-  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0,.1);
+  border-radius: 18px;
+  background: #ffffff;
 }
+button.btnToggleFilters:hover, button.btnSortBy:hover {
+  background: transparent;
+}
+/* div.filterToggleBtn:hover {
+  background: transparent;
+} */
 
 .headerOffset {
   height: 64px;
 }
 
 /* SortBy Styling */
-
+.filterToggleBtn:hover,
+.sortBy:hover {
+  background-color: rgb(250, 250, 250);
+}
 .sortBy {
   align-self: center;
   /* padding: 8px 6px; */
-  border: 1px solid #ccc;
-  background: #f2f2f2;
+  border: 1px solid rgba(0, 0, 0,.1);
+  border-radius: 18px;
+  background: #ffffff;
 }

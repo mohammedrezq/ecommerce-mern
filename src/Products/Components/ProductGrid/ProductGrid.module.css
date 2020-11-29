@@ -12,7 +12,7 @@
 
 .productGridResult {
   max-width: 1920px;
-  padding: 0px 48px;
+  padding: 0px 0x;
   position: relative;
 }
 
@@ -23,6 +23,11 @@
     padding-left: 40px;
     padding-right: 48px;
   }
+  .productGridResult {
+  max-width: 1920px;
+  padding: 0px 48px;
+  position: relative;
+}
 }
 
 /* Product Grid */

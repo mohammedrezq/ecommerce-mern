@@ -40,7 +40,7 @@ const CategoryDetailsUsersPage = () => {
       (productCat) => productCat.Category.includes(catId)
     ); // Check if product has the same the category
   }
-  console.log(productsInCategory);
+  // console.log(productsInCategory);
   return ( loadingCategoryDetails ? <Spinner />: (
     <div>
       Category Products Details
@@ -52,7 +52,7 @@ const CategoryDetailsUsersPage = () => {
         ) : error ? (
           <Message>{error}</Message>
         ) : (
-          <ProductGridCategory items={productsInCategory} />
+          <ProductGridCategory className="productsInCategory" items={productsInCategory} />
         )}
       </Grid>
     </div>

@@ -9,7 +9,7 @@ import ProductsPage from "./Products/Pages/ProductsPage/ProductsPage";
 import MainNavigation from "./Shared/Navigation/MainNavigation";
 import TopNavbar from "./Shared/Navigation/TopNavbar";
 import Footer from "./Shared/Navigation/Footer";
-import Spinner from "./Shared/UIElements/Spinner";
+// import Spinner from "./Shared/UIElements/Spinner";
 
 import ProductPage from "./Products/Pages/ProductPage/ProductPage";
 import ProductListPage from "./Products/Pages/ProductListPage/ProductListPage";

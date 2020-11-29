@@ -67,3 +67,9 @@ h1.main-navigation__title {
     float: right;
   }
 }
+
+@media (max-width: 600px) {
+  h1.main-navigation__title {
+    padding-left: 12px;
+  }
+}

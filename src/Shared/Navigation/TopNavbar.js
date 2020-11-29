@@ -82,7 +82,8 @@ const TopNavbar = (props) => {
           aria-haspopup="true"
           onClick={handleAdminToggle}
         >
-          {`Hi, Adminstrator`}<SupervisorAccountIcon />
+          <span className="adminstrator_Options">{`Hi, Adminstrator`}</span>
+          <SupervisorAccountIcon />
         </Button>
         <Popper style={{zIndex:"1000"}} open={adminMenu} anchorEl={anchorAdminRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -112,7 +113,8 @@ const TopNavbar = (props) => {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          {`Hi, ${userInfo.firstName} ${userInfo.lastName}`}<PersonOutlineIcon />
+          <span className="loggedIn_Info">{`Hi, ${userInfo.firstName} ${userInfo.lastName}`}</span>
+          <PersonOutlineIcon />
         </Button>
         {/* {console.log(open)} */}
         <Popper style={{zIndex:"1000"}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>

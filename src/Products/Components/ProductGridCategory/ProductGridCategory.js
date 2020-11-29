@@ -12,7 +12,7 @@ const ProductCard = (props) => {
 
   return (
     <div className={props.className}>
-      <Grid container spacing={2}>
+      <Grid container>
         {props.items && props.items.map((product) => (
           <ProductItem
             key={product.id}
