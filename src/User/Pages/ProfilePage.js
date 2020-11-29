@@ -56,7 +56,6 @@ const ProfilePage = () => {
   const ordersListUser = useSelector((state) => state.ordersListUser);
   const { loading: loadingOrders, orders, error: errorOrders } = ordersListUser;
 
-  // console.log(orders);
   const userDetails = useSelector((state) => state.userDetails);
 
   const { user } = userDetails;
@@ -74,9 +73,7 @@ const ProfilePage = () => {
     }
   }, [dispatch, history, userInfo, user]);
 
-  // console.log(typeof(orders))
-  // console.log(loadingOrders)
-  // console.log(orders)
+
   return (
     <div>
       <Grid container>

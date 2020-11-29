@@ -140,7 +140,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
     const { userLogin: { userInfo } } = getState();
 
-    // console.log(userInfo)
 
     const config = {
       headers: {
@@ -154,11 +153,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       config
     );
 
-    console.log(data)
 
     const { user } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.USER_DETAILS_SUCCESS,
@@ -189,7 +186,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
     const { userLogin: { userInfo } } = getState();
 
-    // console.log(userInfo)
 
     const config = {
       headers: {
@@ -202,11 +198,8 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       config
     );
 
-    // console.log(data)
 
-    // const { user } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.USER_DELETE_SUCCESS,
@@ -231,7 +224,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
  **/
 
 // export const updateUserProfile = (user) => async (dispatch, getState) => {
-//   // console.log(user)
 //   try {
 //     dispatch({ type: actionTypes.USER_UPDATE_PROFILE_REQUEST });
 
@@ -239,12 +231,9 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 //       userLogin: { userInfo },
 //     } = getState();
 
-//     // console.log(userInfo);
 
 //     // const { user } = userInfo
-//     // console.log(user)
 
-//     // console.log(user)
 //     const config = {
 //       headers: {
 //         "Content-Type": "application/json",
@@ -257,12 +246,10 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 //       config
 //     );
 
-//     console.log(data)
-//     console.log(userInfo)
+
 
 //     // const {users} = data 
 //     // const { user } = data;
-//     console.log(user)
 //     // Sign up user success
 //     dispatch({
 //       type: actionTypes.USER_UPDATE_PROFILE_SUCCESS,
@@ -294,8 +281,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     const { userLogin: { userInfo } } = getState();
 
-    // console.log(userInfo)
-    console.log(userInfo.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -305,11 +290,9 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     const { data } = await axios.put( `${process.env.REACT_APP_BACKEND_URL}/users/profile`, user, config );
 
-    console.log(data)
 
     // const { user } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.USER_UPDATE_PROFILE_SUCCESS,
@@ -384,8 +367,7 @@ export const updateUserByAdmin = (id, user) => async (dispatch, getState) => {
 
     const { userLogin: { userInfo } } = getState();
 
-    // console.log(userInfo)
-    // console.log(userInfo.token)
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -395,7 +377,6 @@ export const updateUserByAdmin = (id, user) => async (dispatch, getState) => {
 
     const { data } = await axios.put( `${process.env.REACT_APP_BACKEND_URL}/users/${id}`, user, config );
 
-    // console.log(data)
 
     // const { users } = data;
 
@@ -433,8 +414,6 @@ export const getUserDetailsForAdmin = (id) => async (dispatch, getState) => {
 
     const { userLogin: { userInfo } } = getState();
 
-    // console.log(userInfo)
-
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -447,11 +426,9 @@ export const getUserDetailsForAdmin = (id) => async (dispatch, getState) => {
       config
     );
 
-    // console.log(data)
 
     // const { user } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.USER_DETAILS_SUCCESS,

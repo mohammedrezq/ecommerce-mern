@@ -15,13 +15,10 @@ import "./ShippingForm.css";
 
 const ShippingForm = () => {
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
-  console.log(productToCart);
   const { shippingAddress } = productToCart;
 
-  console.log(shippingAddress);
 
   let TheShippingAddress = JSON.parse(localStorage.getItem("shippingAddress")); // Get the Shipping Address from LocalStorage
-  // console.log(TheShippingAddress)
   const dispatch = useDispatch();
 
   const history = useHistory();

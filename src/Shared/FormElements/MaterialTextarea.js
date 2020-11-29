@@ -10,9 +10,6 @@ const MaterialTextarea = (props) => {
       <Field name={name}>
         {({ field, form }) => {
           const { errors, touched } = form;
-          // console.log("field", field);
-          // console.log("form", form);
-          //   const errorText = errors[name] && touched ? errors[name] : "";
 
           // Will Display the Error Helper Text from Material UI if the textfield is touched
           const displayHelperTextTextarea =

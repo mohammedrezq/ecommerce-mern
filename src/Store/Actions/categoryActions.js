@@ -36,7 +36,6 @@ export const categoryCreateAction = (
       config
     );
 
-    console.log(data);
 
     dispatch({
       type: actionTypes.CATEGROY_CREATE_SUCCESS,
@@ -124,7 +123,6 @@ export const updateCategoryByAdmin = (id, cat) => async (
       config
     );
 
-    console.log(data);
 
     dispatch({
       type: actionTypes.CAT_UPDATE_SUCCESS,
@@ -236,7 +234,6 @@ export const catsListUsers = () => async (dispatch, getState) => {
 
     const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories`); // For All Users and Guests
 
-    // console.log(data)
     dispatch({
       type: actionTypes.CATEGORY_LIST_SUCCESS,
       payload: data,
@@ -270,7 +267,6 @@ export const getCategoryDetailsUser = (id) => async ( dispatch ) => {
     //   userLogin: { userInfo },
     // } = getState();
 
-    //   console.log(userInfo)
 
     // const config = {
     //   headers: {
@@ -284,11 +280,9 @@ export const getCategoryDetailsUser = (id) => async ( dispatch ) => {
       // config
     );
 
-    console.log(data);
 
     // const { category } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.CATEGORY_DETAILS_SUCCESS,

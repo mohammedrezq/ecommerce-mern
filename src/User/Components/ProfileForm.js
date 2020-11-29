@@ -24,14 +24,11 @@ const ProfileForm = () => {
 
   const { loading, error, user } = userDetails;
 
-  // console.log(userDetails);
-  // console.log(user);
+
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // console.log(userLogin);
-  // console.log(userInfo)
 
   const history = useHistory();
   //   let initialValues;
@@ -48,20 +45,7 @@ const ProfileForm = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
 
   const { success } = userUpdateProfile;
-  // console.log(success);
-  //   console.log(userInfo);
 
-  //   console.log(user);
-
-  //   console.log(user);
-  //   let initialValues = {
-  //     email: user.email || '',
-  //     firstName: user.firstName|| '',
-  //     lastName: user.lastName|| '',
-  //     DateOfBirth: user.DateOfBirth|| '',
-  //     country: user.Country|| '',
-  //     gender: user.Gender|| '',
-  //   };
   let initialValues;
   if (user) {
     initialValues = {
@@ -76,18 +60,8 @@ const ProfileForm = () => {
       gender: user.Gender || "",
     };
   }
-  // console.log(user.email)
-  // console.log(user.Country)
-  // console.log(user.Gender)
-  // console.log(user.firstName)
-  // console.log(user.lastName)
-  // console.log(user.bio)
 
-  //   console.log(initialValues);
 
-  //   console.log(user.email);
-
-  // console.log(userDetails)
 
   const validationSchema = Yup.object({
     bio: Yup.string(),
@@ -131,8 +105,6 @@ const ProfileForm = () => {
       )
     );
 
-    console.log("VALUES FROM UPDATE", values);
-    console.log(user._id);
     isSubmitting(true);
     isSubmitting(false);
   };

@@ -39,18 +39,14 @@ const ProductsPageLowestPrice = () => {
 
   const pageNumber = useParams().pageNumber || 1;
   
-  // console.log(keyword)
   const productListLowestPrice = useSelector((state) => state.productListLowestPrice);
   const { loading, error, products, pages, page } = productListLowestPrice;
-  // console.log(products)
     let allProducts;
   if(products) {
     allProducts = products
-    console.log(products);
   } else {
     history.push("/404")
   }
-  // console.log(allProducts)
 
   useEffect(() => {
     dispatch(listProductsLowestPrice(keyword, pageNumber));
@@ -118,7 +114,6 @@ const ProductsPageLowestPrice = () => {
         >
           Sort By
         </Button>
-        {/* {console.log(open)} */}
         <Popper style={{zIndex:"1000"}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow

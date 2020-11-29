@@ -40,7 +40,6 @@ const CategoryDetailsUsersPage = () => {
       (productCat) => productCat.Category.includes(catId)
     ); // Check if product has the same the category
   }
-  // console.log(productsInCategory);
   return ( loadingCategoryDetails ? <Spinner />: (
     <div>
       Category Products Details

@@ -10,10 +10,8 @@ const MaterialSelect = (props) => {
     <div className={className}>
       <Field id={name} {...rest} name={name}>
         {({ field, form }) => {
-          // console.log("field Select:", field);
-          // console.log("form Select:", form);
+
           const { errors, touched } = form;
-          // console.log("Errors Form Select", errors[name])
           const displayHelperTextSelect =
             errors[name] && !!touched[name] ? errors[name] : null;
           return (

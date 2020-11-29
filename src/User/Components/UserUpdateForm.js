@@ -19,7 +19,6 @@ import "./LoginForm.css";
 
 const UserUpdateForm = () => {
   const userId = useParams().uid;
-  // console.log(userId);
 
   const history = useHistory();
 
@@ -29,21 +28,14 @@ const UserUpdateForm = () => {
 
   const { loading, error, user } = userDetails;
 
-  // console.log(userDetails);
-  console.log(user);
-  // console.log(user.firstName);
-  // console.log(loading);
-  // console.log(user);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // console.log(userInfo)
 
   const userUpdateAdmin = useSelector((state) => state.userUpdateAdmin);
   const { success, loading: loadingAdmin, error: errorAdmin } = userUpdateAdmin;
-  // console.log(userUpdateAdmin)
-  // console.log(loadingAdmin)
+
 
   useEffect(() => {
     if (!userInfo) {
@@ -90,7 +82,6 @@ const UserUpdateForm = () => {
         Gender: values.gender,
       })
     ); // Dispatch Email & Password & firstName, LastName, bio, country, and gender from Update Form
-    console.log("Updated Data", values);
     isSubmitting(true);
     // e.prevenDefault();
     isSubmitting(false);

@@ -18,10 +18,8 @@ const RegistrationForm = () => {
 
   const userSignup = useSelector((state) => state.userSignup);
 
-  // console.log(userSignup);
   const { loading, error, userInfo } = userSignup;
 
-  console.log("userInfo",userInfo)
   const history = useHistory();
 
   useEffect(() => {
@@ -68,7 +66,6 @@ const RegistrationForm = () => {
         values.gender,
       )
     ); // Dispatch Email & Password & firstName, LastName, DOB, country, and gender from Signup Form
-    console.log("Signup Data", values);
     isSubmitting(true);
     // e.prevenDefault();
     isSubmitting(false);

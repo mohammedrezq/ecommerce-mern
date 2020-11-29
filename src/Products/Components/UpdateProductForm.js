@@ -90,7 +90,6 @@ const UpdateProductForm = () => {
     cats,
   } = categoriesList;
 
-  // console.log(cats)
 
   const submitUpdateProductHandler = (e) => {
     e.preventDefault();

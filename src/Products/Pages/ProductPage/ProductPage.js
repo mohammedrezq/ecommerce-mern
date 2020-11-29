@@ -95,7 +95,6 @@ const ProductPage = (props) => {
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
   const { cartProducts } = productToCart;
 
-// console.log(product)
   const leproduct = product.product; // get product from the product from the payload!!!
 
 
@@ -216,7 +215,6 @@ const ProductPage = (props) => {
                     <input
                       id={size}
                       onChange={(e) => {
-                        // console.log(size);
                         return selectProductSize(size);
                       }}
                       onClick={() => checkSizesChecked()}
@@ -240,7 +238,6 @@ const ProductPage = (props) => {
                 </div>
               ) : null}
             </div>
-            {/* {console.log(productFeature)} */}
             <div className={`product__selections`}>
  
             </div>

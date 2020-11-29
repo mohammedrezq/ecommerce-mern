@@ -12,7 +12,6 @@ import Spinner from "../../Shared/UIElements/Spinner";
 
 const CategoryDetailsForm = () => {
   const catId = useParams().cid;
-  console.log(catId);
 
   const history = useHistory();
 
@@ -20,18 +19,12 @@ const CategoryDetailsForm = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-    console.log(userInfo)
   const categoryDetails = useSelector((state) => state.categoryDetails);
 
   const { loading, error, category } = categoryDetails;
-  console.log(category);
 
   const categoryUpdate = useSelector(state => state.categoryUpdate);
   const { loading: loadingUpdateCat, error: errorUpdateCat, success } = categoryUpdate;
-
-  console.log(success)
-  console.log(loadingUpdateCat)
-  console.log(errorUpdateCat)
 
 
   useEffect(() => {
@@ -67,7 +60,6 @@ const CategoryDetailsForm = () => {
           categoryDescription: values.categoryDescription,
           categoryImage: values.categoryImage
       }))
-    console.log("Category Details", values);
     isSubmitting(true);
     isSubmitting(false)
   };

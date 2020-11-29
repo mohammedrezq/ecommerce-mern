@@ -17,10 +17,8 @@ export const addtoCartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PRODUCT_TO_CART:
       let setQuantity = { ...state.products[action.payload] };
-    //   console.log("SET QUANTITY", setQuantity);
       setQuantity.numbers += 1;
       setQuantity.isInCart = true;
-      console.log('SET Quantity', setQuantity);
       return {
         ...state,
         cartNumbers: state.cartNumbers + 1,

@@ -32,14 +32,10 @@ const TopRatedProducts = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   
-  // console.log(keyword)
   const topRatedProducts = useSelector((state) => state.topRatedProducts);
   const { loading, error, products } = topRatedProducts;
-  // console.log(products)
     let allProducts = products
-    console.log(loading)
-    console.log(error)
-    console.log(products)
+
 
   // console.log(allProducts)
 

@@ -15,7 +15,6 @@ const LoginForm = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
 
-  // console.log(userLogin);
   const { loading, error, userInfo } = userLogin;
 
   const history = useHistory();
@@ -42,8 +41,6 @@ const LoginForm = () => {
     dispatch(login(values.email, values.password)); // Dispatch Email & Password from Login Form
     isSubmitting(true);
     // e.prevenDefault();
-    // console.log(e);
-    console.log("Login Form", values);
     isSubmitting(false);
   };
 

@@ -9,7 +9,6 @@ const MaterialSelectCountry = (props) => {
 
   // Convert Countries Object into Array { 'AF': 'Afghanistan', ...} into [ ["AF", "Afghanistan"], ...]
   const countries = Object.entries(options);
-  // console.log(countries);
 
   return (
     <div className={className}>

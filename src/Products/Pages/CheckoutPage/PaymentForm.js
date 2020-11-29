@@ -17,7 +17,6 @@ import "./PaymentForm.css";
 
 const PaymentForm = () => {
   const productToCart = useSelector((state) => state.addProductToCart); // from Store combine reduers
-  console.log(productToCart);
   const { paymentMethod } = productToCart;
 
   const history = useHistory();
@@ -25,8 +24,7 @@ const PaymentForm = () => {
   const placeOrderPage = () => {
     history.push('/placeorder')
   }
-  console.log(paymentMethod);
-
+  
   let ThePaymentMethod = JSON.parse(localStorage.getItem("paymentMethod")); // Get the Payment Method from LocalStorage
 
   const dispatch = useDispatch();

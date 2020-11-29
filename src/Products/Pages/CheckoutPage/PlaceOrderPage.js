@@ -51,7 +51,6 @@ const PlaceOrderPage = () => {
 
   /* From LocalStorage */
   const theShippingAddress = JSON.parse(localStorage.getItem("shippingAddress"));
-  console.log(theShippingAddress);
   const thePaymentMethod = JSON.parse(localStorage.getItem("paymentMethod"));
   const theCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
 
@@ -66,11 +65,9 @@ const PlaceOrderPage = () => {
   const Taxes = (SubTotal * 14) / 100;
   const FixedTaxes = Taxes.toFixed(2);
 
-  // console.log(Shipping);
 
   const TheTotal = (SubTotal + Shipping + Taxes).toFixed(2);
 
-  // console.log(TheTotal);
 
   // const handleCheckoutBtn = () => {
   //   return history.push("/shipping");
@@ -96,15 +93,11 @@ const PlaceOrderPage = () => {
       shippingPrice: FixedShipping,
       totalPrice: TheTotal
     }))
-    // console.log("order")
   }
 
 
   /* From Redux */
   // const cart = useSelector((state) => state.addProductToCart);
-  // console.log(cart);
-  // console.log(cart.shippingAddress.firstName);
-  // console.log(cart.cartProducts);
 
   // let theProducts = cart.cartProducts;
 

@@ -58,9 +58,6 @@ const AddProductForm = () => {
   const categoriesList = useSelector((state) => state.categoriesList);
   const { cats } = categoriesList;
 
-// console.log(cats)
-
-
   const onTitleChange = (e) => {
     setTitle(e.currentTarget.value);
   }
@@ -113,7 +110,6 @@ const AddProductForm = () => {
   }
 
   const updateImages = (newImages) => {
-    // console.log(newImages)
     setImages(newImages)
   }
 
@@ -135,7 +131,6 @@ const AddProductForm = () => {
         Images: Images,
         })
     );
-    // console.log("New Product Submitted");
   }
 
 
@@ -163,7 +158,6 @@ const AddProductForm = () => {
         >
 
           {cats && cats.map((category, index) => {
-            // console.log(category)
             return(<option key={index} value={category.id}>{category.categoryTitle}</option>)}
           )}
         </NativeSelect>

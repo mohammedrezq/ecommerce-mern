@@ -13,8 +13,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    // console.log(userInfo)
-    // console.log(userInfo.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -22,19 +20,15 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    // {console.log(order)}
-    // {console.log(config)}
     const { data } = await axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/orders`,
       order,
       config
     );
 
-    // console.log(data);
 
     // const { user } = data;
 
-    // console.log(user)
     // Sign up user success
     dispatch({
       type: actionTypes.ORDER_CREATE_SUCCESS,
@@ -63,7 +57,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log(userInfo);
 
     const config = {
       headers: {
@@ -104,7 +97,6 @@ export const payOrder = (orderId, paymentResult) => async (
     const {
       userLogin: { userInfo },
     } = getState();
-    // console.log(userInfo);
 
     const config = {
       headers: {
@@ -112,14 +104,12 @@ export const payOrder = (orderId, paymentResult) => async (
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    // console.log(paymentResult)
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/orders/${orderId}/pay`,
       paymentResult,
       config
     );
 
-    console.log(data);
 
     dispatch({
       type: actionTypes.ORDER_PAY_SUCCESS,
@@ -154,21 +144,18 @@ export const deliverOrder = (order) => async (
     const {
       userLogin: { userInfo },
     } = getState();
-    // console.log(userInfo);
 
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    // console.log(paymentResult)
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/orders/${order._id}/deliver`,
       {},
       config
     );
 
-    // console.log(data);
 
     dispatch({
       type: actionTypes.ORDER_DELIVER_SUCCESS,
@@ -200,7 +187,6 @@ export const getUserListOrders = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log(userInfo);
 
     const config = {
       headers: {

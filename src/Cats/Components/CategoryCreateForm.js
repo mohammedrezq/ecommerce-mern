@@ -42,7 +42,6 @@ const CategoryCreateForm = () => {
 
   const onSubmit = (values, isSubmitting) => {
     dispatch(categoryCreateAction(values.categoryTitle, values.categoryDescription, values.categoryImage));
-    console.log("Updated Data Category Data", values);
     isSubmitting(true);
     isSubmitting(false);
   };

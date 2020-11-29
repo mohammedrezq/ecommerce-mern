@@ -15,7 +15,6 @@ const FileUpload = (props) => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    // console.log(userInfo)
 
     const onDrop = (files) =>{
         let formData = new FormData();
@@ -46,7 +45,6 @@ const FileUpload = (props) => {
 
     const onDelete = (image) => {
         const currentIndex = Images.indexOf(image);
-        console.log(currentIndex);
 
         let newImages = [...Images];
         newImages.splice(currentIndex, 1);

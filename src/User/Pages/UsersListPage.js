@@ -59,7 +59,6 @@ const UsersListPage = () => {
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
-  console.log(users);
 
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
@@ -76,7 +75,6 @@ const UsersListPage = () => {
     if(window.confirm("Are you sure you want to delete this user?")) {
       dispatch(deleteUser(id))
     }
-      console.log("Delete User")
   }
 
   return (

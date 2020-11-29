@@ -4,10 +4,8 @@ import * as actionTypes from '../Actions/actionTypes';
 export const addToCart = (id, qty, size) => async(dispatch, getState) => {
     const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`);
 
-    // console.log(data);
     const {product} = data;
-    // console.log(product)
-    // console.log(getState.cartItems)
+
     dispatch({
         type: actionTypes.CART_ADD_ITEM,
         payload: {
@@ -28,7 +26,6 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
         dispatch({type: actionTypes.PRODUCT_ADD_REQUEST})
         const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`);
         const { product } = data;
-        // console.log(product)
         
         dispatch({type: actionTypes.PRODUCT_ADDED_ON_CLICK_SUCCESS,
         payload: {
@@ -50,10 +47,8 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
           (v, i, a) =>
             a.findIndex((t) => t.product === v.product && t.size === v.size) === i // size or product(id) or size etc
         );
-        // console.log(filtered)
     localStorage.setItem("cartProducts", JSON.stringify(filtered)) // save to the LocalStorage
     } catch(err) {
-        // console.log(err)
         dispatch({
             type: actionTypes.PRODUCT_ADDED_ON_CLICK_FAIL,
             payload:
@@ -64,21 +59,6 @@ export const addProductToCart = (id, size, qty) => async(dispatch, getState) => 
     }
 
 
-    // console.log(data);
-    // const {product} = data;
-    // console.log(product)
-    // console.log(getState.cartItems)
-    // dispatch({
-    //     type: actionTypes.CART_ADD_ITEM,
-    //     payload: {
-    //         product: product.id,
-    //         name: product.Title,
-    //         image: product.Images,
-    //         size: size,
-    //         price: product.Price,
-    //         qty: qty
-    //     }
-    // });
 }
 
 
@@ -88,7 +68,6 @@ export const removeProductFromCart = (id, size, qty, price) => (dispatch, getSta
         type: actionTypes.PRODUCT_REMOVED_ON_CLICK,
         payload: id, size, qty, price
     })
-    // console.log(getState().addProductToCart.cartProducts)
 
 
     // let arr = []

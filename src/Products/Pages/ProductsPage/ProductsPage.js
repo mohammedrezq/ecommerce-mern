@@ -55,7 +55,6 @@ const ProductsPage = () => {
 
   const pageNumber = useParams().pageNumber || 1;
 
-  // console.log(keyword)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
 
@@ -188,7 +187,6 @@ const ProductsPage = () => {
   const FiltersHandler = (e) => {
     let levalue = e.currentTarget.getAttribute('data-value');
 
-    console.log(levalue)
     if(levalue === "highest") {
       let productSortedHighest = products.sort((a,b)=> {
         return(

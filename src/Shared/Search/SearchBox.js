@@ -14,7 +14,6 @@ const SearchBox = ( {history} ) => {
         } else {
             history.push('/')
         }
-        console.log("Search Box")
     }
 
   return (

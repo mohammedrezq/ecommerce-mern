@@ -19,7 +19,6 @@ import classes from "./Drawer.module.css";
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-  // console.log(props)
   const openDrawerHandler = () => {
     setDrawerIsOpen(true);
   };

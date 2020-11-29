@@ -59,8 +59,6 @@ const CategoriesListPage = () => {
   const categoryDelete = useSelector((state) => state.categoryDelete);
   const { success: successDeleteCategory } = categoryDelete;
 
-  console.log(cats);
-  console.log(successDeleteCategory);
 
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
@@ -77,7 +75,6 @@ const CategoriesListPage = () => {
     if(window.confirm("Are you sure you want to delete this category?")) {
         dispatch(deleteCategory(id))
       }
-      console.log("Delete Category");
   }
 
   return (

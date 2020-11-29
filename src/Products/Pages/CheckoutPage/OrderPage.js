@@ -357,7 +357,6 @@ const OrderPage = () => {
                           {!order.isPaid && (
                             <Grid container>
                               <Grid item sm={12}>
-                                {/* {console.log(loadingPay)} */}
                                 {loadingPay && <Spinner />}
                                 {!sdkReady ? <Spinner />: (
                                   <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
@@ -376,7 +375,6 @@ const OrderPage = () => {
                             </Grid>
                             )}
                     </div>
-                            {/* {console.log(loadingPay)} */}
                     {/* <HrElemnent color="#ccc" width="100%" height="1px" border="0"/> */}
                     {order.orderItems && order.orderItems.length === 0 ? (
                       <Message>

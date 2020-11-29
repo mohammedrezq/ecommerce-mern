@@ -7,12 +7,10 @@ import "./RegistrationPage.css";
 const RegistrationPage = (props) => {
   const [isLogin, setIsLogin] = useState(false);
 
-  console.log(isLogin);
   const switchToLoginForm = () => {
     setIsLogin((prevMode) => !prevMode);
   };
 
-  console.log(isLogin);
 
   return !isLogin ? (
     <div className="registration__Form">

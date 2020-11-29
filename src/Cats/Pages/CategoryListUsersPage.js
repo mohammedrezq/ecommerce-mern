@@ -50,11 +50,6 @@ const CategoryListUsersPage = () => {
   const { loading, error, cats } = categoryListUsers;
 
 
-  console.log(cats);
-//   console.log(loading);
-//   console.log(error);
-
-
   useEffect(() => {
           dispatch(catsListUsers());
   }, [dispatch]);

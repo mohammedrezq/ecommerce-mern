@@ -62,7 +62,6 @@ const NewProduct = (props) => {
           setSubmitting(true);
           // make async Call here
 
-          console.log("Submit: ", data);
 
           setSubmitting(false);
         }}

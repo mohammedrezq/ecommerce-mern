@@ -18,8 +18,7 @@ const MaterialInput = (props) => {
       <Field name={name}>
         {({ field, form }) => {
           const { errors, touched } = form;
-          // console.log("field", field);
-          // console.log("form", form);
+
 
           // Will Display the Error Helper Text from Material UI if the textfield is touched
           const displayHelperTextInput =

@@ -53,9 +53,6 @@ const OrdersListPage = () => {
   const ordersList = useSelector((state) => state.ordersList);
   const { loading, error, orders } = ordersList;
 
-
-  console.log(orders);
-
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
 

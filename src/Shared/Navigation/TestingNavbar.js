@@ -65,7 +65,6 @@ const TestingNavbar = () => {
   const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    console.log("LoggedOut!");
     dispatch(logout());
     // history.push('/login') // Redirect user to homepage ('/') after logout
   };

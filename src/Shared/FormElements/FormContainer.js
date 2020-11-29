@@ -47,7 +47,6 @@ const FormContainer = () => {
     ),
     BirthDate: Yup.date().required("Please set your birth date").nullable(),
   });
-  const onSubmit = (values) => console.log("Form Data", values);
   return (
     <Formik
       initialValues={initialValues}
@@ -56,7 +55,6 @@ const FormContainer = () => {
     >
       {(formik) => (
         <Form>
-          {/* {console.log(formik)} */}
           <FormikControl
             control="materialInput"
             type="text"

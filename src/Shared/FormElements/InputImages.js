@@ -18,8 +18,6 @@ const InputImages = (props) => {
               setFieldValue(name, event.target.files[0]);
               const formData = new FormData();
               formData.append(name, event.target.files[0]);
-              console.log(name)
-              console.log(event.currentTarget.files)
 
             try {
                 const config  = {
@@ -30,7 +28,7 @@ const InputImages = (props) => {
 
                 const { data } = await axios.post(process.env.REACT_APP_ASSET_URL+'/uploads', formData, config)
                 console.log("Images Data", `${process.env.REACT_APP_ASSET_URL}${data}`);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
               console.log(error)
             }

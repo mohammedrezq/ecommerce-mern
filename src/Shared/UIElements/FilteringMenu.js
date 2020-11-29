@@ -16,7 +16,6 @@ const FilteringMenu = (props) => {
   const categoryListUsers = useSelector((state) => state.categoryListUsers);
   const { cats } = categoryListUsers;
 
-  // console.log(cats);
   return (
     <div className={props.className}>
       <nav>

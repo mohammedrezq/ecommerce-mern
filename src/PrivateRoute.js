@@ -7,8 +7,7 @@ const PrivateRoute = (props) => {
   const location= useLocation();
   const redirect = location.search? location.search.split("=")[1] : 'checkout'
 
-  // console.log(userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
 
   const condition = userInfo;
 

@@ -11,7 +11,6 @@ const LoginPage = () => {
 
   const [isRegistered, setIsRegistered] = useState(false);
 
-  console.log(isRegistered);
   const swtichToRegisterForm = () => {
     setIsRegistered((prevMode) => !prevMode);
   };

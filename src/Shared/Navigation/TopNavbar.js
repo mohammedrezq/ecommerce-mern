@@ -116,7 +116,6 @@ const TopNavbar = (props) => {
           <span className="loggedIn_Info">{`Hi, ${userInfo.firstName} ${userInfo.lastName}`}</span>
           <PersonOutlineIcon />
         </Button>
-        {/* {console.log(open)} */}
         <Popper style={{zIndex:"1000"}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow

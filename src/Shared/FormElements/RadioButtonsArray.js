@@ -25,7 +25,6 @@ const RadioButtonsArray = (props) => {
                   />
                 <label htmlFor={option}>{option}</label>
                 </div>
-                  {/* {console.log(field.value)} */}
               </React.Fragment>
             );
           });
