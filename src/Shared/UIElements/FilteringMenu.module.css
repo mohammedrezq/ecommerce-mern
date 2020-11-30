@@ -39,3 +39,9 @@
   padding-bottom: 10px;
   padding-right: 1.1em;
 }
+
+@media (max-width: 300px) {
+  .showLeftNav {
+    min-width: 220px;
+  }
+}
