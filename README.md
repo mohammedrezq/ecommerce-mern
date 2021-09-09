@@ -1,4 +1,4 @@
-DEMO
+DEMO:
 https://my-project-1535355684709.web.app/
 
 # ecommerce-mern
